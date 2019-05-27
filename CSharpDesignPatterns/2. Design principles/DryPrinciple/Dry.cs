@@ -3,7 +3,7 @@
     using System;
 
     using CSharpDesignPatterns.Common.Model;
-    using CSharpDesignPatterns._2._Design_principles.DryPrinciple.Example;
+    using CSharpDesignPatterns._2._Design_principles.DryPrinciple.Helpers;
 
     public class Dry
     {
@@ -18,7 +18,7 @@
 
         public static string CheckEligibilityAndFormatEmailHeader(Person person)
         {
-            if (person.BirthDate == DateTime.Now.AddYears(-18))
+            if (person.BirthDate.Date == DateTime.Now.AddYears(-18).Date)
             {
                 return MarkEligibility(person);
             }

@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._2._Design_principles.DryPrinciple.Example
+namespace CSharpDesignPatterns._2._Design_principles.DryPrinciple.Helpers
 {
     using CSharpDesignPatterns.Common.Model;
 

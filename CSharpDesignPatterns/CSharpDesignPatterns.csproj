@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="2. Design principles\DryPrinciple\Dry.cs" />
     <Compile Include="2. Design principles\DryPrinciple\DryTests.cs" />
-    <Compile Include="2. Design principles\DryPrinciple\Example\PersonFormatter.cs" />
+    <Compile Include="2. Design principles\DryPrinciple\Helpers\PersonFormatter.cs" />
     <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
