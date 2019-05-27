@@ -13,7 +13,7 @@
         internal void CheckEligibilityAndFormatEmailHeader_NotEligiblePerson_ReturnsValidFormattedHeader()
         {
             // Arrange
-            var person = new Person("Mark", "Bennet", new DateTime(1999, 03, 15));
+            var person = new Person("Mark", "Bennet", "Male", new DateTime(1999, 03, 15));
 
             // Act
             var result = Dry.CheckEligibilityAndFormatEmailHeader(person);
@@ -27,7 +27,7 @@
         internal void CheckEligibilityAndFormatEmailHeader_EligiblePerson_ReturnsValidFormattedHeader()
         {
             // Arrange
-            var person = new Person("Mark", "Bennet", DateTime.Now.AddYears(-18));
+            var person = new Person("Mark", "Bennet", "Male", DateTime.Now.AddYears(-18));
 
             // Act
             var result = Dry.CheckEligibilityAndFormatEmailHeader(person);

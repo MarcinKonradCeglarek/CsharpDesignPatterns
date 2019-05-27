@@ -60,12 +60,16 @@
     <Compile Include="2. Design principles\KissPrinciple\Helpers\View.cs" />
     <Compile Include="2. Design principles\KissPrinciple\Kiss.cs" />
     <Compile Include="2. Design principles\KissPrinciple\KissTests.cs" />
+    <Compile Include="2. Design principles\LawOfDemeter\Demeter.cs" />
+    <Compile Include="2. Design principles\LawOfDemeter\DemeterTests.cs" />
+    <Compile Include="Common\Model\Company.cs" />
+    <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="1. Agile manifesto\" />
-    <Folder Include="2. Design principles\DemeterPrinciple\" />
+    <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
     <Folder Include="3. SOLID principles\" />
     <Folder Include="4. Creational patterns\" />
     <Folder Include="5. Structural patterns\" />

@@ -12,8 +12,8 @@
          *
          * "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system"
          *
-         * Good examples: Work flows, Objects/exceptions formatting, utility methods, Template methods/LINQ,
-         * Bad examples: none :)
+         * Good examples: Work flows, Objects/exceptions formatting, utility methods, Template methods/LINQ
+         * 
          */
 
         internal static string CheckEligibilityAndFormatEmailHeader(Person person)
