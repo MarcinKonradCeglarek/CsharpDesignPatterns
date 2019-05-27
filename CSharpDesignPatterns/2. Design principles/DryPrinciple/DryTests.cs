@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class DryTests
+    internal class DryTests
     {
         [Test]
-        public void CheckEligibilityAndFormatEmailHeader_NotEligiblePerson_ReturnsValidFormattedHeader()
+        internal void CheckEligibilityAndFormatEmailHeader_NotEligiblePerson_ReturnsValidFormattedHeader()
         {
             // Arrange
             var person = new Person("Mark", "Bennet", new DateTime(1999, 03, 15));
@@ -24,7 +24,7 @@
 
 
         [Test]
-        public void CheckEligibilityAndFormatEmailHeader_EligiblePerson_ReturnsValidFormattedHeader()
+        internal void CheckEligibilityAndFormatEmailHeader_EligiblePerson_ReturnsValidFormattedHeader()
         {
             // Arrange
             var person = new Person("Mark", "Bennet", DateTime.Now.AddYears(-18));
