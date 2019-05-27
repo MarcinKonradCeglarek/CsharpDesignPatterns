@@ -47,9 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2. Design principles\Dry.cs" />
-    <Compile Include="2. Design principles\DryTests.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="2. Design principles\DryPrinciple\Dry.cs" />
+    <Compile Include="2. Design principles\DryPrinciple\DryTests.cs" />
+    <Compile Include="2. Design principles\DryPrinciple\Example\PersonFormatter.cs" />
+    <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
