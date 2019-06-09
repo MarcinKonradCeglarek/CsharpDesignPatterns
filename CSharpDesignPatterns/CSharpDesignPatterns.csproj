@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1. Agile manifesto\AgileManifesto.cs" />
     <Compile Include="2. Design principles\CleanCode\CleanCode.cs" />
+    <Compile Include="2. Design principles\CleanCode\CleanCodeTests.cs" />
     <Compile Include="2. Design principles\DryPrinciple\Dry.cs" />
     <Compile Include="2. Design principles\DryPrinciple\DryTests.cs" />
     <Compile Include="2. Design principles\DryPrinciple\Helpers\PersonFormatter.cs" />
@@ -62,18 +64,56 @@
     <Compile Include="2. Design principles\KissPrinciple\KissTests.cs" />
     <Compile Include="2. Design principles\LawOfDemeter\Demeter.cs" />
     <Compile Include="2. Design principles\LawOfDemeter\DemeterTests.cs" />
+    <Compile Include="3. SOLID principles\1.SingleResponsibility\SingleResponsibility.cs" />
+    <Compile Include="3. SOLID principles\2.OpenClosed\OpenClosed.cs" />
+    <Compile Include="3. SOLID principles\4.InterfaceSegregation\InterfaceSegregation.cs" />
+    <Compile Include="3. SOLID principles\5.DependencyInversion\DependencyInversion.cs" />
+    <Compile Include="4. Creational patterns\Builder\Builder.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
+    <Compile Include="Common\Model\Printer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="1. Agile manifesto\" />
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
-    <Folder Include="3. SOLID principles\" />
-    <Folder Include="4. Creational patterns\" />
-    <Folder Include="5. Structural patterns\" />
-    <Folder Include="6. Behavioral patterns\" />
+    <Folder Include="3. SOLID principles\3.LiskovSubstitution\" />
+    <Folder Include="4. Creational patterns\AbstractFactory\" />
+    <Folder Include="4. Creational patterns\DependencyInjection\" />
+    <Folder Include="4. Creational patterns\FactoryMethod\" />
+    <Folder Include="4. Creational patterns\FluentApi\" />
+    <Folder Include="4. Creational patterns\LazyInitialization\" />
+    <Folder Include="4. Creational patterns\Multiton\" />
+    <Folder Include="4. Creational patterns\ObjectPool\" />
+    <Folder Include="4. Creational patterns\Prototype\" />
+    <Folder Include="4. Creational patterns\ResourceAcquisitionIsInitialization\" />
+    <Folder Include="4. Creational patterns\Singleton\" />
+    <Folder Include="5. Structural patterns\Adapter\" />
+    <Folder Include="5. Structural patterns\Bridge\" />
+    <Folder Include="5. Structural patterns\Composite\" />
+    <Folder Include="5. Structural patterns\Decorator\" />
+    <Folder Include="5. Structural patterns\Facade\" />
+    <Folder Include="5. Structural patterns\Flyweight\" />
+    <Folder Include="5. Structural patterns\FrontController\" />
+    <Folder Include="5. Structural patterns\Marker\" />
+    <Folder Include="5. Structural patterns\Module\" />
+    <Folder Include="5. Structural patterns\Proxy\" />
+    <Folder Include="5. Structural patterns\Twin\" />
+    <Folder Include="6. Behavioral patterns\Blackboard\" />
+    <Folder Include="6. Behavioral patterns\ChainOfResponsibility\" />
+    <Folder Include="6. Behavioral patterns\Command\" />
+    <Folder Include="6. Behavioral patterns\Interpreter\" />
+    <Folder Include="6. Behavioral patterns\Iterator\" />
+    <Folder Include="6. Behavioral patterns\Mediator\" />
+    <Folder Include="6. Behavioral patterns\Memento\" />
+    <Folder Include="6. Behavioral patterns\NullObject\" />
+    <Folder Include="6. Behavioral patterns\Observer\" />
+    <Folder Include="6. Behavioral patterns\Servant\" />
+    <Folder Include="6. Behavioral patterns\Specification\" />
+    <Folder Include="6. Behavioral patterns\State\" />
+    <Folder Include="6. Behavioral patterns\Strategy\" />
+    <Folder Include="6. Behavioral patterns\TemplateMethod\" />
+    <Folder Include="6. Behavioral patterns\Visitor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

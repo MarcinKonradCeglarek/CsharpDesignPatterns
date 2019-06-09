@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._2._Design_principles.KissPrinciple
 {
-    using CSharpDesignPatterns._2._Design_principles.KissPrinciple.Helpers;
-
     using NUnit.Framework;
 
     [TestFixture]
