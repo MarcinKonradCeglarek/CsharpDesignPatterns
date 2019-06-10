@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpDesignPatterns._4._Creational_patterns.AbstractFactory
+﻿namespace CSharpDesignPatterns._4._Creational_patterns.AbstractFactory
 {
-    class AbstractFactory
+    using NUnit.Framework;
+
+    internal class AbstractFactory
     {
+        // Entity framework - connection string
+    }
+
+    [TestFixture]
+    public class AbstractFactoryTests
+    {
+        [Test]
+        public void X()
+        {
+
+        }
     }
 }
