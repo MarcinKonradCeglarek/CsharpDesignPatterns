@@ -1,10 +1,8 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.AbstractFactory
 {
-    using NUnit.Framework;
-
     internal class AbstractFactory
     {
-        // Entity framework - connection string
+        // https://en.wikipedia.org/wiki/Abstract_factory_pattern
     }
 
     [TestFixture]
