@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._3._SOLID_principles._5.DependencyInversion
+﻿namespace CSharpDesignPatterns._3._SOLID_principles
 {
     using System;
     using System.IO;
@@ -9,7 +9,7 @@
     {
         public void GetAndFormatData()
         {
-            var lines = File.ReadAllLines("3. SOLID principles\\5.DependencyInversion\\data.txt");
+            var lines = File.ReadAllLines("3. SOLID principles\\data.txt");
             foreach (var line in lines)
             {
                 Console.WriteLine(line);

@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._3._SOLID_principles._1.SingleResponsibility
+﻿namespace CSharpDesignPatterns._3._SOLID_principles
 {
     using System.Net;
 
