@@ -25,12 +25,12 @@
 
     internal class Leaf : IComposite
     {
-        public string Name { get; }
-
         public Leaf(string name)
         {
             this.Name = name;
         }
+
+        public string Name { get; }
 
         public string Print()
         {

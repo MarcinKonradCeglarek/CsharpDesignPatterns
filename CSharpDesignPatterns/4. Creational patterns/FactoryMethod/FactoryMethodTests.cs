@@ -8,6 +8,12 @@
     public class FactoryMethodTests
     {
         [Test]
+        public void FactoryMethod_None_ThrowsException()
+        {
+            Assert.Throws<NotSupportedException>(() => PeopleFactory.GetPerson(PersonType.None));
+        }
+
+        [Test]
         public void FactoryMethod_RularPerson_IsFarmer()
         {
             var person = PeopleFactory.GetPerson(PersonType.Rural);
@@ -25,12 +31,6 @@
             Assert.IsInstanceOf<IPerson>(person);
             Assert.IsInstanceOf<CityPerson>(person);
             Assert.AreEqual("Clerk", person.Occupation);
-        }
-
-        [Test]
-        public void FactoryMethod_None_ThrowsException()
-        {
-            Assert.Throws<NotSupportedException>(() => PeopleFactory.GetPerson(PersonType.None));
         }
     }
 }

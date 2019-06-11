@@ -8,19 +8,6 @@
     public class BridgeTests
     {
         [Test]
-        public void Circle_ImplementationOfRedCircle_ContainsRedString()
-        {
-            // Arrange
-            var redCircle = new Circle(100, 100, 10, new ImplementationOfRedCircle());
-
-            // Act
-            var result = redCircle.Draw();
-
-            // Assert
-            Assert.IsTrue(result.Contains("RED"));
-        }
-
-        [Test]
         public void Circle_ImplementationOfGreenCircle_ContainsGreenString()
         {
             // Arrange
@@ -34,10 +21,23 @@
         }
 
         [Test]
+        public void Circle_ImplementationOfRedCircle_ContainsRedString()
+        {
+            // Arrange
+            var redCircle = new Circle(100, 100, 10, new ImplementationOfRedCircle());
+
+            // Act
+            var result = redCircle.Draw();
+
+            // Assert
+            Assert.IsTrue(result.Contains("RED"));
+        }
+
+        [Test]
         public void Circle_Mock_MethodIsInvoked()
         {
             // Arrange
-            var mock = new Mock<IBridge>();
+            var mock       = new Mock<IBridge>();
             var mockCircle = new Circle(100, 100, 10, mock.Object);
 
             // Act

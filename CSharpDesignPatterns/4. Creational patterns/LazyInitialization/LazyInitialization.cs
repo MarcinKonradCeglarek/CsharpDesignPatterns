@@ -7,11 +7,9 @@
     {
         private IList<Node> children;
 
-        public string Name { get; }
-
         public Node(string name, IChildrenRepository childrenRepository)
         {
-            this.Name = name;
+            this.Name               = name;
             this.ChildrenRepository = childrenRepository;
         }
 
@@ -27,6 +25,8 @@
                 return new ReadOnlyCollection<Node>(this.children);
             }
         }
+
+        public string Name { get; }
 
         private IChildrenRepository ChildrenRepository { get; }
     }

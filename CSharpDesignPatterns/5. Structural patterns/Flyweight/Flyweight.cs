@@ -3,11 +3,10 @@
     using System;
     using System.Collections.Generic;
 
-    class FlyweightCoffeeShop
+    internal class FlyweightCoffeeShop
     {
         public IDictionary<string, CoffeeFlavour> CoffeeFlavours { get; } = new Dictionary<string, CoffeeFlavour>();
-
-        public IDictionary<Guid, CoffeeFlavour> Orders { get; } = new Dictionary<Guid, CoffeeFlavour>();
+        public IDictionary<Guid, CoffeeFlavour> Orders         { get; } = new Dictionary<Guid, CoffeeFlavour>();
 
         public void TakeOrder(Guid customerId, CoffeeFlavour flavour)
         {

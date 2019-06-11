@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
-    using System.Linq;
-
     using Moq;
 
     using NUnit.Framework;
@@ -14,7 +12,7 @@
         {
             // Arrange
             const string Name = "NodeName";
-            var mock = this.GetMock(Name);
+            var          mock = this.GetMock(Name);
 
             // Act
             var sut = new Node(Name, mock.Object);
@@ -28,7 +26,7 @@
         {
             // Arrange
             const string Name = "NodeName";
-            var mock = this.GetMock(Name);
+            var          mock = this.GetMock(Name);
 
             var sut = new Node(Name, mock.Object);
 
@@ -39,7 +37,7 @@
 
             // Assert
             mock.Verify(m => m.GetChildrenByName(It.IsAny<string>()), Times.Once);
-            mock.Verify(m => m.GetChildrenByName(Name), Times.Once);
+            mock.Verify(m => m.GetChildrenByName(Name),               Times.Once);
             Assert.AreEqual(2, children1.Count);
         }
 

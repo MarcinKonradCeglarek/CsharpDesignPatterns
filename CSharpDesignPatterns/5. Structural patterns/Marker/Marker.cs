@@ -34,7 +34,7 @@
     {
     }
 
-    public class Animal : IAlive
+    public abstract class Animal : IAlive
     {
     }
 
@@ -48,6 +48,5 @@
 
     public class Human : Animal
     {
-
     }
 }

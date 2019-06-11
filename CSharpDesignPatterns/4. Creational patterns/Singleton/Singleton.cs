@@ -11,11 +11,11 @@
             this.Id = Guid.NewGuid();
         }
 
+        public Guid Id { get; }
+
         public static Singleton GetInstance()
         {
             return Instance;
         }
-
-        public Guid Id { get; }
     }
 }

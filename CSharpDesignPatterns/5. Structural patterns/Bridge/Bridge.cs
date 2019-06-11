@@ -20,16 +20,14 @@
     internal class Circle : Shape
     {
         private readonly int radius;
-
         private readonly int x;
-
         private readonly int y;
 
         public Circle(int x, int y, int radius, IBridge drawApi)
             : base(drawApi)
         {
-            this.x = x;
-            this.y = y;
+            this.x      = x;
+            this.y      = y;
             this.radius = radius;
         }
 

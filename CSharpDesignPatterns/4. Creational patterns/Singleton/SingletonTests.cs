@@ -12,7 +12,7 @@
         [Repeat(25)]
         public async Task Singleton_AccessFromMultipleTasks_SameGuid()
         {
-            var tasks = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => Singleton.GetInstance()));
+            var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => Singleton.GetInstance()));
             var singletons = await Task.WhenAll(tasks);
 
             var firstGuid = singletons[0].Id;

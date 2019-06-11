@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Decorator
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -28,8 +27,7 @@
         }
 
         public virtual IEnumerable<Ingredients> Contents => this.decoratedCoffee.Contents;
-
-        public virtual double Cost => this.decoratedCoffee.Cost;
+        public virtual double                   Cost     => this.decoratedCoffee.Cost;
     }
 
     internal class WithMilkDecorator : CoffeeDecorator
@@ -40,8 +38,7 @@
         }
 
         public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Milk });
-
-        public override double Cost => base.Cost + 0.5;
+        public override double                   Cost     => base.Cost + 0.5;
     }
 
     internal class WithSprinklesDecorator : CoffeeDecorator
@@ -52,8 +49,7 @@
         }
 
         public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Sprinkles });
-
-        public override double Cost => base.Cost + 0.2;
+        public override double                   Cost     => base.Cost + 0.2;
     }
 
     public enum Ingredients

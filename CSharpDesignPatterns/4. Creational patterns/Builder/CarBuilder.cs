@@ -4,11 +4,20 @@
 
     internal class CarBuilder
     {
-        private EngineType? engineType;
-
+        private EngineType?       engineType;
         private TransmissionType? transmissionType;
+        private int?              wheels;
 
-        private int? wheels;
+        public CarBuilder AutomaticTransmission()
+        {
+            if (this.transmissionType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.transmissionType = TransmissionType.Automatic;
+            return this;
+        }
 
         public Car Build()
         {
@@ -26,17 +35,6 @@
             return this;
         }
 
-        public CarBuilder GasolineEngine()
-        {
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType = EngineType.Gasoline;
-            return this;
-        }
-
         public CarBuilder ElectricEngine()
         {
             if (this.engineType.HasValue)
@@ -49,8 +47,19 @@
                 throw new InvalidOperationException();
             }
 
-            this.engineType = EngineType.Electric;
+            this.engineType       = EngineType.Electric;
             this.transmissionType = TransmissionType.Automatic;
+            return this;
+        }
+
+        public CarBuilder GasolineEngine()
+        {
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Gasoline;
             return this;
         }
 
@@ -66,7 +75,7 @@
                 throw new InvalidOperationException();
             }
 
-            this.engineType = EngineType.Hybrid;
+            this.engineType       = EngineType.Hybrid;
             this.transmissionType = TransmissionType.Automatic;
             return this;
         }
@@ -81,26 +90,15 @@
             this.transmissionType = TransmissionType.Manual;
             return this;
         }
-
-        public CarBuilder AutomaticTransmission()
-        {
-            if (this.transmissionType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.transmissionType = TransmissionType.Automatic;
-            return this;
-        }
     }
 
     internal class Car
     {
         public Car(EngineType engineType, TransmissionType transmissionType, int wheels)
         {
-            this.EngineType = engineType;
+            this.EngineType       = engineType;
             this.TransmissionType = transmissionType;
-            this.Wheels = wheels;
+            this.Wheels           = wheels;
         }
 
         public EngineType EngineType { get; }
@@ -113,10 +111,10 @@
     [Flags]
     public enum EngineType
     {
-        Diesel = 1,
+        Diesel   = 1,
         Gasoline = 2,
         Electric = 4,
-        Hybrid = 6
+        Hybrid   = 6
     }
 
     public enum TransmissionType

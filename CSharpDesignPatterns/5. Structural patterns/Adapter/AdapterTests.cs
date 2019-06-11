@@ -13,7 +13,7 @@
         [Test]
         public void Adapter_DebugMessage_ProperlyInvokesExternalInterface()
         {
-            var mock = new Mock<IExternalLoggingInterface>();
+            var mock    = new Mock<IExternalLoggingInterface>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new Adapter(mock.Object);
@@ -22,53 +22,17 @@
             // Assert
             mock.Verify(o => o.LogDebug(message), Times.Once);
 
-            mock.Verify(o => o.LogDebug(It.Is<string>(s => s != message)), Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogWarn(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogError(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
-        public void Adapter_InfoMessage_ProperlyInvokesExternalInterface()
-        {
-            var mock = new Mock<IExternalLoggingInterface>();
-            var message = Guid.NewGuid().ToString();
-
-            var sut = new Adapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Info, message);
-
-            // Assert
-            mock.Verify(o => o.LogInfo(message), Times.Once);
-
-            mock.Verify(o => o.LogDebug(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogWarn(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogError(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
-        public void Adapter_WarnMessage_ProperlyInvokesExternalInterface()
-        {
-            var mock = new Mock<IExternalLoggingInterface>();
-            var message = Guid.NewGuid().ToString();
-
-            var sut = new Adapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Warn, message);
-
-            // Assert
-            mock.Verify(o => o.LogWarn(message), Times.Once);
-
-            mock.Verify(o => o.LogDebug(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogError(It.IsAny<string>()), Times.Never);
+            mock.Verify(o => o.LogDebug(It.Is<string>(s => s != message)),              Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
         [Test]
         public void Adapter_ErrorMessage_ProperlyInvokesExternalInterface()
         {
-            var mock = new Mock<IExternalLoggingInterface>();
+            var mock    = new Mock<IExternalLoggingInterface>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new Adapter(mock.Object);
@@ -77,17 +41,17 @@
             // Assert
             mock.Verify(o => o.LogError(message), Times.Once);
 
-            mock.Verify(o => o.LogDebug(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogWarn(It.IsAny<string>()), Times.Never);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
         [Test]
         public void Adapter_ExceptionMessage_ProperlyInvokesExternalInterface()
         {
-            var mock = new Mock<IExternalLoggingInterface>();
-            var message = Guid.NewGuid().ToString();
+            var mock      = new Mock<IExternalLoggingInterface>();
+            var message   = Guid.NewGuid().ToString();
             var exception = new Exception();
 
             var sut = new Adapter(mock.Object);
@@ -97,38 +61,155 @@
             mock.Verify(o => o.LogException(exception, message), Times.Once);
 
             mock.Verify(o => o.LogDebug(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogWarn(It.IsAny<string>()), Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),  Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),  Times.Never);
             mock.Verify(o => o.LogError(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
-        public void Adapter_RemoteAdapterThrowsException_ProperlyReturnsFalse()
+        public void Adapter_InfoMessage_ProperlyInvokesExternalInterface()
+        {
+            var mock    = new Mock<IExternalLoggingInterface>();
+            var message = Guid.NewGuid().ToString();
+
+            var sut = new Adapter(mock.Object);
+            sut.SendLogMessage(LogLevel.Info, message);
+
+            // Assert
+            mock.Verify(o => o.LogInfo(message), Times.Once);
+
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Adapter_RemoteAdapterThrowsExceptionOnDebug_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock = new Mock<IExternalLoggingInterface>();
+            var mock      = new Mock<IExternalLoggingInterface>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogDebug(It.IsAny<string>())).Throws(exception);
-            mock.Setup(m => m.LogInfo(It.IsAny<string>())).Throws(exception);
-            mock.Setup(m => m.LogWarn(It.IsAny<string>())).Throws(exception);
-            mock.Setup(m => m.LogError(It.IsAny<string>())).Throws(exception);
-            mock.Setup(m => m.LogException(It.IsAny<Exception>(), It.IsAny<string>())).Throws(exception);
 
             var sut = new Adapter(mock.Object);
 
             // Act
             var debugResult = sut.SendLogMessage(LogLevel.Debug, Guid.NewGuid().ToString());
-            var infoResult = sut.SendLogMessage(LogLevel.Info, Guid.NewGuid().ToString());
-            var warnResult = sut.SendLogMessage(LogLevel.Warn, Guid.NewGuid().ToString());
-            var errorResult = sut.SendLogMessage(LogLevel.Error, Guid.NewGuid().ToString());
-            var exceptionResult = sut.SendLogMessage(LogLevel.Exception, Guid.NewGuid().ToString());
 
             // Assert
             Assert.IsFalse(debugResult);
-            Assert.IsFalse(infoResult);
-            Assert.IsFalse(warnResult);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Once);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Adapter_RemoteAdapterThrowsExceptionOnError_ProperlyReturnsFalse()
+        {
+            // Arrange
+            var mock      = new Mock<IExternalLoggingInterface>();
+            var exception = new HttpException(404, "Server not found");
+            mock.Setup(m => m.LogError(It.IsAny<string>())).Throws(exception);
+
+            var sut = new Adapter(mock.Object);
+
+            // Act
+            var errorResult = sut.SendLogMessage(LogLevel.Error, Guid.NewGuid().ToString());
+
+            // Assert
             Assert.IsFalse(errorResult);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Once);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Adapter_RemoteAdapterThrowsExceptionOnException_ProperlyReturnsFalse()
+        {
+            // Arrange
+            var mock      = new Mock<IExternalLoggingInterface>();
+            var exception = new HttpException(404, "Server not found");
+            mock.Setup(m => m.LogException(It.IsAny<Exception>(), It.IsAny<string>())).Throws(exception);
+
+            var sut = new Adapter(mock.Object);
+
+            // Act
+            var exceptionResult = sut.SendLogMessage(LogLevel.Exception, Guid.NewGuid().ToString());
+
+            // Assert
             Assert.IsFalse(exceptionResult);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
+        }
+
+        [Test]
+        public void Adapter_RemoteAdapterThrowsExceptionOnInfo_ProperlyReturnsFalse()
+        {
+            // Arrange
+            var mock      = new Mock<IExternalLoggingInterface>();
+            var exception = new HttpException(404, "Server not found");
+            mock.Setup(m => m.LogInfo(It.IsAny<string>())).Throws(exception);
+
+            var sut = new Adapter(mock.Object);
+
+            // Act
+            var infoResult = sut.SendLogMessage(LogLevel.Info, Guid.NewGuid().ToString());
+
+            // Assert
+            Assert.IsFalse(infoResult);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Once);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Adapter_RemoteAdapterThrowsExceptionOnWarn_ProperlyReturnsFalse()
+        {
+            // Arrange
+            var mock      = new Mock<IExternalLoggingInterface>();
+            var exception = new HttpException(404, "Server not found");
+            mock.Setup(m => m.LogWarn(It.IsAny<string>())).Throws(exception);
+
+            var sut = new Adapter(mock.Object);
+
+            // Act
+            var warnResult = sut.SendLogMessage(LogLevel.Warn, Guid.NewGuid().ToString());
+
+            // Assert
+            Assert.IsFalse(warnResult);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Once);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Adapter_WarnMessage_ProperlyInvokesExternalInterface()
+        {
+            var mock    = new Mock<IExternalLoggingInterface>();
+            var message = Guid.NewGuid().ToString();
+
+            var sut = new Adapter(mock.Object);
+            sut.SendLogMessage(LogLevel.Warn, message);
+
+            // Assert
+            mock.Verify(o => o.LogWarn(message), Times.Once);
+
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
     }
 }

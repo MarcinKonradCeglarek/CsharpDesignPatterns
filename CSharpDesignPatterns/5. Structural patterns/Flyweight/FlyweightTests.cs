@@ -18,35 +18,6 @@
             Assert.AreEqual(2, shop.CoffeeFlavours.Count);
         }
 
-
-        [Test]
-        public void Flyweight_SeveralOrders_MinimumNumberOfCacheItems()
-        {
-            var shop = new FlyweightCoffeeShop();
-
-            var input = new Dictionary<Guid, string>()
-                            {
-                                { Guid.NewGuid(), "Cappuccino"},
-                                { Guid.NewGuid(), "Espresso" },
-                                { Guid.NewGuid(), "Frappe" },
-                                { Guid.NewGuid(), "Cappuccino" },
-                                { Guid.NewGuid(), "Espresso" },
-                                { Guid.NewGuid(), "Frappe" },
-                                { Guid.NewGuid(), "Cappuccino" },
-                                { Guid.NewGuid(), "Espresso" },
-                                { Guid.NewGuid(), "Frappe" },
-                            };
-
-            foreach (var o in input)
-            {
-                shop.TakeOrder(o.Key, o.Value);
-            }
-
-            Assert.AreEqual(3, shop.CoffeeFlavours.Count);
-            Assert.AreEqual(9, shop.Orders.Count);
-            CollectionAssert.AreEquivalent(input.Keys, shop.Orders.Keys);
-        }
-
         [Test]
         public void Flyweight_IsReferenceEquals_True()
         {
@@ -60,7 +31,35 @@
             var thisOrder = Guid.NewGuid();
             shop.TakeOrder(thisOrder, "Cappuccino");
 
-            Assert.IsTrue(object.ReferenceEquals(shop.CoffeeFlavours["Cappuccino"], shop.Orders[thisOrder]));
+            Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavours["Cappuccino"], shop.Orders[thisOrder]));
+        }
+
+        [Test]
+        public void Flyweight_SeveralOrders_MinimumNumberOfCacheItems()
+        {
+            var shop = new FlyweightCoffeeShop();
+
+            var input = new Dictionary<Guid, string>
+                        {
+                            { Guid.NewGuid(), "Cappuccino" },
+                            { Guid.NewGuid(), "Espresso" },
+                            { Guid.NewGuid(), "Frappe" },
+                            { Guid.NewGuid(), "Cappuccino" },
+                            { Guid.NewGuid(), "Espresso" },
+                            { Guid.NewGuid(), "Frappe" },
+                            { Guid.NewGuid(), "Cappuccino" },
+                            { Guid.NewGuid(), "Espresso" },
+                            { Guid.NewGuid(), "Frappe" }
+                        };
+
+            foreach (var o in input)
+            {
+                shop.TakeOrder(o.Key, o.Value);
+            }
+
+            Assert.AreEqual(3, shop.CoffeeFlavours.Count);
+            Assert.AreEqual(9, shop.Orders.Count);
+            CollectionAssert.AreEquivalent(input.Keys, shop.Orders.Keys);
         }
     }
 }

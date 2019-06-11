@@ -57,8 +57,6 @@
             root.Add(l2);
 
             Assert.AreEqual("[L1,[L2,[L3,[L4]]]]", root.Print());
-
-
         }
     }
 }

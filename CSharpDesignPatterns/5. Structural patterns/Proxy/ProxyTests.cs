@@ -11,7 +11,7 @@
         public void ProxyCar_CanDriveCar()
         {
             var driver = new Driver(33);
-            var sut = new ProxyCar(driver);
+            var sut    = new ProxyCar(driver);
 
             var result = sut.DriveCar();
 
@@ -22,7 +22,7 @@
         public void ProxyCar_CantDriveCar()
         {
             var driver = new Driver(12);
-            var sut = new ProxyCar(driver);
+            var sut    = new ProxyCar(driver);
 
             Assert.Throws<InvalidOperationException>(() => sut.DriveCar());
         }
