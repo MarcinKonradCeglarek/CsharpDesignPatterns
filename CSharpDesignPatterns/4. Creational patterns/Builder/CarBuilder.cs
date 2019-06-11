@@ -1,10 +1,12 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.Builder
 {
+    using System;
+
     internal class CarBuilder
     {
-        private EngineType engineType = EngineType.Gasoline;
+        private EngineType? engineType;
 
-        private TransmissionType transmissionType = TransmissionType.Manual;
+        private TransmissionType? transmissionType;
 
         private int wheels = 4;
 
@@ -24,6 +26,11 @@
         }
 
         public CarBuilder ElectricEngine()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public CarBuilder HybridEngine()
         {
             throw new System.NotImplementedException();
         }
@@ -50,11 +57,13 @@
         public int Wheels { get; }
     }
 
+    [Flags]
     public enum EngineType
     {
-        Diesel,
-        Gasoline,
-        Electric
+        Diesel = 1,
+        Gasoline = 2,
+        Electric = 4,
+        Hybrid = 6
     }
 
     public enum TransmissionType

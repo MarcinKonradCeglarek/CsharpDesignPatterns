@@ -20,9 +20,10 @@
         [Test]
         public void CarBuilder_DefaultEngine_CreatesGasolineCar()
         {
-            var result = new CarBuilder().Build();
+            var result = new CarBuilder().ManualTransmission().Build();
 
             Assert.AreEqual(EngineType.Gasoline, result.EngineType);
+            Assert.AreEqual(TransmissionType.Manual, result.TransmissionType);
         }
 
         [Test]
@@ -48,6 +49,25 @@
 
             Assert.AreEqual(EngineType.Electric, result.EngineType);
             Assert.AreEqual(TransmissionType.Automatic, result.TransmissionType);
+        }
+
+        [Test]
+        public void CarBuilder_EngineTypeHybrid_CreatesDieselCar()
+        {
+            var result = new CarBuilder().HybridEngine().Build();
+
+            Assert.AreEqual(EngineType.Hybrid, result.EngineType);
+            Assert.AreEqual(TransmissionType.Automatic, result.TransmissionType);
+        }
+
+        [Test]
+        public void CarBuilder_AddingEngineTwice_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().GasolineEngine().GasolineEngine().Build());
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().DieselEngine().DieselEngine().Build());
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().HybridEngine().HybridEngine().Build());
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ElectricEngine().Build());
+
         }
 
         [Test]

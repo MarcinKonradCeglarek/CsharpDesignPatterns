@@ -27,11 +27,13 @@
             var mock = this.GetMock(Name);
 
             var sut = new Node(Name, mock.Object);
-            var children = sut.Children;
+            var children1 = sut.Children;
+            var children2 = sut.Children;
+            var children3 = sut.Children;
 
-            mock.Verify(m => m.GetChildrenByName(It.Is<string>(s => s != Name)), Times.Never);    // GetChildrenByName was never called with parameter different than Name
-            mock.Verify(m => m.GetChildrenByName(Name), Times.Once);                              // GetChildrenByName was called with Name once
-            Assert.AreEqual(2, children.Count());
+            mock.Verify(m => m.GetChildrenByName(It.IsAny<string>()), Times.Once);
+            mock.Verify(m => m.GetChildrenByName(Name), Times.Once);
+            Assert.AreEqual(2, children1.Count());
         }
 
         private Mock<IChildrenRepository> GetMock(string name)

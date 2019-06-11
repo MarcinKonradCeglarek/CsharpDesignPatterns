@@ -92,6 +92,9 @@
     <Compile Include="5. Structural patterns\Composite\CompositeTests.cs" />
     <Compile Include="5. Structural patterns\Decorator\Decorator.cs" />
     <Compile Include="5. Structural patterns\Decorator\DecoratorTests.cs" />
+    <Compile Include="5. Structural patterns\Flyweight\Flyweight.cs" />
+    <Compile Include="5. Structural patterns\Proxy\Proxy.cs" />
+    <Compile Include="5. Structural patterns\Proxy\ProxyTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
@@ -101,11 +104,9 @@
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
     <Folder Include="5. Structural patterns\Facade\" />
-    <Folder Include="5. Structural patterns\Flyweight\" />
     <Folder Include="5. Structural patterns\FrontController\" />
     <Folder Include="5. Structural patterns\Marker\" />
     <Folder Include="5. Structural patterns\Module\" />
-    <Folder Include="5. Structural patterns\Proxy\" />
     <Folder Include="5. Structural patterns\Twin\" />
     <Folder Include="6. Behavioral patterns\Blackboard\" />
     <Folder Include="6. Behavioral patterns\ChainOfResponsibility\" />
