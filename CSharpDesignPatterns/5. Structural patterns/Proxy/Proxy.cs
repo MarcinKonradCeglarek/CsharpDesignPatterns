@@ -17,24 +17,14 @@
 
     internal class ProxyCar : ICar
     {
-        private readonly Driver driver;
-
-        private readonly ICar realCar;
-
         public ProxyCar(Driver driver)
         {
-            this.driver = driver;
-            this.realCar = new Car();
+            throw new NotImplementedException();
         }
 
         public string DriveCar()
         {
-            if (this.driver.Age < 16)
-            {
-                throw new InvalidOperationException("Driver is too young");
-            }
-
-            return this.realCar.DriveCar();
+            throw new NotImplementedException();
         }
     }
 
