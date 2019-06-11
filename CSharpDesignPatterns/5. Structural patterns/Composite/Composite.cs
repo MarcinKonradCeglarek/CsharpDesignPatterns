@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,26 +10,31 @@
 
     internal class Composite : IComposite
     {
-        public void Add(IComposite composite)
+        private readonly List<IComposite> children = new List<IComposite>();
+
+        public void Add(IComposite node)
         {
-            throw new NotImplementedException();
+            this.children.Add(node);
         }
 
         public string Print()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",", this.children.Select(c => c.Print()))}]";
         }
     }
 
     internal class Leaf : IComposite
     {
+        public string Name { get; }
+
         public Leaf(string name)
         {
+            this.Name = name;
         }
 
         public string Print()
         {
-            throw new NotImplementedException();
+            return this.Name;
         }
     }
 }

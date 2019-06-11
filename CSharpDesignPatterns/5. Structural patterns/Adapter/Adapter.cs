@@ -9,13 +9,42 @@
 
     internal class Adapter : IOurLogger
     {
-        public Adapter(IExternalLoggingInterface mockObject)
+        private readonly IExternalLoggingInterface externalLogger;
+
+        public Adapter(IExternalLoggingInterface externalLogger)
         {
+            this.externalLogger = externalLogger;
         }
 
         public bool SendLogMessage(LogLevel level, string message, Exception exception = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                switch (level)
+                {
+                    case LogLevel.Debug:
+                        this.externalLogger.LogDebug(message);
+                        break;
+                    case LogLevel.Info:
+                        this.externalLogger.LogInfo(message);
+                        break;
+                    case LogLevel.Warn:
+                        this.externalLogger.LogWarn(message);
+                        break;
+                    case LogLevel.Error:
+                        this.externalLogger.LogError(message);
+                        break;
+                    case LogLevel.Exception:
+                        this.externalLogger.LogException(exception, message);
+                        break;
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 

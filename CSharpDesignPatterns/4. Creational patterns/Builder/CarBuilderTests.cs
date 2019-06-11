@@ -67,13 +67,27 @@
             Assert.Throws<InvalidOperationException>(() => new CarBuilder().DieselEngine().DieselEngine().Build());
             Assert.Throws<InvalidOperationException>(() => new CarBuilder().HybridEngine().HybridEngine().Build());
             Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ElectricEngine().Build());
-
         }
 
         [Test]
         public void CarBuilder_EngineTypeElectricManualTransmission_ThrowsInvalidOperationException()
         {
             Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ManualTransmission().Build());
+        }
+
+        [Test]
+        public void CarBuilder_AddingTransmissionTwice_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ManualTransmission().Build());
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().AutomaticTransmission().AutomaticTransmission().Build());
+        }
+
+
+        [Test]
+        public void CarBuilder_AddingManualTransmissionAndThenHybridOrElectricEngine_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ElectricEngine().Build());
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().HybridEngine().Build());
         }
     }
 }

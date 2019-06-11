@@ -6,14 +6,14 @@
 
     internal interface ICoffee
     {
-        IEnumerable<string> Contents { get; }
+        IEnumerable<Ingredients> Contents { get; }
 
         double Cost { get; }
     }
 
     public class Coffee : ICoffee
     {
-        public IEnumerable<string> Contents { get; } = new List<string> { "Coffee" };
+        public IEnumerable<Ingredients> Contents { get; } = new List<Ingredients> { Ingredients.Coffee };
 
         public double Cost { get; } = 1;
     }
@@ -27,9 +27,9 @@
             this.decoratedCoffee = c;
         }
 
-        public virtual IEnumerable<string> Contents => throw new NotImplementedException();
+        public virtual IEnumerable<Ingredients> Contents => this.decoratedCoffee.Contents;
 
-        public virtual double Cost => throw new NotImplementedException();
+        public virtual double Cost => this.decoratedCoffee.Cost;
     }
 
     internal class WithMilkDecorator : CoffeeDecorator
@@ -39,9 +39,9 @@
         {
         }
 
-        public override IEnumerable<string> Contents => throw new NotImplementedException();
+        public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Milk });
 
-        public override double Cost => throw new NotImplementedException();
+        public override double Cost => base.Cost + 0.5;
     }
 
     internal class WithSprinklesDecorator : CoffeeDecorator
@@ -50,5 +50,16 @@
             : base(c)
         {
         }
+
+        public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Sprinkles });
+
+        public override double Cost => base.Cost + 0.2;
+    }
+
+    public enum Ingredients
+    {
+        Coffee,
+        Milk,
+        Sprinkles
     }
 }

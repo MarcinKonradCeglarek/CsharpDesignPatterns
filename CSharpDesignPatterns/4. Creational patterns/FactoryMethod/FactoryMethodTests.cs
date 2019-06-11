@@ -10,7 +10,7 @@
         [Test]
         public void FactoryMethod_RularPerson_IsFarmer()
         {
-            var person = Factory.GetPerson(PersonType.Rural);
+            var person = PeopleFactory.GetPerson(PersonType.Rural);
 
             Assert.IsInstanceOf<IPerson>(person);
             Assert.IsInstanceOf<Villager>(person);
@@ -20,7 +20,7 @@
         [Test]
         public void FactoryMethod_UrbanPerson_IsClerk()
         {
-            var person = Factory.GetPerson(PersonType.Urban);
+            var person = PeopleFactory.GetPerson(PersonType.Urban);
 
             Assert.IsInstanceOf<IPerson>(person);
             Assert.IsInstanceOf<CityPerson>(person);
@@ -30,7 +30,7 @@
         [Test]
         public void FactoryMethod_None_ThrowsException()
         {
-            Assert.Throws<NotSupportedException>(() => Factory.GetPerson(PersonType.None));
+            Assert.Throws<NotSupportedException>(() => PeopleFactory.GetPerson(PersonType.None));
         }
     }
 }

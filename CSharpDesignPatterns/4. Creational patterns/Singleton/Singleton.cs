@@ -4,6 +4,8 @@
 
     internal class Singleton
     {
+        private static readonly Singleton Instance = new Singleton();
+
         private Singleton()
         {
             this.Id = Guid.NewGuid();
@@ -11,7 +13,7 @@
 
         public static Singleton GetInstance()
         {
-            return null;
+            return Instance;
         }
 
         public Guid Id { get; }

@@ -1,12 +1,13 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class Node
     {
-        public string Name { get; }
+        private IList<Node> children;
 
-        private IChildrenRepository ChildrenRepository { get; }
+        public string Name { get; }
 
         public Node(string name, IChildrenRepository childrenRepository)
         {
@@ -14,17 +15,24 @@
             this.ChildrenRepository = childrenRepository;
         }
 
-        public IEnumerable<Node> Children
+        public IReadOnlyList<Node> Children
         {
             get
             {
-                return null;
+                if (this.children == null)
+                {
+                    this.children = this.ChildrenRepository.GetChildrenByName(this.Name);
+                }
+
+                return new ReadOnlyCollection<Node>(this.children);
             }
         }
+
+        private IChildrenRepository ChildrenRepository { get; }
     }
 
     public interface IChildrenRepository
     {
-        IEnumerable<Node> GetChildrenByName(string name);
+        IList<Node> GetChildrenByName(string name);
     }
 }

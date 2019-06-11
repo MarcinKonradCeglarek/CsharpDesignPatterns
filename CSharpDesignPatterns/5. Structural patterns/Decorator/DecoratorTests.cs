@@ -14,7 +14,7 @@
 
             Assert.AreEqual(1, coffee.Cost);
             Assert.AreEqual(1, coffee.Contents.Count());
-            Assert.AreEqual("Coffee", coffee.Contents.Single());
+            Assert.AreEqual(Ingredients.Coffee, coffee.Contents.Single());
         }
 
         [Test]
@@ -24,8 +24,8 @@
 
             Assert.AreEqual(1.5, coffeeWithMilk.Cost);
             Assert.AreEqual(2, coffeeWithMilk.Contents.Count());
-            CollectionAssert.Contains(coffeeWithMilk.Contents, "Coffee");
-            CollectionAssert.Contains(coffeeWithMilk.Contents, "Milk");
+            CollectionAssert.Contains(coffeeWithMilk.Contents,Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithMilk.Contents, Ingredients.Milk);
         }
 
 
@@ -36,8 +36,8 @@
 
             Assert.AreEqual(1.2, coffeeWithSprinkles.Cost);
             Assert.AreEqual(2, coffeeWithSprinkles.Contents.Count());
-            CollectionAssert.Contains(coffeeWithSprinkles.Contents, "Coffee");
-            CollectionAssert.Contains(coffeeWithSprinkles.Contents, "Sprinkles");
+            CollectionAssert.Contains(coffeeWithSprinkles.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithSprinkles.Contents, Ingredients.Sprinkles);
         }
 
         [Test]
@@ -47,9 +47,9 @@
 
             Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
             Assert.AreEqual(3, coffeeWithMilkAndSprinkles.Contents.Count());
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Coffee");
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Milk");
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Sprinkles");
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Milk);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
         }
 
         [Test]
@@ -59,9 +59,9 @@
 
             Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
             Assert.AreEqual(3, coffeeWithMilkAndSprinkles.Contents.Count());
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Coffee");
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Milk");
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, "Sprinkles");
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Milk);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
         }
     }
 }

@@ -8,36 +8,89 @@
 
         private TransmissionType? transmissionType;
 
-        private int wheels = 4;
+        private int? wheels;
 
         public Car Build()
         {
-            throw new System.NotImplementedException();
+            return new Car(this.engineType ?? EngineType.Gasoline, this.transmissionType ?? TransmissionType.Manual, this.wheels ?? 4);
         }
 
         public CarBuilder DieselEngine()
         {
-            throw new System.NotImplementedException();
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Diesel;
+            return this;
         }
 
         public CarBuilder GasolineEngine()
         {
-            throw new System.NotImplementedException();
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Gasoline;
+            return this;
         }
 
         public CarBuilder ElectricEngine()
         {
-            throw new System.NotImplementedException();
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            if (this.transmissionType.HasValue && this.transmissionType.Value == TransmissionType.Manual)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Electric;
+            this.transmissionType = TransmissionType.Automatic;
+            return this;
         }
 
         public CarBuilder HybridEngine()
         {
-            throw new System.NotImplementedException();
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            if (this.transmissionType.HasValue && this.transmissionType.Value == TransmissionType.Manual)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Hybrid;
+            this.transmissionType = TransmissionType.Automatic;
+            return this;
         }
 
         public CarBuilder ManualTransmission()
         {
-            throw new System.NotImplementedException();
+            if (this.transmissionType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.transmissionType = TransmissionType.Manual;
+            return this;
+        }
+
+        public CarBuilder AutomaticTransmission()
+        {
+            if (this.transmissionType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.transmissionType = TransmissionType.Automatic;
+            return this;
         }
     }
 

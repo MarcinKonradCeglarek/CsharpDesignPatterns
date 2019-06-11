@@ -107,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
-    <Folder Include="5. Structural patterns\Facade\" />
     <Folder Include="5. Structural patterns\FrontController\" />
     <Folder Include="6. Behavioral patterns\ChainOfResponsibility\" />
     <Folder Include="6. Behavioral patterns\Command\" />
