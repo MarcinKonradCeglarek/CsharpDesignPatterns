@@ -88,6 +88,10 @@
     <Compile Include="5. Structural patterns\Adapter\AdapterTests.cs" />
     <Compile Include="5. Structural patterns\Bridge\Bridge.cs" />
     <Compile Include="5. Structural patterns\Bridge\BridgeTests.cs" />
+    <Compile Include="5. Structural patterns\Composite\Composite.cs" />
+    <Compile Include="5. Structural patterns\Composite\CompositeTests.cs" />
+    <Compile Include="5. Structural patterns\Decorator\Decorator.cs" />
+    <Compile Include="5. Structural patterns\Decorator\DecoratorTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
@@ -96,8 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
-    <Folder Include="5. Structural patterns\Composite\" />
-    <Folder Include="5. Structural patterns\Decorator\" />
     <Folder Include="5. Structural patterns\Facade\" />
     <Folder Include="5. Structural patterns\Flyweight\" />
     <Folder Include="5. Structural patterns\FrontController\" />

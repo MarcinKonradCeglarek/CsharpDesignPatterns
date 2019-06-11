@@ -20,6 +20,7 @@
         }
 
         [Test]
+        [Repeat(25)]
         public void SingletonTests_GetInstanceTwice_SameGuid()
         {
             var instance1 = Singleton.GetInstance();
