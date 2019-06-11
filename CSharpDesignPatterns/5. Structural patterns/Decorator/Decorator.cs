@@ -26,9 +26,9 @@
             this.decoratedCoffee = c;
         }
 
-        public IEnumerable<string> Contents => this.decoratedCoffee.Contents;
+        public virtual IEnumerable<string> Contents => this.decoratedCoffee.Contents;
 
-        public double Cost => this.decoratedCoffee.Cost;
+        public virtual double Cost => this.decoratedCoffee.Cost;
     }
 
     internal class WithMilkDecorator : CoffeeDecorator
@@ -38,9 +38,9 @@
         {
         }
 
-        public new IEnumerable<string> Contents => base.Contents.Concat(new[] { "Milk" });
+        public override IEnumerable<string> Contents => base.Contents.Concat(new[] { "Milk" });
 
-        public new double Cost => base.Cost + 0.5;
+        public override double Cost => base.Cost + 0.5;
     }
 
     internal class WithSprinklesDecorator : CoffeeDecorator
@@ -50,8 +50,8 @@
         {
         }
 
-        public new IEnumerable<string> Contents => base.Contents.Concat(new[] { "Sprinkles" });
+        public override IEnumerable<string> Contents => base.Contents.Concat(new[] { "Sprinkles" });
 
-        public new double Cost => base.Cost + 0.2;
+        public override double Cost => base.Cost + 0.2;
     }
 }
