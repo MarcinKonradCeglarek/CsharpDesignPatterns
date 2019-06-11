@@ -82,6 +82,12 @@
     <Compile Include="4. Creational patterns\FactoryMethod\FactoryMethodTests.cs" />
     <Compile Include="4. Creational patterns\LazyInitialization\LazyInitialization.cs" />
     <Compile Include="4. Creational patterns\LazyInitialization\LazyInitializationTests.cs" />
+    <Compile Include="4. Creational patterns\Singleton\Singleton.cs" />
+    <Compile Include="4. Creational patterns\Singleton\SingletonTests.cs" />
+    <Compile Include="5. Structural patterns\Adapter\Adapter.cs" />
+    <Compile Include="5. Structural patterns\Adapter\AdapterTests.cs" />
+    <Compile Include="5. Structural patterns\Bridge\Bridge.cs" />
+    <Compile Include="5. Structural patterns\Bridge\BridgeTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
@@ -90,10 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
-    <Folder Include="4. Creational patterns\Prototype\" />
-    <Folder Include="4. Creational patterns\Singleton\" />
-    <Folder Include="5. Structural patterns\Adapter\" />
-    <Folder Include="5. Structural patterns\Bridge\" />
     <Folder Include="5. Structural patterns\Composite\" />
     <Folder Include="5. Structural patterns\Decorator\" />
     <Folder Include="5. Structural patterns\Facade\" />
