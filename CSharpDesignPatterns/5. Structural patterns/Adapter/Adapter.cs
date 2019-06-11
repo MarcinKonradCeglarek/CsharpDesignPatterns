@@ -9,6 +9,10 @@
 
     internal class Adapter : IOurLogger
     {
+        public Adapter(IExternalLoggingInterface mockObject)
+        {
+        }
+
         public bool SendLogMessage(LogLevel level, string message, Exception exception = null)
         {
             throw new NotImplementedException();

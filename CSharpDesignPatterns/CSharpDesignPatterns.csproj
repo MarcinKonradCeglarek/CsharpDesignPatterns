@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,6 +94,7 @@
     <Compile Include="5. Structural patterns\Decorator\Decorator.cs" />
     <Compile Include="5. Structural patterns\Decorator\DecoratorTests.cs" />
     <Compile Include="5. Structural patterns\Flyweight\Flyweight.cs" />
+    <Compile Include="5. Structural patterns\Flyweight\FlyweightTests.cs" />
     <Compile Include="5. Structural patterns\Marker\Marker.cs" />
     <Compile Include="5. Structural patterns\Marker\MarkerTests.cs" />
     <Compile Include="5. Structural patterns\Proxy\Proxy.cs" />

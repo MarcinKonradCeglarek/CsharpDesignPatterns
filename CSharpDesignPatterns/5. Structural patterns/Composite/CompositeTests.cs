@@ -16,8 +16,9 @@
             var composite = new Composite();
             composite.Add(this.leaf1);
             composite.Add(this.leaf2);
+            composite.Add(this.leaf1);
 
-            Assert.AreEqual("[L1,L2]", composite.Print());
+            Assert.AreEqual("[L1,L2,L1]", composite.Print());
         }
 
         [Test]
@@ -56,6 +57,8 @@
             root.Add(l2);
 
             Assert.AreEqual("[L1,[L2,[L3,[L4]]]]", root.Print());
+
+
         }
     }
 }

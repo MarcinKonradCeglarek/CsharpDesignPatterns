@@ -1,9 +1,39 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
-    class Flyweight
+    class FlyweightCoffeeShop
     {
+        public void TakeOrder(Guid customerId, CoffeeFlavour flavour)
+        {
+            if (this.Orders.ContainsKey(customerId))
+            {
+                return;
+            }
+
+            if (!this.CoffeeFlavours.ContainsKey(flavour.Flavour))
+            {
+                this.CoffeeFlavours.Add(flavour.Flavour, flavour);
+            }
+
+            this.Orders.Add(customerId, this.CoffeeFlavours[flavour.Flavour]);
+        }
+
+        public IDictionary<string, CoffeeFlavour> CoffeeFlavours { get; } = new Dictionary<string, CoffeeFlavour>();
+
+        public IDictionary<Guid, CoffeeFlavour> Orders { get; } = new Dictionary<Guid, CoffeeFlavour>();
+
+        public void TakeOrder(Guid customerId, string flavour)
+        {
+            if (!this.CoffeeFlavours.ContainsKey(flavour))
+            {
+                this.CoffeeFlavours.Add(flavour, new CoffeeFlavour(flavour));
+            }
+
+            this.Orders.Add(customerId, this.CoffeeFlavours[flavour]);
+        }
     }
 
     public class CoffeeFlavour
@@ -11,41 +41,8 @@
         public CoffeeFlavour(string flavour)
         {
             this.Flavour = flavour;
-            this.Data = string.Join("-#-", Enumerable.Range(0, 100).Select(i => flavour));
         }
-
-        public string Data { get; set; }
 
         public string Flavour { get; }
-
-        public static bool operator ==(CoffeeFlavour a, CoffeeFlavour b)
-        {
-            return Equals(a, b);
-        }
-
-        public static bool operator !=(CoffeeFlavour a, CoffeeFlavour b)
-        {
-            return !Equals(a, b);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            return obj is CoffeeFlavour flavour && Equals(flavour);
-        }
-
-        public bool Equals(CoffeeFlavour other)
-        {
-            return string.Equals(this.Flavour, other.Flavour);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.Flavour.GetHashCode();
-        }
     }
 }
