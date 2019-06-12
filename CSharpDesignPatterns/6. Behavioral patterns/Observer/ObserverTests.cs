@@ -61,7 +61,6 @@
             {
                 using (sut.Subscribe(observer2.Object))
                 {
-                    
                 }
 
                 sut.SendMessage(message);
