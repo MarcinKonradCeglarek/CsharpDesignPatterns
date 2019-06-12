@@ -24,31 +24,20 @@
     {
         public ChainOfResponsibilityLogger(LogLevel mask)
         {
-            this.LogMask = mask;
+            throw new NotImplementedException();
         }
 
         protected LogLevel LogMask { get; }
-        protected ChainOfResponsibilityLogger   Next    { get; set; }
+        protected ChainOfResponsibilityLogger Next { get; set; }
 
         public void Message(string msg, LogLevel severity)
         {
-            if ((severity & this.LogMask) != 0)
-            {
-                this.WriteMessage(msg);
-            }
-
-            this.Next?.Message(msg, severity);
+            throw new NotImplementedException();
         }
 
         public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
-            if (this.Next != null)
-            {
-                nextChainOfResponsibilityLogger.Next = this.Next;
-            }
-
-            this.Next = nextChainOfResponsibilityLogger;
-            return this;
+            throw new NotImplementedException();
         }
 
         protected abstract void WriteMessage(string msg);
@@ -61,12 +50,12 @@
         public ChainOfResponsibilityConsoleLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 
@@ -77,12 +66,12 @@
         public ChainOfResponsibilityEmailLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 
@@ -93,12 +82,12 @@
         public ChainOfResponsibilityFileLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 }

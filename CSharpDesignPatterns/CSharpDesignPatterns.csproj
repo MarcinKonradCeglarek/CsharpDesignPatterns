@@ -105,6 +105,10 @@
     <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\IteratorTests.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\Strategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\StrategyTests.cs" />
+    <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethod.cs" />
+    <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethodTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
@@ -122,8 +126,6 @@
     <Folder Include="6. Behavioral patterns\Servant\" />
     <Folder Include="6. Behavioral patterns\Specification\" />
     <Folder Include="6. Behavioral patterns\State\" />
-    <Folder Include="6. Behavioral patterns\Strategy\" />
-    <Folder Include="6. Behavioral patterns\TemplateMethod\" />
     <Folder Include="6. Behavioral patterns\Visitor\" />
   </ItemGroup>
   <ItemGroup>

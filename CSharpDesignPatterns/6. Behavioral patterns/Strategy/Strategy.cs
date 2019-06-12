@@ -6,24 +6,21 @@
 
     public class Customer
     {
-        private readonly IList<double> drinksPrices;
-
         public Customer(IBillingStrategy strategy)
         {
-            this.drinksPrices = new List<double>();
-            this.Strategy     = strategy;
+            throw new NotImplementedException();
         }
 
         public IBillingStrategy Strategy { get; set; }
 
         public void Add(double price, int quantity)
         {
-            this.drinksPrices.Add(this.Strategy.GetPrice(price * quantity));
+            throw new NotImplementedException();
         }
 
         public double GetTotalAmount()
         {
-            return this.drinksPrices.Sum();
+            throw new NotImplementedException();
         }
     }
 
@@ -36,7 +33,7 @@
     {
         public double GetPrice(double originalPrice)
         {
-            return originalPrice;
+            throw new NotImplementedException();
         }
     }
 
@@ -44,7 +41,7 @@
     {
         public double GetPrice(double originalPrice)
         {
-            return originalPrice * 0.5;
+            throw new NotImplementedException();
         }
     }
 }

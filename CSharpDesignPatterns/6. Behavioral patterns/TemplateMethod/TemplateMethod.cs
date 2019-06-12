@@ -3,62 +3,80 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class CacheTemplateMethod
+    public abstract class NameFormatterTemplateMethod
     {
-        public string GetResource(string url)
+        public string GetName()
         {
-            if (!this.CheckCache(url, out var content))
-            {
-                content = this.FetchResource(url);
-                this.UpdateCache(url, content);
-            }
-
-            return content;
+            throw new System.NotImplementedException();
         }
 
-        protected abstract bool CheckCache(string url, out string content);
+        protected abstract string GetPrefix();
 
-        protected abstract string FetchResource(string url);
+        protected abstract IEnumerable<string> GetFirstNames();
 
-        protected abstract void UpdateCache(string url, string content);
+        protected abstract string GetLastName();
+
+        protected abstract string GetSuffix();
     }
 
-    public class InMemCache : CacheTemplateMethod
+    public class PeasantNameFormatter : NameFormatterTemplateMethod
     {
-        private readonly Dictionary<string, string> cache = new Dictionary<string, string>();
-
-        public InMemCache(IRemoteDataFetcher remoteDataFetcher)
+        public PeasantNameFormatter(string firstName, string LastName)
         {
-            this.RemoteDataFetcher = remoteDataFetcher;
         }
 
-        private IRemoteDataFetcher RemoteDataFetcher { get; }
-
-        protected override bool CheckCache(string url, out string content)
+        protected override string GetPrefix()
         {
-            if (this.cache.ContainsKey(url))
-            {
-                content = this.cache[url];
-                return true;
-            }
-
-            content = string.Empty;
-            return false;
+            throw new System.NotImplementedException();
         }
 
-        protected override string FetchResource(string url)
+        protected override IEnumerable<string> GetFirstNames()
         {
-            return this.RemoteDataFetcher.FetchUrl(url);
+            throw new System.NotImplementedException();
         }
 
-        protected override void UpdateCache(string url, string content)
+        protected override string GetLastName()
         {
-            this.cache[url] = content;
+            throw new System.NotImplementedException();
+        }
+
+        protected override string GetSuffix()
+        {
+            throw new System.NotImplementedException();
         }
     }
 
-    public interface IRemoteDataFetcher
+    public class RoyaltyNameFormatter : NameFormatterTemplateMethod
     {
-        string FetchUrl(string url);
+        public RoyaltyNameFormatter(
+            string              prefix,
+            string              firstName,
+            string              secondName,
+            string              thirdName,
+            string              LastName,
+            IEnumerable<string> suffixes)
+        {
+
+        }
+
+        protected override string GetPrefix()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override IEnumerable<string> GetFirstNames()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override string GetLastName()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override string GetSuffix()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
