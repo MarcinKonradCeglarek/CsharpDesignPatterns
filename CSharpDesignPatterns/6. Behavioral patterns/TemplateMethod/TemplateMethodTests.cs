@@ -6,18 +6,31 @@
     public class TemplateMethodTests
     {
         [Test]
-        public void PesantsFormatter_FirstAndLastName_ProperlyFormatsHisName()
+        public void PeasantFormatter()
         {
-            const string firstName = "Poor";
-            const string lastName  = "Peasant";
+            const string FirstName = "Poor";
+            const string LastName  = "Peasant";
 
-            var formatter = new PeasantNameFormatter(firstName, lastName);
+            var formatter = new PeasantNameFormatter(FirstName, LastName);
 
             Assert.AreEqual("Poor Peasant", formatter.GetName());
         }
 
         [Test]
-        public void RoyaltyFormatter_AllPossibleNames_ProperlyFormatsHisName()
+        public void RoyaltyFormatterWithAllExceptSecondName()
+        {
+            var firstName = "Gregory";
+            var thirdName = "Andrew";
+            var lastName  = "Bailish";
+            var suffix    = new[] { "the third", "king of Andals" };
+
+            var formatter = new RoyaltyNameFormatter("sir", firstName, null, thirdName, lastName, suffix);
+
+            Assert.AreEqual($"sir {firstName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
+        }
+
+        [Test]
+        public void RoyaltyFormatterWithAllPossibleNames()
         {
             var firstName  = "Gregory";
             var secondName = "Peter";
@@ -27,9 +40,18 @@
 
             var formatter = new RoyaltyNameFormatter("sir", firstName, secondName, thirdName, lastName, suffix);
 
-            Assert.AreEqual(
-                $"sir {firstName} {secondName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}",
-                formatter.GetName());
+            Assert.AreEqual($"sir {firstName} {secondName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
+        }
+
+        [Test]
+        public void RoyaltyFormatterWithJustFirstAndLastName()
+        {
+            const string FirstName = "Poor";
+            const string LastName  = "Peasant";
+
+            var formatter = new RoyaltyNameFormatter(null, FirstName, null, null, LastName, null);
+
+            Assert.AreEqual($"{FirstName} von {LastName}", formatter.GetName());
         }
     }
 }

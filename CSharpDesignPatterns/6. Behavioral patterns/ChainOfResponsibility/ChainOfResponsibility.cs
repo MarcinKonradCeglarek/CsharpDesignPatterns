@@ -5,7 +5,6 @@
     [Flags]
     public enum LogLevel
     {
-        None              = 0b00000000,
         Info              = 0b00000001,
         Debug             = 0b00000010,
         Warning           = 0b00000100,
@@ -22,25 +21,13 @@
 
     public abstract class ChainOfResponsibilityLogger
     {
-        private readonly LogLevel mask;
-
-        public ChainOfResponsibilityLogger(LogLevel mask)
+        protected ChainOfResponsibilityLogger(LogLevel mask)
         {
-            this.mask = mask;
+            this.LogMask = mask;
         }
 
-        protected LogLevel LogMask { get; }
-        protected ChainOfResponsibilityLogger Next { get; set; }
-
-        public void Message(string msg, LogLevel severity)
-        {
-            if ((severity & this.mask) != 0)
-            {
-                WriteMessage(msg);
-            }
-
-            this.Next?.Message(msg, severity);
-        }
+        protected LogLevel                    LogMask { get; }
+        protected ChainOfResponsibilityLogger Next    { get; set; }
 
         public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
@@ -51,6 +38,16 @@
 
             this.Next = nextChainOfResponsibilityLogger;
             return this;
+        }
+
+        public void Message(string msg, LogLevel severity)
+        {
+            if ((severity & this.LogMask) != 0)
+            {
+                this.WriteMessage(msg);
+            }
+
+            this.Next?.Message(msg, severity);
         }
 
         protected abstract void WriteMessage(string msg);

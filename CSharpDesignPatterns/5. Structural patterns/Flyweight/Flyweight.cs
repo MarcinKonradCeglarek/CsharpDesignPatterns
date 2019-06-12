@@ -5,42 +5,42 @@
 
     internal class FlyweightCoffeeShop
     {
-        public IDictionary<string, CoffeeFlavour> CoffeeFlavours { get; } = new Dictionary<string, CoffeeFlavour>();
-        public IDictionary<Guid, CoffeeFlavour> Orders         { get; } = new Dictionary<Guid, CoffeeFlavour>();
+        public IDictionary<string, CoffeeFlavor> CoffeeFlavors { get; } = new Dictionary<string, CoffeeFlavor>();
+        public IDictionary<Guid, CoffeeFlavor> Orders        { get; } = new Dictionary<Guid, CoffeeFlavor>();
 
-        public void TakeOrder(Guid customerId, CoffeeFlavour flavour)
+        public void TakeOrder(Guid customerId, CoffeeFlavor flavor)
         {
             if (this.Orders.ContainsKey(customerId))
             {
                 return;
             }
 
-            if (!this.CoffeeFlavours.ContainsKey(flavour.Flavour))
+            if (!this.CoffeeFlavors.ContainsKey(flavor.Flavor))
             {
-                this.CoffeeFlavours.Add(flavour.Flavour, flavour);
+                this.CoffeeFlavors.Add(flavor.Flavor, flavor);
             }
 
-            this.Orders.Add(customerId, this.CoffeeFlavours[flavour.Flavour]);
+            this.Orders.Add(customerId, this.CoffeeFlavors[flavor.Flavor]);
         }
 
         public void TakeOrder(Guid customerId, string flavour)
         {
-            if (!this.CoffeeFlavours.ContainsKey(flavour))
+            if (!this.CoffeeFlavors.ContainsKey(flavour))
             {
-                this.CoffeeFlavours.Add(flavour, new CoffeeFlavour(flavour));
+                this.CoffeeFlavors.Add(flavour, new CoffeeFlavor(flavour));
             }
 
-            this.Orders.Add(customerId, this.CoffeeFlavours[flavour]);
+            this.Orders.Add(customerId, this.CoffeeFlavors[flavour]);
         }
     }
 
-    public class CoffeeFlavour
+    public class CoffeeFlavor
     {
-        public CoffeeFlavour(string flavour)
+        public CoffeeFlavor(string flavor)
         {
-            this.Flavour = flavour;
+            this.Flavor = flavor;
         }
 
-        public string Flavour { get; }
+        public string Flavor { get; }
     }
 }

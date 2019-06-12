@@ -21,17 +21,18 @@
 
             if (!string.IsNullOrEmpty(this.GetSuffix()))
             {
+                sb.Append(" ");
                 sb.Append(this.GetSuffix());
             }
 
             return sb.ToString();
         }
 
-        protected abstract string GetPrefix();
-
         protected abstract IEnumerable<string> GetFirstNames();
 
         protected abstract string GetLastName();
+
+        protected abstract string GetPrefix();
 
         protected abstract string GetSuffix();
     }
@@ -44,12 +45,7 @@
         public PeasantNameFormatter(string firstName, string lastName)
         {
             this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        protected override string GetPrefix()
-        {
-            return null;
+            this.lastName  = lastName;
         }
 
         protected override IEnumerable<string> GetFirstNames()
@@ -62,6 +58,11 @@
             return this.lastName;
         }
 
+        protected override string GetPrefix()
+        {
+            return null;
+        }
+
         protected override string GetSuffix()
         {
             return null;
@@ -70,32 +71,21 @@
 
     public class RoyaltyNameFormatter : NameFormatterTemplateMethod
     {
-        private readonly string prefix;
-        private readonly string firstName;
-        private readonly string secondName;
-        private readonly string thirdName;
-        private readonly string lastName;
+        private readonly string              firstName;
+        private readonly string              lastName;
+        private readonly string              prefix;
+        private readonly string              secondName;
         private readonly IEnumerable<string> suffixes;
+        private readonly string              thirdName;
 
-        public RoyaltyNameFormatter(
-            string              prefix,
-            string              firstName,
-            string              secondName,
-            string              thirdName,
-            string              lastName,
-            IEnumerable<string> suffixes)
+        public RoyaltyNameFormatter(string prefix, string firstName, string secondName, string thirdName, string lastName, IEnumerable<string> suffixes)
         {
-            this.prefix = prefix;
-            this.firstName = firstName;
+            this.prefix     = prefix;
+            this.firstName  = firstName;
             this.secondName = secondName;
-            this.thirdName = thirdName;
-            this.lastName = lastName;
-            this.suffixes = suffixes;
-        }
-
-        protected override string GetPrefix()
-        {
-            return this.prefix;
+            this.thirdName  = thirdName;
+            this.lastName   = lastName;
+            this.suffixes   = suffixes;
         }
 
         protected override IEnumerable<string> GetFirstNames()
@@ -105,12 +95,22 @@
 
         protected override string GetLastName()
         {
-            return $"von {this.lastName} ";
+            return $"von {this.lastName}";
+        }
+
+        protected override string GetPrefix()
+        {
+            return this.prefix;
         }
 
         protected override string GetSuffix()
         {
-            return string.Join(", ", this.suffixes);
+            if (this.suffixes != null)
+            {
+                return string.Join(", ", this.suffixes);
+            }
+
+            return null;
         }
     }
 }

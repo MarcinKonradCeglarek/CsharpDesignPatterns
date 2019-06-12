@@ -3,48 +3,53 @@
     using System;
     using System.Collections.Generic;
 
+    using Castle.Core.Internal;
+
     public class PayLoad
     {
-        public string Message { get; set; }
+        public PayLoad(string message)
+        {
+            this.Message = message;
+        }
+
+        public string Message { get; }
     }
 
     public class Subject : IObservable<PayLoad>
     {
-        public Subject()
-        {
-            throw new NotImplementedException();
-        }
+        public IList<IObserver<PayLoad>> Observers { get; } = new List<IObserver<PayLoad>>();
 
-        public IList<IObserver<PayLoad>> Observers { get; set; }
-
-        public void SendMessage(string message)
+        public void RaiseEvent(string message)
         {
-            throw new NotImplementedException();
+            this.Observers.ForEach(o => o.OnNext(new PayLoad(message)));
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            return new Unsubscriber(this.Observers, observer);
         }
     }
 
     public class Unsubscriber : IDisposable
     {
+        private readonly IObserver<PayLoad> observer;
+        private readonly IList<IObserver<PayLoad>> observers;
+
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            this.observers = observers;
+            this.observer  = observer;
+            this.observers.Add(observer);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.observers.Remove(this.observer);
         }
     }
 
     public class Observer : IObserver<PayLoad>
     {
-        public string Message { get; set; }
-
         public void OnCompleted()
         {
         }

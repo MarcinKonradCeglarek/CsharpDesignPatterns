@@ -23,7 +23,6 @@
          * - spaghetti code
          * - requires introducing many auxiliary methods
          */
-
         public static void UpdateEmployeeGenderBeginnerWay(Company company, Guid id, string newName)
         {
             company.Employees[id].Person.UpdateGender(newName);

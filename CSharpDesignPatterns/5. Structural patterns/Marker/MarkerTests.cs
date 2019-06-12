@@ -14,7 +14,28 @@
             new List<IAlive> { new Human(), new Elephant(), new Human(), new Dog(), new Mushroom(), new Mushroom(), new Tree(), new Bush() };
 
         [Test]
-        public void Marker_AnimalEntities_GetAllAnimals()
+        public void ClassesInAssemblyWithAnimalAttribute4()
+        {
+            var assembly = typeof(IAlive).Assembly;
+            Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<AnimalAttribute>()));
+        }
+
+        [Test]
+        public void ClassesInAssemblyWithPlantAttribute4()
+        {
+            var assembly = typeof(IAlive).Assembly;
+            Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<PlantAttribute>()));
+        }
+
+        [Test]
+        public void ClassesInAssemblyWithSentientAttribute1()
+        {
+            var assembly = typeof(IAlive).Assembly;
+            Assert.AreEqual(1, assembly.GetTypes().Count(t => t.HasAttribute<SentientAttribute>()));
+        }
+
+        [Test]
+        public void GetAllAnimal4Entities()
         {
             var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<AnimalAttribute>()).ToList();
 
@@ -22,49 +43,27 @@
         }
 
         [Test]
-        public void Marker_CountClassesWithAnimalAttribute_4()
-        {
-            var assembly = typeof(IAlive).Assembly;
-            Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<AnimalAttribute>()));
-        }
-
-        [Test]
-        public void Marker_CountClassesWithPlantAttribute_4()
-        {
-            var assembly = typeof(IAlive).Assembly;
-            Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<PlantAttribute>()));
-        }
-
-        [Test]
-        public void Marker_CountClassesWithSentientAttribute_1()
-        {
-            var assembly = typeof(IAlive).Assembly;
-            Assert.AreEqual(1, assembly.GetTypes().Count(t => t.HasAttribute<SentientAttribute>()));
-        }
-
-        [Test]
-        public void Marker_NotSentientAnimalsEntities_ReturnsNotHumans()
-        {
-            var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<AnimalAttribute>() && !i.GetType().HasAttribute<SentientAttribute>()).ToList();
-
-            Assert.AreEqual(2, sentientItems.Count);
-        }
-
-        [Test]
-        public void Marker_PlantEntities_GetAllPlants()
+        public void GetAllPlantEntities4()
         {
             var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<PlantAttribute>()).ToList();
-
             Assert.AreEqual(4, sentientItems.Count);
         }
 
         [Test]
-        public void Marker_SentientEntities_GetsHumans()
+        public void GetsSentientEntitiesGetsHumans()
         {
             var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<SentientAttribute>()).ToList();
 
             Assert.AreEqual(2, sentientItems.Count);
             CollectionAssert.AllItemsAreInstancesOfType(sentientItems, typeof(Human));
+        }
+
+        [Test]
+        public void NotSentientAnimalsEntitiesReturnsNotHumans()
+        {
+            var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<AnimalAttribute>() && !i.GetType().HasAttribute<SentientAttribute>()).ToList();
+
+            Assert.AreEqual(2, sentientItems.Count);
         }
     }
 }

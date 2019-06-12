@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    using NUnit.Framework.Constraints;
-
     internal class Company
     {
         private readonly IDictionary<Guid, Employee> employees = new Dictionary<Guid, Employee>();
@@ -29,21 +27,21 @@
             this.employees.Add(person.Id, new Employee(this, person, title, salary));
         }
 
-        public void Sack(Guid id)
-        {
-            if (this.employees.ContainsKey(id))
-            {
-                this.employees.Remove(id);
-            }
-
-            throw new ApplicationException($"Person {id} is not currently hired");
-        }
-
         public void Raise(Guid id, double newSalary)
         {
             if (this.employees.ContainsKey(id))
             {
                 this.employees[id].Salary = newSalary;
+            }
+
+            throw new ApplicationException($"Person {id} is not currently hired");
+        }
+
+        public void Sack(Guid id)
+        {
+            if (this.employees.ContainsKey(id))
+            {
+                this.employees.Remove(id);
             }
 
             throw new ApplicationException($"Person {id} is not currently hired");

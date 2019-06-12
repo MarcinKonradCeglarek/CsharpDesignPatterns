@@ -15,13 +15,13 @@
             var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => Singleton.GetInstance()));
             var singletons = await Task.WhenAll(tasks);
 
-            var firstGuid = singletons[0].Id;
-            Assert.IsTrue(singletons.All(s => s.Id == firstGuid));
+            var firstId = singletons[0].Id;
+            Assert.IsTrue(singletons.All(s => s.Id == firstId));
         }
 
         [Test]
         [Repeat(25)]
-        public void SingletonTests_GetInstanceTwice_SameGuid()
+        public void SingletonTests_GetInstanceTwice_SameId()
         {
             var instance1 = Singleton.GetInstance();
             var instance2 = Singleton.GetInstance();

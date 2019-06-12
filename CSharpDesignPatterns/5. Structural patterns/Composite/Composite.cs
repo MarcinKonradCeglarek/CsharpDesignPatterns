@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal interface IComposite
+    public interface IComposite
     {
         string Print();
     }
 
-    internal class Composite : IComposite
+    public class Composite : IComposite
     {
         private readonly List<IComposite> children = new List<IComposite>();
 
@@ -23,7 +23,7 @@
         }
     }
 
-    internal class Leaf : IComposite
+    public class Leaf : IComposite
     {
         public Leaf(string name)
         {

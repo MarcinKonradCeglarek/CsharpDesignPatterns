@@ -1,26 +1,27 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class Customer
     {
+        private readonly IList<double> amounts = new List<double>();
+
         public Customer(IBillingStrategy strategy)
         {
-            throw new NotImplementedException();
+            this.Strategy = strategy;
         }
 
         public IBillingStrategy Strategy { get; set; }
 
         public void Add(double price, int quantity)
         {
-            throw new NotImplementedException();
+            this.amounts.Add(this.Strategy.GetPrice(price) * quantity);
         }
 
         public double GetTotalAmount()
         {
-            throw new NotImplementedException();
+            return this.amounts.Sum();
         }
     }
 
@@ -33,7 +34,7 @@
     {
         public double GetPrice(double originalPrice)
         {
-            throw new NotImplementedException();
+            return originalPrice;
         }
     }
 
@@ -41,7 +42,7 @@
     {
         public double GetPrice(double originalPrice)
         {
-            throw new NotImplementedException();
+            return originalPrice * 0.5;
         }
     }
 }

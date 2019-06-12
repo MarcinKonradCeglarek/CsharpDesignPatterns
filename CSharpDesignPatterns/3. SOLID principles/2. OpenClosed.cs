@@ -12,6 +12,5 @@
     [TestFixture]
     public class OpenClosedTests
     {
-
     }
 }

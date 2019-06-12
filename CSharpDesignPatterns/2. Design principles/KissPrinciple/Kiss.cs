@@ -12,7 +12,6 @@
          *
          * Good examples: over-engineering of a solution
          */
-
         public static string MvcDisplay()
         {
             var controller = new Controller(new Model());

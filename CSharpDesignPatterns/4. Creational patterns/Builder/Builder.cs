@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class CarBuilder
+    public class CarBuilder
     {
         private EngineType?       engineType;
         private TransmissionType? transmissionType;
@@ -92,7 +92,7 @@
         }
     }
 
-    internal class Car
+    public class Car
     {
         public Car(EngineType engineType, TransmissionType transmissionType, int wheels)
         {
