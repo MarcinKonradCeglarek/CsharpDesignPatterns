@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     internal class FlyweightCoffeeShop
     {
+        public IDictionary<string, CoffeeFlavour> CoffeeFlavours { get; } = new Dictionary<string, CoffeeFlavour>();
+        public IDictionary<Guid, CoffeeFlavour> Orders         { get; } = new Dictionary<Guid, CoffeeFlavour>();
+
         public void TakeOrder(Guid customerId, CoffeeFlavour flavour)
         {
             if (this.Orders.ContainsKey(customerId))
@@ -21,10 +23,7 @@
             this.Orders.Add(customerId, this.CoffeeFlavours[flavour.Flavour]);
         }
 
-        public IDictionary<string, CoffeeFlavour> CoffeeFlavours { get; } = new Dictionary<string, CoffeeFlavour>();
-        public IDictionary<Guid, CoffeeFlavour> Orders         { get; } = new Dictionary<Guid, CoffeeFlavour>();
-
-        public void TakeOrder(Guid customerId, CoffeeFlavour flavour)
+        public void TakeOrder(Guid customerId, string flavour)
         {
             if (!this.CoffeeFlavours.ContainsKey(flavour))
             {
