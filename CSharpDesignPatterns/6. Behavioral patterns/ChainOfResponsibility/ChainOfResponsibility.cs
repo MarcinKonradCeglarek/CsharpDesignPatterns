@@ -40,10 +40,15 @@
             this.Next?.Message(msg, severity);
         }
 
-        public ChainOfResponsibilityLogger SetNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
+        public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
+            if (this.Next != null)
+            {
+                nextChainOfResponsibilityLogger.Next = this.Next;
+            }
+
             this.Next = nextChainOfResponsibilityLogger;
-            return nextChainOfResponsibilityLogger;
+            return this;
         }
 
         protected abstract void WriteMessage(string msg);

@@ -101,6 +101,10 @@
     <Compile Include="5. Structural patterns\Proxy\ProxyTests.cs" />
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\ChainOfResponsibility.cs" />
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\ChainOfResponsibilityTests.cs" />
+    <Compile Include="6. Behavioral patterns\Command\Command.cs" />
+    <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\IteratorTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\Person.cs" />
@@ -110,9 +114,7 @@
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
     <Folder Include="5. Structural patterns\FrontController\" />
-    <Folder Include="6. Behavioral patterns\Command\" />
     <Folder Include="6. Behavioral patterns\Interpreter\" />
-    <Folder Include="6. Behavioral patterns\Iterator\" />
     <Folder Include="6. Behavioral patterns\Mediator\" />
     <Folder Include="6. Behavioral patterns\Memento\" />
     <Folder Include="6. Behavioral patterns\NullObject\" />
