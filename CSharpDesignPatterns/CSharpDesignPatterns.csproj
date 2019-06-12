@@ -105,6 +105,8 @@
     <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\IteratorTests.cs" />
+    <Compile Include="6. Behavioral patterns\Observer\Observer.cs" />
+    <Compile Include="6. Behavioral patterns\Observer\ObserverTests.cs" />
     <Compile Include="6. Behavioral patterns\Strategy\Strategy.cs" />
     <Compile Include="6. Behavioral patterns\Strategy\StrategyTests.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethod.cs" />
@@ -118,11 +120,8 @@
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
     <Folder Include="5. Structural patterns\FrontController\" />
-    <Folder Include="6. Behavioral patterns\Interpreter\" />
     <Folder Include="6. Behavioral patterns\Mediator\" />
     <Folder Include="6. Behavioral patterns\Memento\" />
-    <Folder Include="6. Behavioral patterns\NullObject\" />
-    <Folder Include="6. Behavioral patterns\Observer\" />
     <Folder Include="6. Behavioral patterns\Servant\" />
     <Folder Include="6. Behavioral patterns\Specification\" />
     <Folder Include="6. Behavioral patterns\State\" />

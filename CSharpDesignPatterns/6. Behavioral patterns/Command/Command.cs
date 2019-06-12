@@ -9,19 +9,23 @@
 
     public class Switch
     {
+        private readonly ICommand turnOnCommand;
+        private readonly ICommand turnOffCommand;
+
         public Switch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            throw new NotImplementedException();
+            this.turnOnCommand = turnOnCommand;
+            this.turnOffCommand = turnOffCommand;
         }
 
         public void TurnOff()
         {
-            throw new NotImplementedException();
+            this.turnOffCommand.Execute();
         }
 
         public void TurnOn()
         {
-            throw new NotImplementedException();
+            this.turnOnCommand.Execute();
         }
     }
 
@@ -33,27 +37,31 @@
 
     public class TurnOffSwitchCommand : ICommand
     {
+        private readonly ISwitchable switchable;
+
         public TurnOffSwitchCommand(ISwitchable switchable)
         {
-            throw new NotImplementedException();
+            this.switchable = switchable;
         }
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            this.switchable.PowerOff();
         }
     }
 
     public class TurnOnSwitchCommand : ICommand
     {
+        private readonly ISwitchable switchable;
+
         public TurnOnSwitchCommand(ISwitchable switchable)
         {
-            throw new NotImplementedException();
+            this.switchable = switchable;
         }
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            this.switchable.PowerOn();
         }
     }
 }
