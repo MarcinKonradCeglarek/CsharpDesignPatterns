@@ -12,47 +12,32 @@
     {
         public Subject()
         {
-            this.Observers = new List<IObserver<PayLoad>>();
+            throw new NotImplementedException();
         }
 
         public IList<IObserver<PayLoad>> Observers { get; set; }
 
         public void SendMessage(string message)
         {
-            foreach (var observer in this.Observers)
-            {
-                observer.OnNext(new PayLoad { Message = message });
-            }
+            throw new NotImplementedException();
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            if (!this.Observers.Contains(observer))
-            {
-                this.Observers.Add(observer);
-            }
-
-            return new Unsubscriber(this.Observers, observer);
+            throw new NotImplementedException();
         }
     }
 
     public class Unsubscriber : IDisposable
     {
-        private readonly IObserver<PayLoad> observer;
-        private readonly IList<IObserver<PayLoad>> observers;
-
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            this.observers = observers;
-            this.observer  = observer;
+            throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            if (this.observer != null && this.observers.Contains(this.observer))
-            {
-                this.observers.Remove(this.observer);
-            }
+            throw new NotImplementedException();
         }
     }
 
@@ -70,12 +55,7 @@
 
         public void OnNext(PayLoad value)
         {
-            this.Message = value.Message;
-        }
-
-        public IDisposable Register(Subject subject)
-        {
-            return subject.Subscribe(this);
+            throw new NotImplementedException();
         }
     }
 }
