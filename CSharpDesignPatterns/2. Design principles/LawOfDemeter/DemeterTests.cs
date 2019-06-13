@@ -28,7 +28,6 @@
             Assert.AreEqual(NewGender, company.Employees[AlbertWesker.Id].Person.Gender);
         }
 
-
         [Test]
         public void Y()
         {
@@ -46,7 +45,7 @@
         {
             var company = new Company("Umbrella Corporation");
             company.Hire(AlbertWesker, "Security officer", 200000);
-            company.Hire(AlexWesker, "Researcher", 200000);
+            company.Hire(AlexWesker,   "Researcher",       200000);
             return company;
         }
     }

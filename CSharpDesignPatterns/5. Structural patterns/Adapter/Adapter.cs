@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal interface IOurLogger
+    public interface IOurLogger
     {
         bool SendLogMessage(LogLevel level, string message, Exception exception = null);
     }
 
-    internal class Adapter : IOurLogger
+    public class Adapter : IOurLogger
     {
         private readonly IExternalLoggingInterface externalLogger;
 
@@ -48,7 +48,7 @@
         }
     }
 
-    internal enum LogLevel
+    public enum LogLevel
     {
         Debug,
         Info,

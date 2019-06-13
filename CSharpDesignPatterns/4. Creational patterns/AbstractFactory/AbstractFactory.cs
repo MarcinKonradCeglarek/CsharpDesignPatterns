@@ -13,7 +13,6 @@
         [Test]
         public void X()
         {
-
         }
     }
 }

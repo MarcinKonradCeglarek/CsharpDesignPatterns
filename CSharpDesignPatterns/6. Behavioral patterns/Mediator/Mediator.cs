@@ -6,67 +6,79 @@
 
     using Castle.Core.Internal;
 
-    public interface IMessageDisplayer
+    public interface IReceivedMessagesHandler
     {
-        void Display(string author, string message);
+        void HandleReceivedMessage(string author, string message);
     }
 
     public interface IChatRoomClient
     {
         string Name { get; }
-        void   ReceiveMessage(string author, string message);
-        void   SendMessage(string    message);
+        void   ReceiveMessageViaMediator(string  author, string message);
+        void   SendMessageThroughMediator(string message);
     }
 
     public class HttpChatClient : IChatRoomClient
     {
-        public HttpChatClient(string name, ChatRoomMediator mediator, IMessageDisplayer displayer)
+        private readonly ChatRoomMediator         mediator;
+        private readonly IReceivedMessagesHandler receivedMessagesHandler;
+
+        public HttpChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
         {
-            throw new NotImplementedException();
+            this.Name                    = name;
+            this.mediator                = mediator;
+            this.receivedMessagesHandler = receivedMessagesHandler;
+            this.mediator.Clients.Add(this);
         }
 
-        public  string           Name     { get; }
+        public string Name { get; }
 
-        public void ReceiveMessage(string author, string message)
+        public void ReceiveMessageViaMediator(string author, string message)
         {
-            throw new NotImplementedException();
+            this.receivedMessagesHandler.HandleReceivedMessage(author, message);
         }
 
-        public void SendMessage(string message)
+        public void SendMessageThroughMediator(string message)
         {
-            throw new NotImplementedException();
+            this.mediator.SendMessage(this, message);
         }
     }
 
     public class MessageCounter : IChatRoomClient
     {
+        private readonly ChatRoomMediator mediator;
+
         public MessageCounter(ChatRoomMediator mediator)
         {
-            throw new NotImplementedException();
+            this.mediator = mediator;
+            this.mediator.Clients.Add(this);
         }
 
-        public string           Name     { get; }
         public int Counter { get; set; }
 
-        public void ReceiveMessage(string author, string message)
+        public string Name { get; } = $"Counter_{Guid.NewGuid()}";
+
+        public void ReceiveMessageViaMediator(string author, string message)
         {
-            throw new NotImplementedException();
+            this.Counter++;
         }
 
-        public void SendMessage(string message)
+        public void SendMessageThroughMediator(string message)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
     }
 
-    // Mediates the common tasks
     public class ChatRoomMediator
     {
         public ICollection<IChatRoomClient> Clients { get; } = new List<IChatRoomClient>();
 
         public void SendMessage(IChatRoomClient client, string message)
         {
-            throw new NotImplementedException();
+            if (this.Clients.Contains(client))
+            {
+                this.Clients.Where(c => c != client).ForEach(c => c.ReceiveMessageViaMediator(client.Name, message));
+            }
         }
     }
 }

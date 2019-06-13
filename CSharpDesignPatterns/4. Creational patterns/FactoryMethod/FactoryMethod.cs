@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal static class PeopleFactory
+    public static class PeopleFactory
     {
         public static IPerson GetPerson(PersonType type)
         {
@@ -18,22 +18,22 @@
         }
     }
 
-    internal interface IPerson
+    public interface IPerson
     {
         string Occupation { get; }
     }
 
-    internal class Villager : IPerson
+    public class Villager : IPerson
     {
         public string Occupation => "Farmer";
     }
 
-    internal class CityPerson : IPerson
+    public class CityPerson : IPerson
     {
         public string Occupation => "Clerk";
     }
 
-    internal enum PersonType
+    public enum PersonType
     {
         None,
         Rural,

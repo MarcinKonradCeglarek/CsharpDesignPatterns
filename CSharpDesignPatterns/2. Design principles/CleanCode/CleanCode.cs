@@ -6,12 +6,7 @@ namespace CSharpDesignPatterns._2._Design_principles.CleanCode
     {
         private static Url OReillyUrl { get; } = new Url("https://www.oreilly.com/library/view/clean-code/9780136083238/");
 
-        private static string[] UsefulTools { get; } = new[] { "StyleCop", "ESLint" };
-
-        public static void IfYouHaveToUseCommentsYoureDoingSomethingWrong(object probably)
-        {
-            return;
-        }
+        private static string[] UsefulTools { get; } = { "StyleCop", "ESLint" };
 
         public static int AlwaysUseBraces(int i)
         {
@@ -19,10 +14,13 @@ namespace CSharpDesignPatterns._2._Design_principles.CleanCode
             {
                 i++;
             }
-            
 
             // What will be return value?
             return i;
+        }
+
+        public static void IfYouHaveToUseCommentsYoureDoingSomethingWrong(object probably)
+        {
         }
     }
 }

@@ -8,27 +8,14 @@
 
     internal class SingleResponsibility
     {
-        /*
-         * "A class should have only one reason to change,"
-         *
-         * This class can change because:
-         * - data for document would change
-         * - formatting of report would change
-         * - printer would change
-         *
-         */
-        internal void ProduceReport()
-        {
-            var data = this.GetReportData();
-            var reportDocument = this.FormatReport(data);
-
-            var printer = this.GetPrinter(IPAddress.None);
-            this.PrintReport(printer, reportDocument);
-        }
-
         internal Document FormatReport(string data)
         {
             return new Document(data);
+        }
+
+        internal Printer GetPrinter(IPAddress address)
+        {
+            return new Printer(address);
         }
 
         internal string GetReportData()
@@ -41,25 +28,28 @@
             printer.Print(reportDocument);
         }
 
-        internal Printer GetPrinter(IPAddress address)
+        /*
+         * "A class should have only one reason to change,"
+         *
+         * This class can change because:
+         * - data for document would change
+         * - formatting of report would change
+         * - printer would change
+         *
+         */
+        internal void ProduceReport()
         {
-            return new Printer(address);
+            var data           = this.GetReportData();
+            var reportDocument = this.FormatReport(data);
+
+            var printer = this.GetPrinter(IPAddress.None);
+            this.PrintReport(printer, reportDocument);
         }
     }
 
     [TestFixture]
     internal class SingleResponsibilityTests
     {
-        [Test]
-        public void ProduceReport()
-        {
-            // Arrange
-            var sut = new SingleResponsibility();
-
-            // Act
-            sut.ProduceReport();
-        }
-
         [Test]
         public void GetPrinter()
         {
@@ -72,6 +62,16 @@
             Assert.IsInstanceOf<Printer>(printer);
             Assert.IsNotNull(printer.Address);
             Assert.AreEqual(IPAddress.Parse("192.168.0.1"), printer.Address);
+        }
+
+        [Test]
+        public void ProduceReport()
+        {
+            // Arrange
+            var sut = new SingleResponsibility();
+
+            // Act
+            sut.ProduceReport();
         }
     }
 }

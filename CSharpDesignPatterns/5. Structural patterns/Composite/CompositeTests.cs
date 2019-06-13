@@ -11,7 +11,30 @@
         private readonly IComposite leaf4 = new Leaf("L4");
 
         [Test]
-        public void Composite_2LeafsInside_ProperlyPrintsThem()
+        public void ComplexExampleProperlyPrints()
+        {
+            var l4 = new Composite();
+            l4.Add(this.leaf4);
+
+            var l3 = new Composite();
+            l3.Add(this.leaf3);
+            l3.Add(l4);
+
+            var l2 = new Composite();
+            l2.Add(this.leaf2);
+            l2.Add(l3);
+            l2.Add(this.leaf1);
+
+            var root = new Composite();
+            root.Add(new Leaf("Left"));
+            root.Add(l2);
+            root.Add(new Leaf("Right"));
+
+            Assert.AreEqual("[Left,[L2,[L3,[L4]],L1],Right]", root.Print());
+        }
+
+        [Test]
+        public void CompositeWith3ChildrenProperlyPrints()
         {
             var composite = new Composite();
             composite.Add(this.leaf1);
@@ -22,7 +45,7 @@
         }
 
         [Test]
-        public void Composite_2SubComposites_ProperlyPrintsThem()
+        public void ParentWith2SubCompositesProperlyPrints()
         {
             var parent = new Composite();
 
@@ -39,7 +62,7 @@
         }
 
         [Test]
-        public void Comsposite_TreeStructureWithOneBranchOnly_ProperlyPrintsThem()
+        public void TreeStructureWithOneBranchOnlyProperlyPrints()
         {
             var l4 = new Composite();
             l4.Add(this.leaf4);

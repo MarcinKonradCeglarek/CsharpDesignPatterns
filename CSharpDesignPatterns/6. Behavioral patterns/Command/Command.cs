@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Command
 {
-    using System;
-
     public interface ICommand
     {
         void Execute();
@@ -9,12 +7,12 @@
 
     public class Switch
     {
-        private readonly ICommand turnOnCommand;
         private readonly ICommand turnOffCommand;
+        private readonly ICommand turnOnCommand;
 
         public Switch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            this.turnOnCommand = turnOnCommand;
+            this.turnOnCommand  = turnOnCommand;
             this.turnOffCommand = turnOffCommand;
         }
 

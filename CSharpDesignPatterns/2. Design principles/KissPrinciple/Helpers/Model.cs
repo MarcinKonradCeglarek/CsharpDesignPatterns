@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._2._Design_principles.KissPrinciple.Helpers
 {
-    using System;
-
     using Newtonsoft.Json;
 
     internal class Model

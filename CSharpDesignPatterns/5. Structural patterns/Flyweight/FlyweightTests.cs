@@ -15,7 +15,7 @@
             shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
             shop.TakeOrder(Guid.NewGuid(), "Espresso");
 
-            Assert.AreEqual(2, shop.CoffeeFlavours.Count);
+            Assert.AreEqual(2, shop.CoffeeFlavors.Count);
         }
 
         [Test]
@@ -23,15 +23,15 @@
         {
             var shop = new FlyweightCoffeeShop();
 
-            shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
-            shop.TakeOrder(Guid.NewGuid(), "Espresso");
+            shop.TakeOrder(Guid.NewGuid(), new CoffeeFlavor("Cappuccino"));
+            shop.TakeOrder(Guid.NewGuid(), new CoffeeFlavor("Espresso"));
             shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
             shop.TakeOrder(Guid.NewGuid(), "Espresso");
 
             var thisOrder = Guid.NewGuid();
-            shop.TakeOrder(thisOrder, "Cappuccino");
+            shop.TakeOrder(thisOrder, new CoffeeFlavor("Cappuccino"));
 
-            Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavours["Cappuccino"], shop.Orders[thisOrder]));
+            Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavors["Cappuccino"], shop.Orders[thisOrder]));
         }
 
         [Test]
@@ -57,7 +57,7 @@
                 shop.TakeOrder(o.Key, o.Value);
             }
 
-            Assert.AreEqual(3, shop.CoffeeFlavours.Count);
+            Assert.AreEqual(3, shop.CoffeeFlavors.Count);
             Assert.AreEqual(9, shop.Orders.Count);
             CollectionAssert.AreEquivalent(input.Keys, shop.Orders.Keys);
         }

@@ -5,9 +5,9 @@
         public Employee(Company company, Person person, string title, double salary)
         {
             this.Company = company;
-            this.Person = person;
-            this.Title = title;
-            this.Salary = salary;
+            this.Person  = person;
+            this.Title   = title;
+            this.Salary  = salary;
         }
 
         public Company Company { get; }

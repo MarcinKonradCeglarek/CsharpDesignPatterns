@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._2._Design_principles.KissPrinciple.Helpers
 {
-    using Newtonsoft.Json;
-
     internal class Controller
     {
         private readonly Model model;

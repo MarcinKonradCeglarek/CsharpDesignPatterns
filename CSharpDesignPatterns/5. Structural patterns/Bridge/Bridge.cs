@@ -5,7 +5,7 @@
         string Draw(int radius, int x, int y);
     }
 
-    internal abstract class Shape
+    public abstract class Shape
     {
         protected readonly IBridge DrawApi;
 
@@ -17,7 +17,7 @@
         public abstract string Draw();
     }
 
-    internal class Circle : Shape
+    public class Circle : Shape
     {
         private readonly int radius;
         private readonly int x;
@@ -37,7 +37,7 @@
         }
     }
 
-    internal class ImplementationOfRedCircle : IBridge
+    public class ImplementationOfRedCircle : IBridge
     {
         public string Draw(int radius, int x, int y)
         {
@@ -45,7 +45,7 @@
         }
     }
 
-    internal class ImplementationOfGreenCircle : IBridge
+    public class ImplementationOfGreenCircle : IBridge
     {
         public string Draw(int radius, int x, int y)
         {

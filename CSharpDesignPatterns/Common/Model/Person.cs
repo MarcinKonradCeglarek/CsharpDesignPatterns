@@ -11,16 +11,18 @@
 
         public Person(Guid id, string name, string lastName, string gender, DateTime birthDate)
         {
-            this.Id = id;
-            this.Name = name;
-            this.LastName = lastName;
+            this.Id        = id;
+            this.Name      = name;
+            this.LastName  = lastName;
             this.BirthDate = birthDate;
-            this.Gender = gender;
+            this.Gender    = gender;
         }
 
         public int Age => (int)((double)(DateTime.Now - this.BirthDate).Days / 365);
 
         public DateTime BirthDate { get; }
+
+        public string Gender { get; private set; }
 
         public Guid Id { get; }
 
@@ -28,16 +30,14 @@
 
         public string Name { get; }
 
-        public string Gender { get; private set; }
+        public override string ToString()
+        {
+            return $"{this.Name} {this.LastName}, age {this.Age}";
+        }
 
         public void UpdateGender(string newGender)
         {
             this.Gender = newGender;
-        }
-
-        public override string ToString()
-        {
-            return $"{this.Name} {this.LastName}, age {this.Age}";
         }
     }
 }

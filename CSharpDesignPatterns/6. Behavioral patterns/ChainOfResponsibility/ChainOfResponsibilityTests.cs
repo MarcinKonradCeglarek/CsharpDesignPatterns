@@ -10,7 +10,7 @@
     public class ChainOfResponsibilityTests
     {
         [Test]
-        public void ChainOfResponsibility_DebugAndInfoMessages_HandledByOneConsoleLogger()
+        public void DebugAndInfoMessagesHandledOnlyByConsoleLogger()
         {
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();
@@ -35,7 +35,7 @@
         }
 
         [Test]
-        public void ChainOfResponsibility_FunctionalMessages_HandledByConsoleAndEmailLoggers()
+        public void FunctionalMessagesHandledByConsoleAndEmailLoggers()
         {
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();
@@ -62,7 +62,7 @@
         }
 
         [Test]
-        public void ChainOfResponsibility_WarningAndErrorMessages_HandledByConsoleAndFileLoggers()
+        public void WarningAndErrorMessagesHandledByConsoleAndFileLoggers()
         {
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();

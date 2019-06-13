@@ -8,9 +8,9 @@
     public class ProxyTests
     {
         [Test]
-        public void ProxyCar_CanDriveCar()
+        public void MatureDriverWithDrivingLicenseCanDriveCar()
         {
-            var driver = new Driver(33);
+            var driver = new Driver(33, true);
             var sut    = new ProxyCar(driver, new Car());
 
             var result = sut.DriveCar();
@@ -19,9 +19,18 @@
         }
 
         [Test]
-        public void ProxyCar_CantDriveCar()
+        public void MatureDriverWithoutDrivingLicenseCantDriveCar()
         {
-            var driver = new Driver(12);
+            var driver = new Driver(33, false);
+            var sut    = new ProxyCar(driver, new Car());
+
+            Assert.Throws<InvalidOperationException>(() => sut.DriveCar());
+        }
+
+        [Test]
+        public void UnderAgeDriverWithoutDrivingLicenseCantDriveCar()
+        {
+            var driver = new Driver(12, false);
             var sut    = new ProxyCar(driver, new Car());
 
             Assert.Throws<InvalidOperationException>(() => sut.DriveCar());

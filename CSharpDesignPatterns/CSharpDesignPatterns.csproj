@@ -77,8 +77,8 @@
     <Compile Include="3. SOLID principles\4. InterfaceSegregation.cs" />
     <Compile Include="3. SOLID principles\5. DependencyInversion.cs" />
     <Compile Include="4. Creational patterns\AbstractFactory\AbstractFactory.cs" />
-    <Compile Include="4. Creational patterns\Builder\CarBuilder.cs" />
-    <Compile Include="4. Creational patterns\Builder\CarBuilderTests.cs" />
+    <Compile Include="4. Creational patterns\Builder\Builder.cs" />
+    <Compile Include="4. Creational patterns\Builder\BuilderTests.cs" />
     <Compile Include="4. Creational patterns\FactoryMethod\FactoryMethod.cs" />
     <Compile Include="4. Creational patterns\FactoryMethod\FactoryMethodTests.cs" />
     <Compile Include="4. Creational patterns\LazyInitialization\LazyInitialization.cs" />

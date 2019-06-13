@@ -5,7 +5,7 @@
     using CSharpDesignPatterns.Common.Model;
     using CSharpDesignPatterns._2._Design_principles.DryPrinciple.Helpers;
 
-    internal class Dry
+    public class Dry
     {
         /*
          * Don't Repeat Yourself
@@ -15,8 +15,7 @@
          * Good examples: Work flows, Objects/exceptions formatting, utility methods, Template methods/LINQ
          * 
          */
-
-        internal static string CheckEligibilityAndFormatEmailHeader(Person person)
+        public static string CheckEligibilityAndFormatEmailHeader(Person person)
         {
             if (person.BirthDate.Date == DateTime.Now.AddYears(-18).Date)
             {
@@ -33,4 +32,3 @@
         }
     }
 }
-

@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal interface ICar
+    public interface ICar
     {
         string DriveCar();
     }
 
-    internal class Car : ICar
+    public class Car : ICar
     {
         public string DriveCar()
         {
@@ -15,13 +15,13 @@
         }
     }
 
-    internal class ProxyCar : ICar
+    public class ProxyCar : ICar
     {
         private readonly ICar car;
 
         public ProxyCar(Driver driver, ICar car)
         {
-            this.car = car;
+            this.car    = car;
             this.Driver = driver;
         }
 
@@ -29,7 +29,7 @@
 
         public string DriveCar()
         {
-            if (this.Driver.Age >= 18)
+            if (this.Driver.Age >= 18 && this.Driver.HasDrivingLicense)
             {
                 return this.car.DriveCar();
             }
@@ -38,13 +38,15 @@
         }
     }
 
-    internal class Driver
+    public class Driver
     {
-        public Driver(int age)
+        public Driver(int age, bool hasDrivingLicense)
         {
-            this.Age = age;
+            this.Age               = age;
+            this.HasDrivingLicense = hasDrivingLicense;
         }
 
-        public int Age { get; }
+        public int  Age               { get; }
+        public bool HasDrivingLicense { get; }
     }
 }
