@@ -6,15 +6,7 @@
     {
         public static IPerson GetPerson(PersonType type)
         {
-            switch (type)
-            {
-                case PersonType.Urban:
-                    return new CityPerson();
-                case PersonType.Rural:
-                    return new Villager();
-            }
-
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
 

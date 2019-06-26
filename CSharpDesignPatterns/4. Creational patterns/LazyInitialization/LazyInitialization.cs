@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
@@ -9,20 +10,14 @@
 
         public Node(string name, IChildrenRepository childrenRepository)
         {
-            this.Name               = name;
-            this.ChildrenRepository = childrenRepository;
+            throw new NotImplementedException();
         }
 
         public IReadOnlyList<Node> Children
         {
             get
             {
-                if (this.children == null)
-                {
-                    this.children = this.ChildrenRepository.GetChildrenByName(this.Name);
-                }
-
-                return new ReadOnlyCollection<Node>(this.children);
+                throw new NotImplementedException();
             }
         }
 

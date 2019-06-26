@@ -4,18 +4,16 @@
 
     internal class Singleton
     {
-        private static readonly Singleton Instance = new Singleton();
-
         private Singleton()
         {
-            this.Id = Guid.NewGuid();
+            throw new NotImplementedException();
         }
 
         public Guid Id { get; }
 
         public static Singleton GetInstance()
         {
-            return Instance;
+            throw new NotImplementedException();
         }
     }
 }
