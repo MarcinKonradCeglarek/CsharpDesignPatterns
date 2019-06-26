@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.TemplateMethod
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -8,24 +9,7 @@
     {
         public string GetName()
         {
-            var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(this.GetPrefix()))
-            {
-                sb.Append(this.GetPrefix());
-                sb.Append(" ");
-            }
-
-            sb.Append(string.Join(" ", this.GetFirstNames().Where(n => !string.IsNullOrEmpty(n))));
-            sb.Append(" ");
-            sb.Append(this.GetLastName());
-
-            if (!string.IsNullOrEmpty(this.GetSuffix()))
-            {
-                sb.Append(" ");
-                sb.Append(this.GetSuffix());
-            }
-
-            return sb.ToString();
+            throw new NotImplementedException();
         }
 
         protected abstract IEnumerable<string> GetFirstNames();
@@ -44,73 +28,55 @@
 
         public PeasantNameFormatter(string firstName, string lastName)
         {
-            this.firstName = firstName;
-            this.lastName  = lastName;
+            throw new NotImplementedException();
         }
 
         protected override IEnumerable<string> GetFirstNames()
         {
-            return new[] { this.firstName };
+            throw new NotImplementedException();
         }
 
         protected override string GetLastName()
         {
-            return this.lastName;
+            throw new NotImplementedException();
         }
 
         protected override string GetPrefix()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         protected override string GetSuffix()
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 
     public class RoyaltyNameFormatter : NameFormatterTemplateMethod
     {
-        private readonly string              firstName;
-        private readonly string              lastName;
-        private readonly string              prefix;
-        private readonly string              secondName;
-        private readonly IEnumerable<string> suffixes;
-        private readonly string              thirdName;
-
         public RoyaltyNameFormatter(string prefix, string firstName, string secondName, string thirdName, string lastName, IEnumerable<string> suffixes)
         {
-            this.prefix     = prefix;
-            this.firstName  = firstName;
-            this.secondName = secondName;
-            this.thirdName  = thirdName;
-            this.lastName   = lastName;
-            this.suffixes   = suffixes;
+            throw new NotImplementedException();
         }
 
         protected override IEnumerable<string> GetFirstNames()
         {
-            return new[] { this.firstName, this.secondName, this.thirdName };
+            throw new NotImplementedException();
         }
 
         protected override string GetLastName()
         {
-            return $"von {this.lastName}";
+            throw new NotImplementedException();
         }
 
         protected override string GetPrefix()
         {
-            return this.prefix;
+            throw new NotImplementedException();
         }
 
         protected override string GetSuffix()
         {
-            if (this.suffixes != null)
-            {
-                return string.Join(", ", this.suffixes);
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

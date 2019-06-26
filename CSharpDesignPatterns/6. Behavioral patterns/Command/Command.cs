@@ -1,5 +1,11 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Command
 {
+    using System;
+
+    /*
+     * https://en.wikipedia.org/wiki/Command_pattern
+     */
+
     public interface ICommand
     {
         void Execute();
@@ -12,18 +18,17 @@
 
         public Switch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            this.turnOnCommand  = turnOnCommand;
-            this.turnOffCommand = turnOffCommand;
+            throw new NotImplementedException();
         }
 
         public void TurnOff()
         {
-            this.turnOffCommand.Execute();
+            throw new NotImplementedException();
         }
 
         public void TurnOn()
         {
-            this.turnOnCommand.Execute();
+            throw new NotImplementedException();
         }
     }
 
@@ -39,12 +44,12 @@
 
         public TurnOffSwitchCommand(ISwitchable switchable)
         {
-            this.switchable = switchable;
+            throw new NotImplementedException();
         }
 
         public void Execute()
         {
-            this.switchable.PowerOff();
+            throw new NotImplementedException();
         }
     }
 
@@ -54,12 +59,12 @@
 
         public TurnOnSwitchCommand(ISwitchable switchable)
         {
-            this.switchable = switchable;
+            throw new NotImplementedException();
         }
 
         public void Execute()
         {
-            this.switchable.PowerOn();
+            throw new NotImplementedException();
         }
     }
 }

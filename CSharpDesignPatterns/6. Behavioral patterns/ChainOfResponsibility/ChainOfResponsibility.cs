@@ -2,6 +2,10 @@
 {
     using System;
 
+    /*
+     * https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
+     */
+
     [Flags]
     public enum LogLevel
     {
@@ -23,31 +27,17 @@
     {
         protected ChainOfResponsibilityLogger(LogLevel mask)
         {
-            this.LogMask = mask;
+            throw new NotImplementedException();
         }
-
-        protected LogLevel                    LogMask { get; }
-        protected ChainOfResponsibilityLogger Next    { get; set; }
 
         public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
-            if (this.Next != null)
-            {
-                nextChainOfResponsibilityLogger.Next = this.Next;
-            }
-
-            this.Next = nextChainOfResponsibilityLogger;
-            return this;
+            throw new NotImplementedException();
         }
 
         public void Message(string msg, LogLevel severity)
         {
-            if ((severity & this.LogMask) != 0)
-            {
-                this.WriteMessage(msg);
-            }
-
-            this.Next?.Message(msg, severity);
+            throw new NotImplementedException();
         }
 
         protected abstract void WriteMessage(string msg);
@@ -55,49 +45,43 @@
 
     public class ChainOfResponsibilityConsoleLogger : ChainOfResponsibilityLogger
     {
-        private readonly IMessageWriter messageMessageWriter;
-
         public ChainOfResponsibilityConsoleLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 
     public class ChainOfResponsibilityEmailLogger : ChainOfResponsibilityLogger
     {
-        private readonly IMessageWriter messageMessageWriter;
-
         public ChainOfResponsibilityEmailLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 
     internal class ChainOfResponsibilityFileLogger : ChainOfResponsibilityLogger
     {
-        private readonly IMessageWriter messageMessageWriter;
-
         public ChainOfResponsibilityFileLogger(LogLevel mask, IMessageWriter messageMessageWriter)
             : base(mask)
         {
-            this.messageMessageWriter = messageMessageWriter;
+            throw new NotImplementedException();
         }
 
         protected override void WriteMessage(string msg)
         {
-            this.messageMessageWriter.WriteMessage(msg);
+            throw new NotImplementedException();
         }
     }
 }

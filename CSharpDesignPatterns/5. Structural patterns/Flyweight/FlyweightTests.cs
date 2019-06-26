@@ -9,7 +9,7 @@
     public class FlyweightTests
     {
         [Test]
-        public void Flyweight_3Orders_MinimumNumberOfCacheItems()
+        public void ThreeOrders_MinimumNumberOfCacheItems()
         {
             var shop = new FlyweightCoffeeShop();
             shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
@@ -19,7 +19,7 @@
         }
 
         [Test]
-        public void Flyweight_IsReferenceEquals_True()
+        public void IsReferenceEquals_True()
         {
             var shop = new FlyweightCoffeeShop();
 
@@ -35,7 +35,7 @@
         }
 
         [Test]
-        public void Flyweight_SeveralOrders_MinimumNumberOfCacheItems()
+        public void SeveralOrders_MinimumNumberOfCacheItems()
         {
             var shop = new FlyweightCoffeeShop();
 

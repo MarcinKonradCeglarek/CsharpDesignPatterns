@@ -14,7 +14,7 @@
 
         public IBillingStrategy Strategy { get; set; }
 
-        public void Add(double price, int quantity)
+        public void Order(double price, int quantity)
         {
             this.amounts.Add(this.Strategy.GetPrice(price) * quantity);
         }

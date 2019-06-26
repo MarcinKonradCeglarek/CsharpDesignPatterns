@@ -7,13 +7,13 @@
         bool SendLogMessage(LogLevel level, string message, Exception exception = null);
     }
 
-    public class Adapter : IOurLogger
+    public class OurLoggingToNewLoggingAdapter : IOurLogger
     {
-        private readonly IExternalLoggingInterface externalLogger;
+        private readonly INewLoggingInterface newLogger;
 
-        public Adapter(IExternalLoggingInterface externalLogger)
+        public OurLoggingToNewLoggingAdapter(INewLoggingInterface newLogger)
         {
-            this.externalLogger = externalLogger;
+            this.newLogger = newLogger;
         }
 
         public bool SendLogMessage(LogLevel level, string message, Exception exception = null)
@@ -31,7 +31,7 @@
         Exception
     }
 
-    public interface IExternalLoggingInterface
+    public interface INewLoggingInterface
     {
         void LogDebug(string        message);
         void LogError(string        message);

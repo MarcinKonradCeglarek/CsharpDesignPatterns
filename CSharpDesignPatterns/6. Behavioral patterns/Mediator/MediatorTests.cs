@@ -7,6 +7,28 @@
     [TestFixture]
     public class MediatorTests
     {
+
+        [Test]
+        public void Mediator_2MediatedClients_ProperlySendsOneMessage()
+        {
+            var message      = "Hi Alice";
+            var bobDisplay   = new Mock<IReceivedMessagesHandler>();
+            var aliceDisplay = new Mock<IReceivedMessagesHandler>();
+
+            var mediator = new ChatRoomMediator();
+
+            var bob     = new HttpChatClient("Bob",   mediator, bobDisplay.Object);
+            var alice   = new HttpChatClient("Alice", mediator, aliceDisplay.Object);
+            var counter = new MessageCounter(mediator);
+
+            bob.SendMessageThroughMediator(message);
+
+            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name,         message), Times.Once);
+            bobDisplay.Verify(d => d.HandleReceivedMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            Assert.AreEqual(1, counter.Counter);
+        }
+
+        [Ignore("")]
         [Test]
         public void Mediator_2MediatedClients_ProperlySendsMultipleMessages()
         {
@@ -29,6 +51,7 @@
             Assert.AreEqual(3, counter.Counter);
         }
 
+        [Ignore("")]
         [Test]
         public void Mediator_2MediatedClients_ProperlySendsMultipleMessagesBackAndForth()
         {
@@ -54,24 +77,5 @@
             Assert.AreEqual(6, counter.Counter);
         }
 
-        [Test]
-        public void Mediator_2MediatedClients_ProperlySendsOneMessage()
-        {
-            var message      = "Hi Alice";
-            var bobDisplay   = new Mock<IReceivedMessagesHandler>();
-            var aliceDisplay = new Mock<IReceivedMessagesHandler>();
-
-            var mediator = new ChatRoomMediator();
-
-            var bob     = new HttpChatClient("Bob",   mediator, bobDisplay.Object);
-            var alice   = new HttpChatClient("Alice", mediator, aliceDisplay.Object);
-            var counter = new MessageCounter(mediator);
-
-            bob.SendMessageThroughMediator(message);
-
-            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name,         message), Times.Once);
-            bobDisplay.Verify(d => d.HandleReceivedMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            Assert.AreEqual(1, counter.Counter);
-        }
     }
 }

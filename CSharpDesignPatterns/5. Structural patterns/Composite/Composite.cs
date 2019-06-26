@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,16 +11,14 @@
 
     public class Composite : IComposite
     {
-        private readonly List<IComposite> children = new List<IComposite>();
-
         public void Add(IComposite node)
         {
-            this.children.Add(node);
+            throw new NotImplementedException();
         }
 
         public string Print()
         {
-            return $"[{string.Join(",", this.children.Select(c => c.Print()))}]";
+            throw new NotImplementedException();
         }
     }
 
@@ -34,7 +33,7 @@
 
         public string Print()
         {
-            return this.Name;
+            throw new NotImplementedException();
         }
     }
 }

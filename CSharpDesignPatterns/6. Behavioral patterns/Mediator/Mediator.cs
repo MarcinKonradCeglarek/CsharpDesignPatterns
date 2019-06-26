@@ -18,40 +18,31 @@
         void   SendMessageThroughMediator(string message);
     }
 
-    public class HttpChatClient : IChatRoomClient
+    public class ChatClient : IChatRoomClient
     {
-        private readonly ChatRoomMediator         mediator;
-        private readonly IReceivedMessagesHandler receivedMessagesHandler;
-
-        public HttpChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
+        public ChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
         {
-            this.Name                    = name;
-            this.mediator                = mediator;
-            this.receivedMessagesHandler = receivedMessagesHandler;
-            this.mediator.Clients.Add(this);
+            throw new NotImplementedException();
         }
 
         public string Name { get; }
 
         public void ReceiveMessageViaMediator(string author, string message)
         {
-            this.receivedMessagesHandler.HandleReceivedMessage(author, message);
+            throw new NotImplementedException();
         }
 
         public void SendMessageThroughMediator(string message)
         {
-            this.mediator.SendMessage(this, message);
+            throw new NotImplementedException();
         }
     }
 
-    public class MessageCounter : IChatRoomClient
+    public class ChatMessageCounter : IChatRoomClient
     {
-        private readonly ChatRoomMediator mediator;
-
-        public MessageCounter(ChatRoomMediator mediator)
+        public ChatMessageCounter(ChatRoomMediator mediator)
         {
-            this.mediator = mediator;
-            this.mediator.Clients.Add(this);
+            throw new NotImplementedException();
         }
 
         public int Counter { get; set; }
@@ -60,12 +51,12 @@
 
         public void ReceiveMessageViaMediator(string author, string message)
         {
-            this.Counter++;
+            throw new NotImplementedException();
         }
 
         public void SendMessageThroughMediator(string message)
         {
-            throw new InvalidOperationException();
+            throw new NotImplementedException();
         }
     }
 
@@ -75,10 +66,7 @@
 
         public void SendMessage(IChatRoomClient client, string message)
         {
-            if (this.Clients.Contains(client))
-            {
-                this.Clients.Where(c => c != client).ForEach(c => c.ReceiveMessageViaMediator(client.Name, message));
-            }
+            throw new NotImplementedException();
         }
     }
 }

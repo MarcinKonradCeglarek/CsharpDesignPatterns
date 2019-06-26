@@ -18,6 +18,7 @@
             Assert.AreEqual("Car has been driven!", result);
         }
 
+        [Ignore("")]
         [Test]
         public void MatureDriverWithoutDrivingLicenseCantDriveCar()
         {
@@ -27,6 +28,7 @@
             Assert.Throws<InvalidOperationException>(() => sut.DriveCar());
         }
 
+        [Ignore("")]
         [Test]
         public void UnderAgeDriverWithoutDrivingLicenseCantDriveCar()
         {

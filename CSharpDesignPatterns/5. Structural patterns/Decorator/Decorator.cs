@@ -3,6 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /*
+     * Cost:
+     * Coffe:       1.0,
+     * Milk:        0.5,
+     * Sprinkles:   0.2
+     */
     public interface ICoffee
     {
         IEnumerable<Ingredients> Contents { get; }

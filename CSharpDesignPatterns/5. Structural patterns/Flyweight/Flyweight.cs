@@ -6,7 +6,7 @@
     internal class FlyweightCoffeeShop
     {
         public IDictionary<string, CoffeeFlavor> CoffeeFlavors { get; } = new Dictionary<string, CoffeeFlavor>();
-        public IDictionary<Guid, CoffeeFlavor> Orders        { get; } = new Dictionary<Guid, CoffeeFlavor>();
+        public IDictionary<Guid, CoffeeFlavor> Orders          { get; } = new Dictionary<Guid, CoffeeFlavor>();
 
         public void TakeOrder(Guid customerId, CoffeeFlavor flavor)
         {

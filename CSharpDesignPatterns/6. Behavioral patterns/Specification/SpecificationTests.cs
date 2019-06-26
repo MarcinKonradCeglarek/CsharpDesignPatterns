@@ -8,7 +8,7 @@
     public class SpecificationTests
     {
         [Test]
-        public void Specification_OrAnd_ProperlyWorksForGivenConditions()
+        public void OrAnd_ProperlyWorksForGivenConditions()
         {
             var greaterThan0 = new IntGreaterThan(0);
             var lessThan10 = new IntLessThan(10);
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void X()
+        public void Alternative()
         {
             Func<int, bool> myCondition = a => a > 9000 | (a > 0 && a < 10);
 

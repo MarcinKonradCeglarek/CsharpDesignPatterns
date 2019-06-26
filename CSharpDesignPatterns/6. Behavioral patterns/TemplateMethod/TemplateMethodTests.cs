@@ -17,19 +17,6 @@
         }
 
         [Test]
-        public void RoyaltyFormatterWithAllExceptSecondName()
-        {
-            var firstName = "Gregory";
-            var thirdName = "Andrew";
-            var lastName  = "Bailish";
-            var suffix    = new[] { "the third", "king of Andals" };
-
-            var formatter = new RoyaltyNameFormatter("sir", firstName, null, thirdName, lastName, suffix);
-
-            Assert.AreEqual($"sir {firstName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
-        }
-
-        [Test]
         public void RoyaltyFormatterWithAllPossibleNames()
         {
             var firstName  = "Gregory";
@@ -42,6 +29,20 @@
 
             Assert.AreEqual($"sir {firstName} {secondName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
         }
+
+        [Test]
+        public void RoyaltyFormatterWithAllExceptSecondName()
+        {
+            var firstName = "Gregory";
+            var thirdName = "Andrew";
+            var lastName  = "Bailish";
+            var suffix    = new[] { "the third", "king of Andals" };
+
+            var formatter = new RoyaltyNameFormatter("sir", firstName, null, thirdName, lastName, suffix);
+
+            Assert.AreEqual($"sir {firstName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
+        }
+
 
         [Test]
         public void RoyaltyFormatterWithJustFirstAndLastName()

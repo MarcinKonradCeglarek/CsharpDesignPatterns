@@ -34,6 +34,7 @@
             fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
         }
 
+        [Ignore("")]
         [Test]
         public void FunctionalMessagesHandledByConsoleAndEmailLoggers()
         {
@@ -61,6 +62,7 @@
             fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
         }
 
+        [Ignore("")]
         [Test]
         public void WarningAndErrorMessagesHandledByConsoleAndFileLoggers()
         {

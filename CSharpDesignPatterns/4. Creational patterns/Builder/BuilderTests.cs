@@ -7,26 +7,14 @@
     public class CarBuilderTests
     {
         [Test]
-        public void CarBuilder_AddingEngineTwice_ThrowsException()
+        public void CarBuilder_DefaultObject()
         {
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().GasolineEngine().GasolineEngine().Build());
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().DieselEngine().DieselEngine().Build());
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().HybridEngine().HybridEngine().Build());
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ElectricEngine().Build());
-        }
+            var result = new CarBuilder().Build();
 
-        [Test]
-        public void CarBuilder_AddingManualTransmissionAndThenHybridOrElectricEngine_ThrowsInvalidOperationException()
-        {
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ElectricEngine().Build());
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().HybridEngine().Build());
-        }
-
-        [Test]
-        public void CarBuilder_AddingTransmissionTwice_ThrowsInvalidOperationException()
-        {
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ManualTransmission().Build());
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().AutomaticTransmission().AutomaticTransmission().Build());
+            Assert.IsInstanceOf<Car>(result);
+            Assert.AreEqual(EngineType.Gasoline,     result.EngineType);
+            Assert.AreEqual(TransmissionType.Manual, result.TransmissionType);
+            Assert.AreEqual(4,                       result.Wheels);
         }
 
         [Test]
@@ -36,17 +24,6 @@
 
             Assert.AreEqual(EngineType.Gasoline,     result.EngineType);
             Assert.AreEqual(TransmissionType.Manual, result.TransmissionType);
-        }
-
-        [Test]
-        public void CarBuilder_DefaultObject()
-        {
-            var result = new CarBuilder().Build();
-
-            Assert.IsInstanceOf<Car>(result);
-            Assert.AreEqual(EngineType.Gasoline,     result.EngineType);
-            Assert.AreEqual(TransmissionType.Manual, result.TransmissionType);
-            Assert.AreEqual(4,                       result.Wheels);
         }
 
         [Test]
@@ -67,13 +44,7 @@
         }
 
         [Test]
-        public void CarBuilder_EngineTypeElectricManualTransmission_ThrowsInvalidOperationException()
-        {
-            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ManualTransmission().Build());
-        }
-
-        [Test]
-        public void CarBuilder_EngineTypeGasoline_CreatesGasolineCar()
+        public void EngineTypeGasoline_CreatesGasolineCar()
         {
             var result = new CarBuilder().GasolineEngine().Build();
 
@@ -81,12 +52,75 @@
         }
 
         [Test]
-        public void CarBuilder_EngineTypeHybrid_CreatesDieselCar()
+        public void EngineTypeHybrid_CreatesHybridCar()
         {
             var result = new CarBuilder().HybridEngine().Build();
 
             Assert.AreEqual(EngineType.Hybrid,          result.EngineType);
             Assert.AreEqual(TransmissionType.Automatic, result.TransmissionType);
+        }
+
+        [Test]
+        public void EngineTypeElectricManualTransmission_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ManualTransmission().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingGasolineEngineTwice_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().GasolineEngine().GasolineEngine().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingDieselEngineTwice_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().DieselEngine().DieselEngine().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingHybridEngineTwice_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().HybridEngine().HybridEngine().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingElectricEngineTwice_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ElectricEngine().Build());
+        }
+
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingManualTransmissionAndThenElectricEngine_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ElectricEngine().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingManualTransmissionAndThenHybridEngine_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().HybridEngine().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingManualTransmissionTwice_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().ManualTransmission().ManualTransmission().Build());
+        }
+
+        [Ignore("Least important")]
+        [Test]
+        public void AddingAutomaticTransmissionTwice_ThrowsInvalidOperationException()
+        {
+            Assert.Throws<InvalidOperationException>(() => new CarBuilder().AutomaticTransmission().AutomaticTransmission().Build());
         }
     }
 }

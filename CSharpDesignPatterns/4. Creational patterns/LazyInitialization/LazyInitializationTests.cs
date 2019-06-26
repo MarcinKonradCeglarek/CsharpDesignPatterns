@@ -8,7 +8,7 @@
     public class LazyInitializationTests
     {
         [Test]
-        public void LazyInitialization_DontRequestChildren_VerifyThatGetChildrenWasNotCalled()
+        public void DontRequestChildrenWhenCreatingObject_VerifyThatGetChildrenWasNotCalled()
         {
             // Arrange
             const string Name = "NodeName";
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void LazyInitialization_RequestChildren_VerifyThatGetChildrenWasCalled()
+        public void RequestChildrenMultipleTimes_VerifyThatGetChildrenWasCalledOnce()
         {
             // Arrange
             const string Name = "NodeName";
