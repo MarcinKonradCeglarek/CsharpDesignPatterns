@@ -17,9 +17,9 @@
 
             var mediator = new ChatRoomMediator();
 
-            var bob     = new HttpChatClient("Bob",   mediator, bobDisplay.Object);
-            var alice   = new HttpChatClient("Alice", mediator, aliceDisplay.Object);
-            var counter = new MessageCounter(mediator);
+            var bob     = new ChatClient("Bob",   mediator, bobDisplay.Object);
+            var alice   = new ChatClient("Alice", mediator, aliceDisplay.Object);
+            var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
 
@@ -38,9 +38,9 @@
 
             var mediator = new ChatRoomMediator();
 
-            var bob     = new HttpChatClient("Bob",   mediator, bobDisplay.Object);
-            var alice   = new HttpChatClient("Alice", mediator, aliceDisplay.Object);
-            var counter = new MessageCounter(mediator);
+            var bob     = new ChatClient("Bob",   mediator, bobDisplay.Object);
+            var alice   = new ChatClient("Alice", mediator, aliceDisplay.Object);
+            var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
             bob.SendMessageThroughMediator(message);
@@ -61,9 +61,9 @@
 
             var mediator = new ChatRoomMediator();
 
-            var bob     = new HttpChatClient("Bob",   mediator, bobDisplay.Object);
-            var alice   = new HttpChatClient("Alice", mediator, aliceDisplay.Object);
-            var counter = new MessageCounter(mediator);
+            var bob     = new ChatClient("Bob",   mediator, bobDisplay.Object);
+            var alice   = new ChatClient("Alice", mediator, aliceDisplay.Object);
+            var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
             bob.SendMessageThroughMediator(message);

@@ -13,9 +13,9 @@
         {
             var customer = new Customer(this.normalStrategy);
 
-            customer.Add(5, 5); // 25
-            customer.Add(1, 5); // 5
-            customer.Add(3, 5); // 15
+            customer.Order(5, 5); // 25
+            customer.Order(1, 5); // 5
+            customer.Order(3, 5); // 15
 
             Assert.AreEqual(25 + 5 + 15, customer.GetTotalAmount());
         }
@@ -25,9 +25,9 @@
         {
             var customer = new Customer(this.happyHourStrategy);
 
-            customer.Add(5, 5); // 25 / 2
-            customer.Add(1, 5); // 5 / 2
-            customer.Add(3, 5); // 15 / 2
+            customer.Order(5, 5); // 25 / 2
+            customer.Order(1, 5); // 5 / 2
+            customer.Order(3, 5); // 15 / 2
 
             Assert.AreEqual((25.0 + 5 + 15) / 2, customer.GetTotalAmount());
         }
@@ -38,13 +38,13 @@
         {
             var customer = new Customer(this.happyHourStrategy);
 
-            customer.Add(5, 5); // 25.0 / 2 = 12.5
-            customer.Add(1, 5); // 5.0 / 2 = 2.5
+            customer.Order(5, 5); // 25.0 / 2 = 12.5
+            customer.Order(1, 5); // 5.0 / 2 = 2.5
 
             customer.Strategy = this.normalStrategy;
 
-            customer.Add(3, 5); // 15
-            customer.Add(2, 5); // 10
+            customer.Order(3, 5); // 15
+            customer.Order(2, 5); // 10
 
             Assert.AreEqual(12.5 + 2.5 + 15 + 10, customer.GetTotalAmount());
         }
