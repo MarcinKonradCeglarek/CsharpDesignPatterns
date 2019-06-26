@@ -10,27 +10,12 @@
 
         public void TakeOrder(Guid customerId, CoffeeFlavor flavor)
         {
-            if (this.Orders.ContainsKey(customerId))
-            {
-                return;
-            }
-
-            if (!this.CoffeeFlavors.ContainsKey(flavor.Flavor))
-            {
-                this.CoffeeFlavors.Add(flavor.Flavor, flavor);
-            }
-
-            this.Orders.Add(customerId, this.CoffeeFlavors[flavor.Flavor]);
+            throw new NotImplementedException();
         }
 
         public void TakeOrder(Guid customerId, string flavour)
         {
-            if (!this.CoffeeFlavors.ContainsKey(flavour))
-            {
-                this.CoffeeFlavors.Add(flavour, new CoffeeFlavor(flavour));
-            }
-
-            this.Orders.Add(customerId, this.CoffeeFlavors[flavour]);
+            throw new NotImplementedException();
         }
     }
 

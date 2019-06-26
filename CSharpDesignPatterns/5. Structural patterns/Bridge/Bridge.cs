@@ -1,5 +1,7 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Bridge
 {
+    using System;
+
     public interface IBridge
     {
         string Draw(int radius, int x, int y);
@@ -33,7 +35,7 @@
 
         public override string Draw()
         {
-            return this.DrawApi.Draw(this.radius, this.x, this.y);
+            throw new NotImplementedException();
         }
     }
 

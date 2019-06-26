@@ -18,43 +18,34 @@
     {
     }
 
-    [Plant]
     public abstract class Plant : IAlive
     {
     }
 
-    [Plant]
     public class Tree : Plant
     {
     }
 
-    [Plant]
     public class Mushroom : Plant
     {
     }
 
-    [Plant]
     public class Bush : Plant
     {
     }
 
-    [Animal]
     public abstract class Animal : IAlive
     {
     }
 
-    [Animal]
     public class Dog : Animal
     {
     }
 
-    [Animal]
     public class Elephant : Animal
     {
     }
 
-    [Animal]
-    [Sentient]
     public class Human : Animal
     {
     }

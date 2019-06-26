@@ -21,20 +21,13 @@
 
         public ProxyCar(Driver driver, ICar car)
         {
-            this.car    = car;
-            this.Driver = driver;
         }
 
         public Driver Driver { get; set; }
 
         public string DriveCar()
         {
-            if (this.Driver.Age >= 18 && this.Driver.HasDrivingLicense)
-            {
-                return this.car.DriveCar();
-            }
-
-            throw new InvalidOperationException();
+            throw new NotImplementedException();
         }
     }
 

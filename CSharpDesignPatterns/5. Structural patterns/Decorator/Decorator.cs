@@ -26,8 +26,8 @@
             this.decoratedCoffee = c;
         }
 
-        public virtual IEnumerable<Ingredients> Contents => this.decoratedCoffee.Contents;
-        public virtual double                   Cost     => this.decoratedCoffee.Cost;
+        public IEnumerable<Ingredients> Contents { get; }
+        public double Cost { get; }
     }
 
     public class WithMilkDecorator : CoffeeDecorator
@@ -36,9 +36,6 @@
             : base(c)
         {
         }
-
-        public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Milk });
-        public override double                   Cost     => base.Cost + 0.5;
     }
 
     public class WithSprinklesDecorator : CoffeeDecorator
@@ -47,9 +44,6 @@
             : base(c)
         {
         }
-
-        public override IEnumerable<Ingredients> Contents => base.Contents.Concat(new[] { Ingredients.Sprinkles });
-        public override double                   Cost     => base.Cost + 0.2;
     }
 
     public enum Ingredients

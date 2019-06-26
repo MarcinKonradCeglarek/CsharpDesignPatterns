@@ -18,33 +18,7 @@
 
         public bool SendLogMessage(LogLevel level, string message, Exception exception = null)
         {
-            try
-            {
-                switch (level)
-                {
-                    case LogLevel.Debug:
-                        this.externalLogger.LogDebug(message);
-                        break;
-                    case LogLevel.Info:
-                        this.externalLogger.LogInfo(message);
-                        break;
-                    case LogLevel.Warn:
-                        this.externalLogger.LogWarn(message);
-                        break;
-                    case LogLevel.Error:
-                        this.externalLogger.LogError(message);
-                        break;
-                    case LogLevel.Exception:
-                        this.externalLogger.LogException(exception, message);
-                        break;
-                }
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            throw new NotImplementedException();
         }
     }
 
