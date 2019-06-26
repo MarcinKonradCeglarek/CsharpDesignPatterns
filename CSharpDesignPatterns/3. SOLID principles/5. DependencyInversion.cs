@@ -2,18 +2,25 @@
 {
     using System;
     using System.IO;
+    using System.Text;
+
+    using Moq;
 
     using NUnit.Framework;
 
     internal class DependencyInversion
     {
-        public void GetAndFormatData()
+        public string GetAndFormatData(IFileX file)
         {
-            var lines = File.ReadAllLines("3. SOLID principles\\data.txt");
+            var lines = file.ReadAllLines("3. SOLID principles\\data.txt");
+
+            var resutl = new StringBuilder();
             foreach (var line in lines)
             {
-                Console.WriteLine(line);
+                resutl.AppendLine(line);
             }
+
+            return resutl.ToString();
         }
     }
 
@@ -24,13 +31,29 @@
         public void GetAndFormatData()
         {
             // Arrange
+            var x = new Mock<IFileX>();
+            x.Setup(o => o.ReadAllLines(It.IsAny<string>())).Returns(new[] { "ABC" });
+            
             var sut = new DependencyInversion();
 
             // Act
-            sut.GetAndFormatData();
+            var result = sut.GetAndFormatData(x.Object);
 
             // Assert
-            Assert.IsTrue(true);
+            Assert.AreEqual("ABC" + Environment.NewLine, result);
+        }
+    }
+
+    public interface IFileX
+    {
+        string[] ReadAllLines(string filename);
+    }
+
+    public class FileX : IFileX
+    {
+        public string[] ReadAllLines(string filename)
+        {
+            return File.ReadAllLines(filename);
         }
     }
 }
