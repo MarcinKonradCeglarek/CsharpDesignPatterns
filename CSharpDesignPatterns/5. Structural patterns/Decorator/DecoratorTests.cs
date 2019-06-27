@@ -57,13 +57,13 @@
         [Test]
         public void CoffeeWithSprinklesAndMilkValidCostAndIngredients()
         {
-            var coffeeWithMilkAndSprinkles = new WithSprinklesDecorator(new WithMilkDecorator(new Coffee()));
+            var coffeeWithSprinklesAndMilk = new WithSprinklesDecorator(new WithMilkDecorator(new Coffee()));
 
-            Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
-            Assert.AreEqual(3,   coffeeWithMilkAndSprinkles.Contents.Count());
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Coffee);
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Milk);
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
+            Assert.AreEqual(1.7, coffeeWithSprinklesAndMilk.Cost);
+            Assert.AreEqual(3,   coffeeWithSprinklesAndMilk.Contents.Count());
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Milk);
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Sprinkles);
         }
 
 

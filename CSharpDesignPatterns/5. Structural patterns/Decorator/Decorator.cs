@@ -5,7 +5,7 @@
 
     /*
      * Cost:
-     * Coffe:       1.0,
+     * Coffee:      1.0,
      * Milk:        0.5,
      * Sprinkles:   0.2
      */
@@ -25,11 +25,8 @@
 
     public abstract class CoffeeDecorator : ICoffee
     {
-        private readonly ICoffee decoratedCoffee;
-
         protected CoffeeDecorator(ICoffee c)
         {
-            this.decoratedCoffee = c;
         }
 
         public IEnumerable<Ingredients> Contents { get; }

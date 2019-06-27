@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
+namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
     using NUnit.Framework;
 
@@ -92,6 +92,14 @@
             root.Add(new Leaf("Right"));
 
             Assert.AreEqual("[Left,[L2,[L3,[L4]],L1],Right]", root.Print());
+        }
+
+        [Test]
+        public void StringJoin()
+        {
+            var expected = "A, B, C";
+            var actual = string.Join(", ", new[] { "A", "B", "C" });
+            Assert.AreEqual(expected, actual);
         }
     }
 }
