@@ -9,44 +9,38 @@
      * Milk:        0.5,
      * Sprinkles:   0.2
      */
+
     public interface ICoffee
     {
-        IEnumerable<Ingredients> Contents { get; }
+        List<Ingredients> Contents { get; }
 
         double Cost { get; }
     }
 
     public class Coffee : ICoffee
     {
-        public IEnumerable<Ingredients> Contents { get; } = new List<Ingredients> { Ingredients.Coffee };
-
-        public double Cost { get; } = 1;
-    }
-
-    public abstract class CoffeeDecorator : ICoffee
-    {
-        protected CoffeeDecorator(ICoffee c)
-        {
-        }
-
-        public IEnumerable<Ingredients> Contents { get; }
+        public List<Ingredients> Contents { get; }
         public double Cost { get; }
     }
 
-    public class WithMilkDecorator : CoffeeDecorator
+    public class WithMilkDecorator : ICoffee
     {
-        public WithMilkDecorator(ICoffee c)
-            : base(c)
+        public WithMilkDecorator(ICoffee coffee)
         {
         }
+
+        public List<Ingredients> Contents { get; }
+        public double Cost { get; }
     }
 
-    public class WithSprinklesDecorator : CoffeeDecorator
+    public class WithSprinklesDecorator : ICoffee
     {
-        public WithSprinklesDecorator(ICoffee c)
-            : base(c)
+        public WithSprinklesDecorator(ICoffee coffee)
         {
         }
+
+        public List<Ingredients> Contents { get; }
+        public double Cost { get; }
     }
 
     public enum Ingredients

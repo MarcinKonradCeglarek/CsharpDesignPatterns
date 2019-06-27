@@ -40,11 +40,11 @@
             CollectionAssert.Contains(coffeeWithSprinkles.Contents, Ingredients.Sprinkles);
         }
 
-        [Ignore("Combination of 2")]
         [Test]
         public void CoffeeWithMilkAndSprinklesValidCostAndIngredients()
         {
-            var coffeeWithMilkAndSprinkles = new WithMilkDecorator(new WithSprinklesDecorator(new Coffee()));
+            var cofee = new Coffee();
+            var coffeeWithMilkAndSprinkles = new WithMilkDecorator(new WithSprinklesDecorator(cofee));
 
             Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
             Assert.AreEqual(3,   coffeeWithMilkAndSprinkles.Contents.Count());
@@ -53,11 +53,11 @@
             CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
         }
 
-        [Ignore("Combination of 2")]
         [Test]
         public void CoffeeWithSprinklesAndMilkValidCostAndIngredients()
         {
-            var coffeeWithSprinklesAndMilk = new WithSprinklesDecorator(new WithMilkDecorator(new Coffee()));
+            var cofee = new Coffee();
+            var coffeeWithSprinklesAndMilk = new WithSprinklesDecorator(new WithMilkDecorator(cofee));
 
             Assert.AreEqual(1.7, coffeeWithSprinklesAndMilk.Cost);
             Assert.AreEqual(3,   coffeeWithSprinklesAndMilk.Contents.Count());
