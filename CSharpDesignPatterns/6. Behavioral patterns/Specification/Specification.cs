@@ -62,8 +62,8 @@
 
     public class AndSpecification<T> : CompositeSpecification<T>
     {
-        ISpecification<T> left;
-        ISpecification<T> right;
+        private ISpecification<T> left;
+        private ISpecification<T> right;
 
         public AndSpecification(ISpecification<T> left, ISpecification<T> right)
         {
@@ -76,8 +76,8 @@
 
     public class AndNotSpecification<T> : CompositeSpecification<T>
     {
-        ISpecification<T> left;
-        ISpecification<T> right;
+        private ISpecification<T> left;
+        private ISpecification<T> right;
 
         public AndNotSpecification(ISpecification<T> left, ISpecification<T> right)
         {
@@ -90,8 +90,8 @@
 
     public class OrSpecification<T> : CompositeSpecification<T>
     {
-        ISpecification<T> left;
-        ISpecification<T> right;
+        private ISpecification<T> left;
+        private ISpecification<T> right;
 
         public OrSpecification(ISpecification<T> left, ISpecification<T> right)
         {
@@ -103,8 +103,8 @@
     }
     public class OrNotSpecification<T> : CompositeSpecification<T>
     {
-        ISpecification<T> left;
-        ISpecification<T> right;
+        private ISpecification<T> left;
+        private ISpecification<T> right;
 
         public OrNotSpecification(ISpecification<T> left, ISpecification<T> right)
         {
@@ -117,7 +117,7 @@
 
     public class NotSpecification<T> : CompositeSpecification<T>
     {
-        ISpecification<T> other;
+        private ISpecification<T> other;
         public NotSpecification(ISpecification<T> other) => this.other = other;
         public override bool IsSatisfiedBy(T candidate) => !other.IsSatisfiedBy(candidate);
     }

@@ -37,7 +37,7 @@
             CollectionAssert.AllItemsAreInstancesOfType(sentientItems, typeof(Human));
         }
 
-        [Ignore("")]
+        [Ignore("Assembly listing")]
         [Test]
         public void NotSentientAnimalsEntitiesReturnsNotHumans()
         {
@@ -46,7 +46,7 @@
             Assert.AreEqual(2, sentientItems.Count);
         }
 
-        [Ignore("")]
+        [Ignore("Assembly listing")]
         [Test]
         public void ClassesInAssemblyWithAnimalAttribute4()
         {
@@ -54,7 +54,7 @@
             Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<AnimalAttribute>()));
         }
 
-        [Ignore("")]
+        [Ignore("Assembly listing")]
         [Test]
         public void ClassesInAssemblyWithPlantAttribute4()
         {
@@ -62,7 +62,7 @@
             Assert.AreEqual(4, assembly.GetTypes().Count(t => t.HasAttribute<PlantAttribute>()));
         }
 
-        [Ignore("")]
+        [Ignore("Assembly listing")]
         [Test]
         public void ClassesInAssemblyWithSentientAttribute1()
         {

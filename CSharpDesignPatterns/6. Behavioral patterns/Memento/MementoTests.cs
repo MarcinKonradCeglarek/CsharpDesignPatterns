@@ -1,28 +1,37 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
+    using System;
+
     using NUnit.Framework;
 
     [TestFixture]
     public class MementoTests
     {
         private const string OriginalName = "ActionHero";
+        private const string NewName = "Little Pony";
 
         [Test]
-        public void CreateMementoAndRestore()
+        public void CreateMementoAndCommitChanges()
         {
             var original = new FacebookUser(OriginalName, new[] { "John Wick", "Thomas Anderson" });
 
-            var firstMemento = original.CreateMemento();
-            CareTaker caretaker = new CareTaker { Memento = firstMemento };
+            var caretaker = new CareTaker(
+                original,
+                new Action<FacebookUser>[] { u => u.ChangeName(NewName), u => u.AddFriend("Barbie") });
 
-            original.Name = "Little Pony";
-            original.Friends.Add("Barbie");
-
-            Assert.AreEqual("Little Pony", original.Name);
+            Assert.AreEqual(NewName, original.Name);
             Assert.AreEqual(3,            original.Friends.Count);
+        }
 
-            // Retrieve back first State
-            original.Restore(caretaker.Memento);
+
+        [Test]
+        public void CreateMementoAndFallbackOnException()
+        {
+            var original = new FacebookUser(OriginalName, new[] { "John Wick", "Thomas Anderson" });
+
+            var caretaker = new CareTaker(
+                original,
+                new Action<FacebookUser>[] { u => u.ChangeName(NewName), u => u.AddFriend("Barbie"), u => throw new InvalidOperationException() });
 
             Assert.AreEqual(OriginalName, original.Name);
             Assert.AreEqual(2, original.Friends.Count);

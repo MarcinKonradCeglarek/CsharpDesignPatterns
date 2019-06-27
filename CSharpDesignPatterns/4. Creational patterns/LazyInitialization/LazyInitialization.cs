@@ -4,30 +4,17 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    public class Node
-    {
-        private IList<Node> children;
+    using CSharpDesignPatterns.Common.Model;
 
-        public Node(string name, IChildrenRepository childrenRepository)
+    public class Node<T>
+    {
+        public Node(T id, IEnumerable<T> childrenIds, IRepository<T, Node<T>> repository)
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Node> Children
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public IReadOnlyList<Node<T>> Children { get; }
 
-        public string Name { get; }
-
-        private IChildrenRepository ChildrenRepository { get; }
-    }
-
-    public interface IChildrenRepository
-    {
-        IList<Node> GetChildrenByName(string name);
+        private IRepository<T, Node<T>> Repository { get; }
     }
 }

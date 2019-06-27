@@ -10,17 +10,17 @@
 
     internal class DependencyInversion
     {
-        public string GetAndFormatData(IFileX file)
+        public string GetAndFormatData()
         {
-            var lines = file.ReadAllLines("3. SOLID principles\\data.txt");
+            var lines = File.ReadAllLines("3. SOLID principles\\data.txt");
 
-            var resutl = new StringBuilder();
+            var result = new StringBuilder();
             foreach (var line in lines)
             {
-                resutl.AppendLine(line);
+                result.AppendLine(line);
             }
 
-            return resutl.ToString();
+            return result.ToString();
         }
     }
 
@@ -31,20 +31,17 @@
         public void GetAndFormatData()
         {
             // Arrange
-            var x = new Mock<IFileX>();
-            x.Setup(o => o.ReadAllLines(It.IsAny<string>())).Returns(new[] { "ABC" });
-            
             var sut = new DependencyInversion();
 
             // Act
-            var result = sut.GetAndFormatData(x.Object);
+            var result = sut.GetAndFormatData();
 
             // Assert
             Assert.AreEqual("ABC" + Environment.NewLine, result);
         }
     }
 
-    public interface IFileX
+    /*public interface IFileX
     {
         string[] ReadAllLines(string filename);
     }
@@ -55,5 +52,5 @@
         {
             return File.ReadAllLines(filename);
         }
-    }
+    }*/
 }

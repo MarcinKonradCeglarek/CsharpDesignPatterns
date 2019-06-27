@@ -4,17 +4,26 @@
 
     public class CarBuilder
     {
-        private EngineType?       engineType;
-        private TransmissionType? transmissionType;
-        private int?              wheels;
+        public Car Build()
+        {
+            throw new NotImplementedException();
+        }
 
         public CarBuilder AutomaticTransmission()
         {
             throw new NotImplementedException();
         }
 
-        public Car Build()
+        public CarBuilder GasolineEngine()
         {
+            throw new NotImplementedException();
+        }
+
+        public CarBuilder ManualTransmission()
+        {
+            /*
+             * Can not be used with Electric and Hybird engines
+             */
             throw new NotImplementedException();
         }
 
@@ -25,21 +34,17 @@
 
         public CarBuilder ElectricEngine()
         {
-            throw new NotImplementedException();
-        }
-
-        public CarBuilder GasolineEngine()
-        {
+            /*
+             * Electric engine requires Automatic transmission
+             */
             throw new NotImplementedException();
         }
 
         public CarBuilder HybridEngine()
         {
-            throw new NotImplementedException();
-        }
-
-        public CarBuilder ManualTransmission()
-        {
+            /*
+             * Electric engine (Hybrid engine is Gasoline and Electric engines duo) requires Automatic Transmission
+             */
             throw new NotImplementedException();
         }
     }

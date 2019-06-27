@@ -4,9 +4,34 @@
 
     using NUnit.Framework.Internal;
 
+    public class GetDressedFacade
+    {
+        private readonly ShoesCloset       shoesCloset       = new ShoesCloset();
+        private readonly Wardrobe          wardrobe          = new Wardrobe();
+        private readonly AccessoriesDrawer accessoriesDrawer = new AccessoriesDrawer();
+
+        public string GetSmartClothes()
+        {
+            var resultA = this.shoesCloset.GetSmartShoes();
+            var resultB = this.wardrobe.GetSuit();
+            var resultC = this.accessoriesDrawer.GetSmartAccessories();
+
+            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
+        }
+
+        public string GetCasualClothes()
+        {
+            var resultA = this.shoesCloset.GetCasualShoes();
+            var resultB = this.wardrobe.GetCasualWear();
+            var resultC = this.accessoriesDrawer.GetCasualAccessories();
+
+            return $"Casual clothes: [{resultA},{resultB},{resultC}]";
+        }
+    }
+
     internal class ShoesCloset
     {
-        public string GetSmartSchoes()
+        public string GetSmartShoes()
         {
             return "Formal Shoes";
         }
@@ -21,50 +46,25 @@
     {
         public string GetSuit()
         {
-            return "Formal Jacket, Formal Trousers, Formal Shirt";
+            return "Formal Jacket,Formal Trousers,Formal Shirt";
         }
 
         public string GetCasualWear()
         {
-            return "T-Shirt, Shorts";
+            return "T-Shirt,Shorts";
         }
     }
 
-    internal class AccesoriesDrawer
+    internal class AccessoriesDrawer
     {
         public string GetSmartAccessories()
         {
-            return "Watch, Tie, Belt";
+            return "Watch,Tie,Belt";
         }
 
         public string GetCasualAccessories()
         {
             return "Fitbit";
-        }
-    }
-
-    public class GetDressedFacade
-    {
-        private readonly ShoesCloset shoesCloset = new ShoesCloset();
-        private readonly Wardrobe wardrobe = new Wardrobe();
-        private readonly AccesoriesDrawer accesoriesDrawer = new AccesoriesDrawer();
-
-        public string GetSmartClothes()
-        {
-            var resultA = this.shoesCloset.GetSmartSchoes();
-            var resultB = this.wardrobe.GetSuit();
-            var resultC = this.accesoriesDrawer.GetSmartAccessories();
-
-            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
-        }
-
-        public string GetCasualClothes()
-        {
-            var resultA = this.shoesCloset.GetCasualShoes();
-            var resultB = this.wardrobe.GetCasualWear();
-            var resultC = this.accesoriesDrawer.GetCasualAccessories();
-
-            return $"Casual clothes: [{resultA},{resultB},{resultC}]";
         }
     }
 }

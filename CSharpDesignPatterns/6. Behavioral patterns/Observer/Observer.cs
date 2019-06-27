@@ -21,30 +21,25 @@
 
         public void RaiseEvent(string message)
         {
-            this.Observers.ForEach(o => o.OnNext(new PayLoad(message)));
+            throw new NotImplementedException();
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            return new Unsubscriber(this.Observers, observer);
+            throw new NotImplementedException();
         }
     }
 
     public class Unsubscriber : IDisposable
     {
-        private readonly IObserver<PayLoad> observer;
-        private readonly IList<IObserver<PayLoad>> observers;
-
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            this.observers = observers;
-            this.observer  = observer;
-            this.observers.Add(observer);
+            throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            this.observers.Remove(this.observer);
+            throw new NotImplementedException();
         }
     }
 

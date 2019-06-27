@@ -9,7 +9,7 @@
         private readonly IBillingStrategy normalStrategy    = new NormalStrategy();
 
         [Test]
-        public void Customer_UsingNormalStrategy_PaysExpectedAmount()
+        public void UsingNormalStrategyPaysNormalAmount()
         {
             var customer = new Customer(this.normalStrategy);
 
@@ -21,7 +21,7 @@
         }
 
         [Test]
-        public void Customer_UsingHappyHourStrategy_PaysExpectedAmount()
+        public void UsingHappyHourStrategyPaysHalf()
         {
             var customer = new Customer(this.happyHourStrategy);
 
@@ -32,9 +32,9 @@
             Assert.AreEqual((25.0 + 5 + 15) / 2, customer.GetTotalAmount());
         }
 
-        [Ignore("")]
+        [Ignore("Switching strategies")]
         [Test]
-        public void Customer_SwitchingStrategies_PaysExpectedAmount()
+        public void SwitchingStrategiesPaysValidAmount()
         {
             var customer = new Customer(this.happyHourStrategy);
 

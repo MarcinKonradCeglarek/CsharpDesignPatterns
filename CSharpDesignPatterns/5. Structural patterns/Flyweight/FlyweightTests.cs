@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Castle.Core.Internal;
+
     using NUnit.Framework;
 
     [TestFixture]
@@ -12,8 +14,8 @@
         public void ThreeOrders_MinimumNumberOfCacheItems()
         {
             var shop = new FlyweightCoffeeShop();
-            shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
-            shop.TakeOrder(Guid.NewGuid(), "Espresso");
+            shop.CreateOrder("Cappuccino");
+            shop.CreateOrder("Espresso");
 
             Assert.AreEqual(2, shop.CoffeeFlavors.Count);
         }
@@ -23,13 +25,12 @@
         {
             var shop = new FlyweightCoffeeShop();
 
-            shop.TakeOrder(Guid.NewGuid(), new CoffeeFlavor("Cappuccino"));
-            shop.TakeOrder(Guid.NewGuid(), new CoffeeFlavor("Espresso"));
-            shop.TakeOrder(Guid.NewGuid(), "Cappuccino");
-            shop.TakeOrder(Guid.NewGuid(), "Espresso");
+            shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
+            shop.CreateOrder(new CoffeeFlavor("Espresso"));
+            shop.CreateOrder("Cappuccino");
+            shop.CreateOrder("Espresso");
 
-            var thisOrder = Guid.NewGuid();
-            shop.TakeOrder(thisOrder, new CoffeeFlavor("Cappuccino"));
+            var thisOrder = shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
 
             Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavors["Cappuccino"], shop.Orders[thisOrder]));
         }
@@ -39,27 +40,17 @@
         {
             var shop = new FlyweightCoffeeShop();
 
-            var input = new Dictionary<Guid, string>
-                        {
-                            { Guid.NewGuid(), "Cappuccino" },
-                            { Guid.NewGuid(), "Espresso" },
-                            { Guid.NewGuid(), "Frappe" },
-                            { Guid.NewGuid(), "Cappuccino" },
-                            { Guid.NewGuid(), "Espresso" },
-                            { Guid.NewGuid(), "Frappe" },
-                            { Guid.NewGuid(), "Cappuccino" },
-                            { Guid.NewGuid(), "Espresso" },
-                            { Guid.NewGuid(), "Frappe" }
-                        };
+            var input = new string[] { "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe" };
 
-            foreach (var o in input)
+            var orderIds = new List<Guid>();
+            foreach (var flavor in input)
             {
-                shop.TakeOrder(o.Key, o.Value);
+                orderIds.Add(shop.CreateOrder(flavor));
             }
 
             Assert.AreEqual(3, shop.CoffeeFlavors.Count);
             Assert.AreEqual(9, shop.Orders.Count);
-            CollectionAssert.AreEquivalent(input.Keys, shop.Orders.Keys);
+            CollectionAssert.AreEquivalent(orderIds, shop.Orders.Keys);
         }
     }
 }

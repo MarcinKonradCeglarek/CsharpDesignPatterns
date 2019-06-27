@@ -1,5 +1,10 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
+    using System;
+    using System.Collections.Generic;
+
+    using CSharpDesignPatterns.Common.Model;
+
     using Moq;
 
     using NUnit.Framework;
@@ -8,27 +13,29 @@
     public class LazyInitializationTests
     {
         [Test]
-        public void DontRequestChildrenWhenCreatingObject_VerifyThatGetChildrenWasNotCalled()
+        public void DontRequestChildrenWhenCreatingObjectAndVerifyThatReadWasNotCalled()
         {
             // Arrange
-            const string Name = "NodeName";
-            var          mock = this.GetMock(Name);
+            const int RootId = 1;
+            var children = new[] { 3, 5, 12, 15 };
+            var mock = this.GetMock(children);
 
             // Act
-            var sut = new Node(Name, mock.Object);
+            var sut = new Node<int>(RootId, children, mock.Object);
 
             // Arrange
-            mock.Verify(m => m.GetChildrenByName(It.IsAny<string>()), Times.Never);
+            mock.Verify(m => m.Read(It.IsAny<int>()), Times.Never);
         }
 
         [Test]
-        public void RequestChildrenMultipleTimes_VerifyThatGetChildrenWasCalledOnce()
+        public void RequestChildrenMultipleTimesAndVerifyThatReadWasCalledOncePerChild()
         {
             // Arrange
-            const string Name = "NodeName";
-            var          mock = this.GetMock(Name);
+            const int RootId = 1;
+            var children = new[] { 3, 5, 12, 15 };
+            var mock     = this.GetMock(children);
 
-            var sut = new Node(Name, mock.Object);
+            var sut = new Node<int>(RootId, children, mock.Object);
 
             // Act
             var children1 = sut.Children;
@@ -36,16 +43,23 @@
             var children3 = sut.Children;
 
             // Assert
-            mock.Verify(m => m.GetChildrenByName(It.IsAny<string>()), Times.Once);
-            mock.Verify(m => m.GetChildrenByName(Name),               Times.Once);
-            Assert.AreEqual(2, children1.Count);
+            mock.Verify(m => m.Read(It.IsAny<int>()), Times.Exactly(children.Length));
+            foreach (var child in children)
+            {
+                mock.Verify(m => m.Read(child), Times.Once);
+            }
+            
+            Assert.AreEqual(children.Length, children1.Count);
         }
 
-        private Mock<IChildrenRepository> GetMock(string name)
+        private Mock<IRepository<T, Node<T>>> GetMock<T>(IEnumerable<T> ids)
         {
-            var mock = new Mock<IChildrenRepository>();
+            var mock = new Mock<IRepository<T, Node<T>>>();
 
-            mock.Setup(m => m.GetChildrenByName(name)).Returns(new[] { new Node("Child1", null), new Node("Child2", null) });
+            foreach (var id in ids)
+            {
+                mock.Setup(m => m.Read(id)).Returns(new Node<T>(id, null, null));
+            }
 
             return mock;
         }

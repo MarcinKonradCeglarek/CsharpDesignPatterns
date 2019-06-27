@@ -103,6 +103,7 @@
     <Compile Include="5. Structural patterns\Proxy\ProxyTests.cs" />
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\ChainOfResponsibility.cs" />
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\ChainOfResponsibilityTests.cs" />
+    <Compile Include="6. Behavioral patterns\ChainOfResponsibility\Helper.cs" />
     <Compile Include="6. Behavioral patterns\Command\Command.cs" />
     <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethodTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
+    <Compile Include="Common\Model\IRepository.cs" />
     <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Common\Model\Printer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

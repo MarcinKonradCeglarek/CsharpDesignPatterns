@@ -5,6 +5,10 @@
     using System.Linq;
     using System.Text;
 
+    /*
+     * AKA Workflow
+     */
+
     public abstract class NameFormatterTemplateMethod
     {
         public string GetName()
@@ -23,9 +27,6 @@
 
     public class PeasantNameFormatter : NameFormatterTemplateMethod
     {
-        private readonly string firstName;
-        private readonly string lastName;
-
         public PeasantNameFormatter(string firstName, string lastName)
         {
             throw new NotImplementedException();

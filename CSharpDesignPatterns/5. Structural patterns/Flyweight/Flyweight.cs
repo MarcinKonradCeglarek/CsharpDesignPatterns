@@ -8,12 +8,12 @@
         public IDictionary<string, CoffeeFlavor> CoffeeFlavors { get; } = new Dictionary<string, CoffeeFlavor>();
         public IDictionary<Guid, CoffeeFlavor> Orders          { get; } = new Dictionary<Guid, CoffeeFlavor>();
 
-        public void TakeOrder(Guid customerId, CoffeeFlavor flavor)
+        public Guid CreateOrder(CoffeeFlavor flavor)
         {
             throw new NotImplementedException();
         }
 
-        public void TakeOrder(Guid customerId, string flavour)
+        public Guid CreateOrder(string flavor)
         {
             throw new NotImplementedException();
         }
@@ -24,8 +24,16 @@
         public CoffeeFlavor(string flavor)
         {
             this.Flavor = flavor;
+            this.Id = Guid.NewGuid();
         }
 
+        public Guid Id { get; set; }
+
         public string Flavor { get; }
+
+        public override string ToString()
+        {
+            return $"{this.Flavor}: {this.Id}";
+        }
     }
 }

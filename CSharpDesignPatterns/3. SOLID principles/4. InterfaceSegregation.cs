@@ -3,21 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    internal class InterfaceSegregation : IRepository<int>
+    using CSharpDesignPatterns.Common.Model;
+
+    internal class InterfaceSegregation : IRepository<Guid, int>
     {
-        private int a;
-
-        public InterfaceSegregation(int a)
-        {
-            this.a = a;
-        }
-
         public Dictionary<Guid, int> Data { get; } = new Dictionary<Guid, int>();
-
-        public void GET_Data()
-        {
-
-        }
 
         public Guid Create(int x)
         {
@@ -39,14 +29,6 @@
         {
             throw new NotImplementedException();
         }
-    }
-
-    interface IRepository<T>
-    {
-        Guid Create(T x);
-        T Read(Guid id);
-        void Update(T x);
-        void Delete(Guid id);
     }
 
     /*public class Calc

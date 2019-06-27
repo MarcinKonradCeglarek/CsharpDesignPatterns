@@ -10,28 +10,47 @@
     public class ChainOfResponsibilityTests
     {
         [Test]
+        public void CheckSeverityNotMatchingMask()
+        {
+            var mask = LogLevel.Error | LogLevel.Warning;
+            var severity = LogLevel.Info;
+
+            Assert.IsFalse(Helper.DoesLevelMatchMask(severity, mask));
+        }
+
+
+        [Test]
+        public void CheckSeverityMatchingMask()
+        {
+            var mask = LogLevel.Error | LogLevel.Warning | LogLevel.Debug;
+            var severity = LogLevel.Warning;
+
+            Assert.IsTrue(Helper.DoesLevelMatchMask(severity, mask));
+        }
+
+        [Test]
         public void DebugAndInfoMessagesHandledOnlyByConsoleLogger()
         {
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();
 
-            var consoleWriter = new Mock<IMessageWriter>();
-            var emailWriter   = new Mock<IMessageWriter>();
-            var fileWriter    = new Mock<IMessageWriter>();
+            var consoleWriter = new Mock<IConsole>();
+            var emailWriter   = new Mock<IEmail>();
+            var fileWriter    = new Mock<IFileWriter>();
 
             var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.LogMessage(message1, LogLevel.Debug);
-            logger.LogMessage(message2, LogLevel.Info);
+            logger.LogMessage(LogLevel.Debug, message1);
+            logger.LogMessage(LogLevel.Info, message2);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
             consoleWriter.Verify(m => m.WriteMessage(message2), Times.Once);
 
-            emailWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
-            fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
+            emailWriter.Verify(m => m.SendEmail(It.IsAny<string>()), Times.Never);
+            fileWriter.Verify(m => m.AppendToLogFile(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -40,25 +59,25 @@
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();
 
-            var consoleWriter = new Mock<IMessageWriter>();
-            var emailWriter   = new Mock<IMessageWriter>();
-            var fileWriter    = new Mock<IMessageWriter>();
+            var consoleWriter = new Mock<IConsole>();
+            var emailWriter = new Mock<IEmail>();
+            var fileWriter  = new Mock<IFileWriter>();
 
             var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.LogMessage(message1, LogLevel.FunctionalError);
-            logger.LogMessage(message2, LogLevel.FunctionalMessage);
+            logger.LogMessage(LogLevel.FunctionalError, message1);
+            logger.LogMessage(LogLevel.FunctionalMessage, message2);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
             consoleWriter.Verify(m => m.WriteMessage(message2), Times.Once);
 
-            emailWriter.Verify(m => m.WriteMessage(message1), Times.Once);
-            emailWriter.Verify(m => m.WriteMessage(message2), Times.Once);
+            emailWriter.Verify(m => m.SendEmail(message1), Times.Once);
+            emailWriter.Verify(m => m.SendEmail(message2), Times.Once);
 
-            fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
+            fileWriter.Verify(m => m.AppendToLogFile(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -67,44 +86,25 @@
             var message1 = Guid.NewGuid().ToString();
             var message2 = Guid.NewGuid().ToString();
 
-            var consoleWriter = new Mock<IMessageWriter>();
-            var emailWriter   = new Mock<IMessageWriter>();
-            var fileWriter    = new Mock<IMessageWriter>();
+            var consoleWriter = new Mock<IConsole>();
+            var emailWriter = new Mock<IEmail>();
+            var fileWriter  = new Mock<IFileWriter>();
 
             var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.LogMessage(message1, LogLevel.Error);
-            logger.LogMessage(message2, LogLevel.Warning);
+            logger.LogMessage(LogLevel.Error, message1);
+            logger.LogMessage(LogLevel.Warning, message2);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
             consoleWriter.Verify(m => m.WriteMessage(message2), Times.Once);
 
-            fileWriter.Verify(m => m.WriteMessage(message1), Times.Once);
-            fileWriter.Verify(m => m.WriteMessage(message2), Times.Once);
+            fileWriter.Verify(m => m.AppendToLogFile(message1), Times.Once);
+            fileWriter.Verify(m => m.AppendToLogFile(message2), Times.Once);
 
-            emailWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
-        public void Testing()
-        {
-            var a = LogLevel.Error | LogLevel.Warning;
-            var b = LogLevel.Info;
-
-            Assert.IsFalse((int)(a & b) != 0);
-        }
-
-
-        [Test]
-        public void TestingWarningMatch()
-        {
-            var a = LogLevel.Error | LogLevel.Warning;
-            var b = LogLevel.Warning;
-
-            Assert.IsTrue((int)(a & b) != 0);
+            emailWriter.Verify(m => m.SendEmail(It.IsAny<string>()), Times.Never);
         }
     }
 }

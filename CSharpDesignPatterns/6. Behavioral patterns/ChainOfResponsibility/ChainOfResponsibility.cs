@@ -18,9 +18,19 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
         All               = 0b00111111
     }
 
-    public interface IMessageWriter
+    public interface IConsole
     {
         void WriteMessage(string message);
+    }
+
+    public interface IEmail
+    {
+        void SendEmail(string contents);
+    }
+
+    public interface IFileWriter
+    {
+        void AppendToLogFile(string message);
     }
 
     public abstract class ChainOfResponsibilityLogger
@@ -43,7 +53,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
             return this;*/
         }
 
-        public void Message(string msg, LogLevel severity)
+        public void LogMessage(LogLevel severity, string msg)
         {
             throw new NotImplementedException();
         }
@@ -53,7 +63,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public class ChainOfResponsibilityConsoleLogger : ChainOfResponsibilityLogger
     {
-        public ChainOfResponsibilityConsoleLogger(LogLevel mask, IMessageWriter messageMessageWriter)
+        public ChainOfResponsibilityConsoleLogger(LogLevel mask, IConsole messageConsole)
             : base(mask)
         {
             throw new NotImplementedException();
@@ -67,7 +77,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public class ChainOfResponsibilityEmailLogger : ChainOfResponsibilityLogger
     {
-        public ChainOfResponsibilityEmailLogger(LogLevel mask, IMessageWriter messageMessageWriter)
+        public ChainOfResponsibilityEmailLogger(LogLevel mask, IEmail messageConsole)
             : base(mask)
         {
             throw new NotImplementedException();
@@ -81,7 +91,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     internal class ChainOfResponsibilityFileLogger : ChainOfResponsibilityLogger
     {
-        public ChainOfResponsibilityFileLogger(LogLevel mask, IMessageWriter messageMessageWriter)
+        public ChainOfResponsibilityFileLogger(LogLevel mask, IFileWriter messageConsole)
             : base(mask)
         {
             throw new NotImplementedException();

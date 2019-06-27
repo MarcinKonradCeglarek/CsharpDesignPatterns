@@ -7,14 +7,6 @@
         string DriveCar();
     }
 
-    public class Car : ICar
-    {
-        public string DriveCar()
-        {
-            return "Car has been driven!";
-        }
-    }
-
     public class ProxyCar : ICar
     {
         private readonly ICar car;
@@ -28,6 +20,14 @@
         public string DriveCar()
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public class Car : ICar
+    {
+        public string DriveCar()
+        {
+            return "Car has been driven!";
         }
     }
 

@@ -10,23 +10,23 @@
     {
         [Test]
         [Repeat(25)]
-        public async Task Singleton_AccessFromMultipleTasks_SameGuid()
+        public void GetInstanceTwiceSameId()
+        {
+            var instance1 = Singleton.GetInstance();
+            var instance2 = Singleton.GetInstance();
+
+            Assert.AreEqual(instance1.Id, instance2.Id);
+        }
+
+        [Test]
+        [Repeat(25)]
+        public async Task AccessFromMultipleTasksReturnsSingleInstance()
         {
             var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => Singleton.GetInstance()));
             var singletons = await Task.WhenAll(tasks);
 
             var firstId = singletons[0].Id;
             Assert.IsTrue(singletons.All(s => s.Id == firstId));
-        }
-
-        [Test]
-        [Repeat(25)]
-        public void SingletonTests_GetInstanceTwice_SameId()
-        {
-            var instance1 = Singleton.GetInstance();
-            var instance2 = Singleton.GetInstance();
-
-            Assert.AreEqual(instance1.Id, instance2.Id);
         }
     }
 }

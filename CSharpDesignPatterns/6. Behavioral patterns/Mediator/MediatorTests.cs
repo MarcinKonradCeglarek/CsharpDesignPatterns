@@ -9,7 +9,7 @@
     {
 
         [Test]
-        public void Mediator_2MediatedClients_ProperlySendsOneMessage()
+        public void ProperlyForwardsOneMessage()
         {
             var message      = "Hi Alice";
             var bobDisplay   = new Mock<IReceivedMessagesHandler>();
@@ -30,7 +30,7 @@
 
         [Ignore("")]
         [Test]
-        public void Mediator_2MediatedClients_ProperlySendsMultipleMessages()
+        public void ProperlyForwardsMultipleMessagesFromOneSender()
         {
             var message      = "Hi Alice";
             var bobDisplay   = new Mock<IReceivedMessagesHandler>();
@@ -53,7 +53,7 @@
 
         [Ignore("")]
         [Test]
-        public void Mediator_2MediatedClients_ProperlySendsMultipleMessagesBackAndForth()
+        public void ProperlyForwardsMultipleMessagesFromMultipleSenders()
         {
             var message      = "Hello there, General Kenobi!";
             var bobDisplay   = new Mock<IReceivedMessagesHandler>();
@@ -66,10 +66,10 @@
             var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
-            bob.SendMessageThroughMediator(message);
+            alice.SendMessageThroughMediator(message);
             bob.SendMessageThroughMediator(message);
             alice.SendMessageThroughMediator(message);
-            alice.SendMessageThroughMediator(message);
+            bob.SendMessageThroughMediator(message);
             alice.SendMessageThroughMediator(message);
 
             aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name, message), Times.Exactly(3));

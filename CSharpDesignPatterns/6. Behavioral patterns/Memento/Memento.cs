@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
+    using System;
     using System.Collections.Generic;
 
     public class FacebookUser
@@ -23,6 +24,16 @@
         {
             return new FacebookUserMemento(this.Name, this.Friends);
         }
+
+        public void ChangeName(string newName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddFriend(string friendName)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class FacebookUserMemento
@@ -39,6 +50,9 @@
 
     public class CareTaker
     {
-        public FacebookUserMemento Memento { get; set;  }
+        public CareTaker(FacebookUser user, IEnumerable<Action<FacebookUser>> actions)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

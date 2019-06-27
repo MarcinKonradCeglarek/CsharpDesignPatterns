@@ -11,7 +11,7 @@
             var sut = new GetDressedFacade();
 
             Assert.AreEqual(
-                "SmartClothes: [Formal Shoes,Formal Jacket, Formal Trousers, Formal Shirt,Watch, Tie, Belt]",
+                "SmartClothes: [Formal Shoes,Formal Jacket,Formal Trousers,Formal Shirt,Watch,Tie,Belt]",
                 sut.GetSmartClothes());
         }
 
@@ -20,7 +20,7 @@
         {
             var sut = new GetDressedFacade();
 
-            Assert.AreEqual("Casual clothes: [Sneakers,T-Shirt, Shorts,Fitbit]", sut.GetCasualClothes());
+            Assert.AreEqual("Casual clothes: [Sneakers,T-Shirt,Shorts,Fitbit]", sut.GetCasualClothes());
         }
     }
 }
