@@ -11,12 +11,12 @@
         void Execute();
     }
 
-    public class Switch
+    public class PowerSwitch
     {
         private readonly ICommand turnOffCommand;
         private readonly ICommand turnOnCommand;
 
-        public Switch(ICommand turnOnCommand, ICommand turnOffCommand)
+        public PowerSwitch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
             throw new NotImplementedException();
         }
@@ -32,17 +32,17 @@
         }
     }
 
-    public interface ISwitchable
+    public interface IDevice
     {
         void PowerOff();
         void PowerOn();
     }
 
-    public class TurnOffSwitchCommand : ICommand
+    public class TurnOffDeviceCommand : ICommand
     {
-        private readonly ISwitchable switchable;
+        private readonly IDevice device;
 
-        public TurnOffSwitchCommand(ISwitchable switchable)
+        public TurnOffDeviceCommand(IDevice device)
         {
             throw new NotImplementedException();
         }
@@ -53,11 +53,11 @@
         }
     }
 
-    public class TurnOnSwitchCommand : ICommand
+    public class TurnOnDeviceCommand : ICommand
     {
-        private readonly ISwitchable switchable;
+        private readonly IDevice device;
 
-        public TurnOnSwitchCommand(ISwitchable switchable)
+        public TurnOnDeviceCommand(IDevice device)
         {
             throw new NotImplementedException();
         }

@@ -23,8 +23,8 @@
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.Message(message1, LogLevel.Debug);
-            logger.Message(message2, LogLevel.Info);
+            logger.LogMessage(message1, LogLevel.Debug);
+            logger.LogMessage(message2, LogLevel.Info);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
@@ -34,7 +34,6 @@
             fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("")]
         [Test]
         public void FunctionalMessagesHandledByConsoleAndEmailLoggers()
         {
@@ -49,8 +48,8 @@
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.Message(message1, LogLevel.FunctionalError);
-            logger.Message(message2, LogLevel.FunctionalMessage);
+            logger.LogMessage(message1, LogLevel.FunctionalError);
+            logger.LogMessage(message2, LogLevel.FunctionalMessage);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
@@ -62,7 +61,6 @@
             fileWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("")]
         [Test]
         public void WarningAndErrorMessagesHandledByConsoleAndFileLoggers()
         {
@@ -77,8 +75,8 @@
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.Message(message1, LogLevel.Error);
-            logger.Message(message2, LogLevel.Warning);
+            logger.LogMessage(message1, LogLevel.Error);
+            logger.LogMessage(message2, LogLevel.Warning);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
@@ -88,6 +86,25 @@
             fileWriter.Verify(m => m.WriteMessage(message2), Times.Once);
 
             emailWriter.Verify(m => m.WriteMessage(It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void Testing()
+        {
+            var a = LogLevel.Error | LogLevel.Warning;
+            var b = LogLevel.Info;
+
+            Assert.IsFalse((int)(a & b) != 0);
+        }
+
+
+        [Test]
+        public void TestingWarningMatch()
+        {
+            var a = LogLevel.Error | LogLevel.Warning;
+            var b = LogLevel.Warning;
+
+            Assert.IsTrue((int)(a & b) != 0);
         }
     }
 }

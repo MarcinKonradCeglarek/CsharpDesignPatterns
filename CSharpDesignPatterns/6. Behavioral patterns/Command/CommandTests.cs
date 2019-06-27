@@ -10,12 +10,12 @@
         [Test]
         public void TurnOnCommandProperlyInvokesPowerOn()
         {
-            var device = new Mock<ISwitchable>();
+            var device = new Mock<IDevice>();
 
-            ICommand turnOff = new TurnOffSwitchCommand(device.Object);
-            ICommand turnOn  = new TurnOnSwitchCommand(device.Object);
+            ICommand turnOff = new TurnOffDeviceCommand(device.Object);
+            ICommand turnOn  = new TurnOnDeviceCommand(device.Object);
 
-            var @switch = new Switch(turnOn, turnOff);
+            var @switch = new PowerSwitch(turnOn, turnOff);
 
             @switch.TurnOn();
 
@@ -27,12 +27,12 @@
         [Test]
         public void TurnOffCommandProperlyInvokesPowerOff()
         {
-            var device = new Mock<ISwitchable>();
+            var device = new Mock<IDevice>();
 
-            ICommand turnOff = new TurnOffSwitchCommand(device.Object);
-            ICommand turnOn  = new TurnOnSwitchCommand(device.Object);
+            ICommand turnOff = new TurnOffDeviceCommand(device.Object);
+            ICommand turnOn  = new TurnOnDeviceCommand(device.Object);
 
-            var @switch = new Switch(turnOn, turnOff);
+            var @switch = new PowerSwitch(turnOn, turnOff);
 
             @switch.TurnOff();
 
@@ -44,12 +44,12 @@
         [Test]
         public void TurnOnAndOffCommandProperlyInvokesPowerOnAndPowerOff()
         {
-            var device = new Mock<ISwitchable>();
+            var device = new Mock<IDevice>();
 
-            ICommand turnOff = new TurnOffSwitchCommand(device.Object);
-            ICommand turnOn  = new TurnOnSwitchCommand(device.Object);
+            ICommand turnOff = new TurnOffDeviceCommand(device.Object);
+            ICommand turnOn  = new TurnOnDeviceCommand(device.Object);
 
-            var @switch = new Switch(turnOn, turnOff);
+            var @switch = new PowerSwitch(turnOn, turnOff);
 
             @switch.TurnOn();
 
