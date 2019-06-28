@@ -8,25 +8,23 @@
     [TestFixture]
     public class VisitorTests
     {
+        private readonly List<IComponent> components = new List<IComponent>
+            {
+                new Home(),
+                new Park(),
+                new City(3.5),
+                new City(3.0),
+                new Park(),
+                new Home()
+            };
+
         [Test]
-        public void X()
+        public void CitiesVisitorVisits2Cities()
         {
-            List<IComponent> components = new List<IComponent>
-                {
-                    new Home(),
-                    new Park(),
-                    new City(3.5),
-                    new City(3.0),
-                };
+            var citiesVisitor = new CitiesVisitor();
+            Client.ClientCode(this.components, citiesVisitor);
 
-            /*var visitor1 = new CitiesVisitor();
-            Client.ClientCode(components, visitor1);
-
-            Assert., visitor1.GetAverage();
-
-            Console.WriteLine("It allows the same client code to work with different types of visitors:");
-            var visitor2 = new HouseAndParksVisitor();
-            Client.ClientCode(components, visitor2);*/
-    }
+            Assert.AreEqual(3.25, citiesVisitor.GetAverage());
+        }
     }
 }

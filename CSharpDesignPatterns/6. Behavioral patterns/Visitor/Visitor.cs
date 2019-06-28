@@ -60,7 +60,7 @@
     {
         private int totalBedrooms = 0;
 
-        private List<string> parkNames = new List<string>();
+        private readonly List<string> parkNames = new List<string>();
 
         public void Visit(Home home)
         {
@@ -84,7 +84,7 @@
 
     public class CitiesVisitor : IPlacesVisitor
     {
-        private List<double> airQualities = new List<double>();
+        private readonly List<double> airQualities = new List<double>();
 
         public void Visit(Home home)
         {
