@@ -51,7 +51,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
              */
         }
 
-        public int Counter { get; set; }
+        public int Counter { get; private set; }
 
         public string Name { get; } = $"Counter_{Guid.NewGuid()}";
 
@@ -62,16 +62,19 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public void SendMessageThroughMediator(string message)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 
     public class ChatRoomMediator
     {
-        public ICollection<IChatRoomClient> Clients { get; } = new List<IChatRoomClient>();
-            /*
-             * Register client and it's callback function (used when sending him message)
-             */
+        public IDictionary<IChatRoomClient, Action<string, string>> Clients { get; } =
+            new Dictionary<IChatRoomClient, Action<string, string>>();
+
+        public void Register(IChatRoomClient client, Action<string, string> callback)
+        {
+            throw new NotImplementedException();
+        }
 
         public void SendMessage(IChatRoomClient client, string message)
         {
