@@ -120,6 +120,8 @@
     <Compile Include="6. Behavioral patterns\Strategy\StrategyTests.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethod.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethodTests.cs" />
+    <Compile Include="6. Behavioral patterns\Visitor\Visitor.cs" />
+    <Compile Include="6. Behavioral patterns\Visitor\VisitorTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\IRepository.cs" />
@@ -132,7 +134,6 @@
     <Folder Include="5. Structural patterns\FrontController\" />
     <Folder Include="6. Behavioral patterns\Servant\" />
     <Folder Include="6. Behavioral patterns\State\" />
-    <Folder Include="6. Behavioral patterns\Visitor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,7 +11,7 @@
         [Test]
         public void UsingNormalStrategyPaysNormalAmount()
         {
-            var customer = new Customer(this.normalStrategy);
+            var customer = new Diner(this.normalStrategy);
 
             customer.Order(5, 5); // 25
             customer.Order(1, 5); // 5
@@ -23,7 +23,7 @@
         [Test]
         public void UsingHappyHourStrategyPaysHalf()
         {
-            var customer = new Customer(this.happyHourStrategy);
+            var customer = new Diner(this.happyHourStrategy);
 
             customer.Order(5, 5); // 25 / 2
             customer.Order(1, 5); // 5 / 2
@@ -36,7 +36,7 @@
         [Test]
         public void SwitchingStrategiesPaysValidAmount()
         {
-            var customer = new Customer(this.happyHourStrategy);
+            var customer = new Diner(this.happyHourStrategy);
 
             customer.Order(5, 5); // 25.0 / 2 = 12.5
             customer.Order(1, 5); // 5.0 / 2 = 2.5
