@@ -13,12 +13,12 @@
     {
         public void Accept(IPlacesVisitor placesVisitor)
         {
-            placesVisitor.Visit(this);
+            throw new NotImplementedException();
         }
 
         public int NumberOfBedrooms()
         {
-            return 3;
+            throw new NotImplementedException();
         }
     }
 
@@ -30,7 +30,7 @@
 
         public void Accept(IPlacesVisitor placesVisitor)
         {
-            placesVisitor.Visit(this);
+            throw new NotImplementedException();
         }
     }
 
@@ -38,14 +38,14 @@
     {
         public City(double airQuality)
         {
-            this.AirQualityIndex = airQuality;
+            throw new NotImplementedException();
         }
 
         public double AirQualityIndex { get; }
 
         public void Accept(IPlacesVisitor placesVisitor)
         {
-            placesVisitor.Visit(this);
+            throw new NotImplementedException();
         }
     }
 
@@ -58,50 +58,47 @@
 
     public class HouseAndParksVisitor : IPlacesVisitor
     {
-        private int totalBedrooms = 0;
-
-        private readonly List<string> parkNames = new List<string>();
-
         public void Visit(Home home)
         {
-            this.totalBedrooms += home.NumberOfBedrooms();
+            throw new NotImplementedException();
         }
 
         public void Visit(Park park)
         {
-            this.parkNames.Add(park.Name);
+            throw new NotImplementedException();
         }
 
         public void Visit(City city)
         {
+            throw new NotImplementedException();
         }
 
         public int GetTotalNumber()
         {
-            return this.totalBedrooms + this.parkNames.Count;
+            throw new NotImplementedException();
         }
     }
 
     public class CitiesVisitor : IPlacesVisitor
     {
-        private readonly List<double> airQualities = new List<double>();
-
         public void Visit(Home home)
         {
+            throw new NotImplementedException();
         }
 
         public void Visit(Park park)
         {
+            throw new NotImplementedException();
         }
 
         public void Visit(City city)
         {
-            this.airQualities.Add(city.AirQualityIndex);
+            throw new NotImplementedException();
         }
 
         public double GetAverage()
         {
-            return this.airQualities.Average();
+            throw new NotImplementedException();
         }
     }
 

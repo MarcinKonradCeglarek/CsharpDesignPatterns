@@ -26,5 +26,14 @@
 
             Assert.AreEqual(3.25, citiesVisitor.GetAverage());
         }
+
+        [Test]
+        public void HomeAndParkVisitorCounts()
+        {
+            var citiesVisitor = new HouseAndParksVisitor();
+            Client.ClientCode(this.components, citiesVisitor);
+
+            Assert.AreEqual(8, citiesVisitor.GetTotalNumber());
+        }
     }
 }
