@@ -14,7 +14,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
     public interface IChatRoomClient
     {
         string Name { get; }
-        void   ReceiveMessageViaMediator(string  author, string message);
         void   SendMessageThroughMediator(string message);
     }
 
@@ -22,20 +21,22 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
     {
         public ChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
         {
-            throw new NotImplementedException();
             /*
              * Register with mediator (so that mediator knows who dispatch messages to)
              */
+            throw new NotImplementedException();
         }
 
         public string Name { get; }
 
-        public void ReceiveMessageViaMediator(string author, string message)
+        public Guid Id { get; } = Guid.NewGuid(); 
+
+        public void SendMessageThroughMediator(string message)
         {
             throw new NotImplementedException();
         }
 
-        public void SendMessageThroughMediator(string message)
+        private void ReceiveMessageViaMediator(string author, string message)
         {
             throw new NotImplementedException();
         }
@@ -55,28 +56,30 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public string Name { get; } = $"Counter_{Guid.NewGuid()}";
 
-        public void ReceiveMessageViaMediator(string author, string message)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public void SendMessageThroughMediator(string message)
         {
             throw new NotSupportedException();
         }
+
+        private void ReceiveMessageViaMediator(string author, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class ChatRoomMediator
     {
-        public IDictionary<IChatRoomClient, Action<string, string>> Clients { get; } =
-            new Dictionary<IChatRoomClient, Action<string, string>>();
+        public IDictionary<Guid, Action<string, string>> Clients { get; } =
+            new Dictionary<Guid, Action<string, string>>();
 
-        public void Register(IChatRoomClient client, Action<string, string> callback)
+        public void Register(Guid clientId, Action<string, string> callback)
         {
             throw new NotImplementedException();
         }
 
-        public void SendMessage(IChatRoomClient client, string message)
+        public void SendMessage(Guid clientId, string author, string message)
         {
             /*
              * Check if client is on mediator's clients list
