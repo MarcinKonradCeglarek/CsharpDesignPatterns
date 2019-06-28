@@ -2,6 +2,8 @@
 {
     using System;
 
+    using CSharpDesignPatterns.Common.Model;
+
     using Moq;
 
     using NUnit.Framework;
@@ -13,9 +15,10 @@
         public void Subscribe2AndDispose_BothVisibleInSubject()
         {
             var sut = new Subject();
+            var mock = new Mock<IDisplayer>();
 
-            var observer1 = new Observer();
-            var observer2 = new Observer();
+            var observer1 = new Observer(mock.Object);
+            var observer2 = new Observer(mock.Object);
 
             using (sut.Subscribe(observer1))
             {
@@ -28,6 +31,27 @@
             }
 
             Assert.AreEqual(0, sut.Observers.Count);
+        }
+
+        [Test]
+        public void SubscribeTwoObserversAndDisplayEventTwice()
+        {
+            const string Message = "One Ring to rule them all";
+            var sut  = new Subject();
+            var mock = new Mock<IDisplayer>();
+
+            var observer1 = new Observer(mock.Object);
+            var observer2 = new Observer(mock.Object);
+
+            using (sut.Subscribe(observer1))
+            {
+                using (sut.Subscribe(observer2))
+                {
+                    sut.RaiseEvent(Message);
+                }
+            }
+
+            mock.Verify(m => m.Display(Message), Times.Exactly(2));
         }
 
         [Ignore("")]

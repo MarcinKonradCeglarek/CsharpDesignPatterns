@@ -3,6 +3,8 @@
     using System;
     using System.Web;
 
+    using CSharpDesignPatterns.Common.Model;
+
     using Moq;
 
     using NUnit.Framework;
@@ -13,7 +15,7 @@
         [Test]
         public void DebugMessage_ProperlyInvokesExternalInterface()
         {
-            var mock    = new Mock<INewLoggingInterface>();
+            var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
@@ -32,7 +34,7 @@
         [Test]
         public void ErrorMessage_ProperlyInvokesExternalInterface()
         {
-            var mock    = new Mock<INewLoggingInterface>();
+            var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
@@ -50,7 +52,7 @@
         [Test]
         public void ExceptionMessage_ProperlyInvokesExternalInterface()
         {
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var message   = Guid.NewGuid().ToString();
             var exception = new Exception();
 
@@ -69,7 +71,7 @@
         [Test]
         public void InfoMessage_ProperlyInvokesExternalInterface()
         {
-            var mock    = new Mock<INewLoggingInterface>();
+            var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
@@ -87,7 +89,7 @@
         [Test]
         public void Adapter_WarnMessage_ProperlyInvokesExternalInterface()
         {
-            var mock    = new Mock<INewLoggingInterface>();
+            var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
             var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
@@ -107,7 +109,7 @@
         public void RemoteAdapterThrowsExceptionOnDebug_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogDebug(It.IsAny<string>())).Throws(exception);
 
@@ -130,7 +132,7 @@
         public void RemoteAdapterThrowsExceptionOnError_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogError(It.IsAny<string>())).Throws(exception);
 
@@ -153,7 +155,7 @@
         public void RemoteAdapterThrowsExceptionOnException_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogException(It.IsAny<Exception>(), It.IsAny<string>())).Throws(exception);
 
@@ -176,7 +178,7 @@
         public void RemoteAdapterThrowsExceptionOnInfo_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogInfo(It.IsAny<string>())).Throws(exception);
 
@@ -199,7 +201,7 @@
         public void RemoteAdapterThrowsExceptionOnWarn_ProperlyReturnsFalse()
         {
             // Arrange
-            var mock      = new Mock<INewLoggingInterface>();
+            var mock      = new Mock<ILogger>();
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogWarn(It.IsAny<string>())).Throws(exception);
 

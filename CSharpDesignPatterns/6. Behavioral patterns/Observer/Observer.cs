@@ -1,9 +1,11 @@
-﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
+namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 {
     using System;
     using System.Collections.Generic;
 
     using Castle.Core.Internal;
+
+    using CSharpDesignPatterns.Common.Model;
 
     public class PayLoad
     {
@@ -45,6 +47,11 @@
 
     public class Observer : IObserver<PayLoad>
     {
+        public Observer(IDisplayer logger)
+        {
+            throw new NotImplementedException();
+        }
+        
         public void OnCompleted()
         {
         }

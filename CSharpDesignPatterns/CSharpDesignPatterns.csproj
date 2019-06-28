@@ -124,6 +124,8 @@
     <Compile Include="6. Behavioral patterns\Visitor\VisitorTests.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
+    <Compile Include="Common\Model\IDisplayer.cs" />
+    <Compile Include="Common\Model\ILogger.cs" />
     <Compile Include="Common\Model\IRepository.cs" />
     <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Common\Model\Printer.cs" />

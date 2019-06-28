@@ -2,6 +2,8 @@
 {
     using System;
 
+    using CSharpDesignPatterns.Common.Model;
+
     public interface IOurLogger
     {
         bool SendLogMessage(LogLevel level, string message, Exception exception = null);
@@ -9,9 +11,9 @@
 
     public class OurLoggingToNewLoggingAdapter : IOurLogger
     {
-        private readonly INewLoggingInterface newLogger;
+        private readonly ILogger newLogger;
 
-        public OurLoggingToNewLoggingAdapter(INewLoggingInterface newLogger)
+        public OurLoggingToNewLoggingAdapter(ILogger newLogger)
         {
             this.newLogger = newLogger;
         }
@@ -29,14 +31,5 @@
         Warn,
         Error,
         Exception
-    }
-
-    public interface INewLoggingInterface
-    {
-        void LogDebug(string        message);
-        void LogError(string        message);
-        void LogException(Exception ex, string message);
-        void LogInfo(string         message);
-        void LogWarn(string         message);
     }
 }
