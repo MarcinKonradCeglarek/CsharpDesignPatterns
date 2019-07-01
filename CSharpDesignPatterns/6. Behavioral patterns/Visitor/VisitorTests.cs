@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using NUnit.Framework;
 
@@ -28,12 +29,41 @@
         }
 
         [Test]
+        public void CitiesUsingLinq()
+        {
+            var average = this.components.OfType<City>().Average(c => c.AirQualityIndex);
+            Assert.AreEqual(3.25, average);
+        }
+
+
+        [Test]
         public void HomeAndParkVisitorCounts()
         {
             var citiesVisitor = new HouseAndParksVisitor();
             Client.ClientCode(this.components, citiesVisitor);
 
             Assert.AreEqual(8, citiesVisitor.GetTotalNumber());
+        }
+
+        [Test]
+        public void HomeAndParkUsingLinq()
+        {
+            Func<IComponent, int> actOnObject = c =>
+                {
+                    if (c is Home h)
+                    {
+                        return h.NumberOfBedrooms();
+                    }
+                    else if (c is Park)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                };
+
+            var sum = this.components.Sum(c => actOnObject(c));
+            Assert.AreEqual(8, sum);
         }
     }
 }
