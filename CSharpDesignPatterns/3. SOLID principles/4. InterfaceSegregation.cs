@@ -11,7 +11,6 @@
 
         public Guid Create(int x)
         {
-            // Connnect to SQL db
             throw new NotImplementedException();
         }
 
@@ -20,7 +19,7 @@
             throw new NotImplementedException();
         }
 
-        public void Update(int x)
+        public void Update(Guid id, int x)
         {
             throw new NotImplementedException();
         }
@@ -30,19 +29,4 @@
             throw new NotImplementedException();
         }
     }
-
-    /*public class Calc
-    {
-        public Calc(IRepository<int> data)
-        {
-            this.Data = data;
-        }
-
-        public IRepository<int> Data { get; }
-
-        public int SumAllOddFields()
-        {
-
-        }
-    }*/
 }
