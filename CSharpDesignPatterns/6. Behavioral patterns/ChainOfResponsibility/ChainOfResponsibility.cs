@@ -43,14 +43,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
         public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
             throw new NotImplementedException();
-            /*var next = this;
-            while (next.Next != null)
-            {
-                next = next.Next;
-            }
-
-            next.Next = nextChainOfResponsibilityLogger;
-            return this;*/
         }
 
         public void LogMessage(LogLevel severity, string msg)

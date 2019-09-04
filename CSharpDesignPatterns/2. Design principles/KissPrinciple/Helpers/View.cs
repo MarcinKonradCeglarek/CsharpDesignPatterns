@@ -5,17 +5,18 @@
 
     internal class View
     {
-        private static readonly Dictionary<Type, Func<object, string>> formatters = new Dictionary<Type, Func<object, string>>
-                                                                                    {
-                                                                                        {
-                                                                                            typeof(char[]), o =>
-                                                                                            {
-                                                                                                var input = (char[])o;
-                                                                                                return new string(input);
-                                                                                            }
-                                                                                        },
-                                                                                        { typeof(string), o => (string)o }
-                                                                                    };
+        private static readonly Dictionary<Type, Func<object, string>> formatters =
+            new Dictionary<Type, Func<object, string>>
+                {
+                    {
+                        typeof(char[]), o =>
+                            {
+                                var input = (char[])o;
+                                return new string(input);
+                            }
+                    },
+                    { typeof(string), o => (string)o }
+                };
 
         public static string Display(object input)
         {

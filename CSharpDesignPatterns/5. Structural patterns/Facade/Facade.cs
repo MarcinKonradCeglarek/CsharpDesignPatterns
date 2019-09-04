@@ -12,20 +12,12 @@
 
         public string GetSmartClothes()
         {
-            var resultA = this.shoesCloset.GetSmartShoes();
-            var resultB = this.wardrobe.GetSuit();
-            var resultC = this.accessoriesDrawer.GetSmartAccessories();
-
-            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
+            throw new NotImplementedException();
         }
 
         public string GetCasualClothes()
         {
-            var resultA = this.shoesCloset.GetCasualShoes();
-            var resultB = this.wardrobe.GetCasualWear();
-            var resultC = this.accessoriesDrawer.GetCasualAccessories();
-
-            return $"Casual clothes: [{resultA},{resultB},{resultC}]";
+            throw new NotImplementedException();
         }
     }
 
