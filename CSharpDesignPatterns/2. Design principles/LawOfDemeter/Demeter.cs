@@ -1,6 +1,7 @@
 ﻿namespace CSharpDesignPatterns._2._Design_principles.LawOfDemeter
 {
     using System;
+    using System.Linq;
 
     using CSharpDesignPatterns.Common.Model;
 
@@ -31,6 +32,15 @@
         public static void UpdateEmployeeGenderDemeterWay(Company company, Guid id, string newGender)
         {
             company.UpdateEmployeeGender(id, newGender);
+        }
+
+
+        public void DoesThisLinqFollowTheDemeterLaw()
+        {
+            var result = Enumerable.Range(0, 100)
+                                   .Select(i => DateTime.Now.AddDays(i))
+                                   .GroupBy(d => d.DayOfWeek)
+                                   .ToDictionary(g => g.Key, g => g.ToList());
         }
     }
 }
