@@ -31,105 +31,88 @@
         public bool IsDraft => this.state is DraftState;
         public bool IsUnderReview => this.state is UnderReviewState;
         public string Contents => this.contents;
-
         public Dictionary<User, bool> Approvals =>
             this.reviews.GroupBy(r => r.reviewer).ToDictionary(g => g.Key, g => g.Last().approval);
 
         public void Edit(string changes)
         {
-            this.state.Edit(changes);
         }
 
         public void SubmitForReview()
         {
-            this.state.SubmitForReview();
         }
 
         public void Review(User reviewer, bool approval)
         {
-            this.state.Review(reviewer, approval);
         }
 
         public void Publish()
         {
-            this.state.Publish();
         }
 
         public class DraftState : IDocument
         {
-            private readonly Document document;
-
             public DraftState(Document document)
             {
-                this.document = document;
             }
 
             public void Edit(string changes)
             {
-                this.document.contents = changes;
+                // update contents
             }
 
             public void SubmitForReview()
             {
-                if (!string.IsNullOrEmpty(this.document.contents))
-                {
-                    this.document.state = new UnderReviewState(this.document);
-                }
-                else
-                {
-                    throw new InvalidOperationException("Document's content can't be empty");
-                }
+                /*
+                 * if document.contents is empty
+                 *    throw Document's content can't be empty
+                 * else
+                 *    submit for review
+                 */
             }
 
             public void Review(User reviewer, bool approval)
             {
-                throw new InvalidOperationException($"Draft can't be reviewed");
+                // Draft can't be reviewed
             }
 
             public void Publish()
             {
-                throw new InvalidOperationException($"Draft can't be published");
+                // Draft can't be published
             }
         }
 
         public class UnderReviewState : IDocument
         {
-            private readonly Document document;
-
             public UnderReviewState(Document document)
             {
-                this.document = document;
             }
 
             public void Edit(string changes)
             {
-                this.document.contents = changes;
+                // update contents
             }
 
             public void SubmitForReview()
             {
-                throw new InvalidOperationException("Document is already under review");
+                // Document is already under review
             }
 
             public void Review(User reviewer, bool approval)
             {
-                this.document.reviews.Add((reviewer, approval));
+                // Add review
             }
 
             public void Publish()
             {
-                if (!this.document.Approvals.Any())
-                {
-                    throw new InvalidOperationException("Can't publish document without at least one approval");
-                }
-                else if (this.document.Approvals.All(r => r.Value))
-                {
-                    this.document.state = new PublishedState();
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't publish document with failed reviews");
-                }
+                /*
+                 * if document doesn't have approvals
+                 *     throw Can't publish document without at least one approval
+                 * else if all approvals are true
+                 *     publish
+                 * else
+                 *     throw Can't publish document with failed reviews
+                 */
             }
         }
 
@@ -137,22 +120,22 @@
         {
             public void Edit(string changes)
             {
-                throw new InvalidOperationException("Published document can't be edited");
+                // Published document can't be edited
             }
 
             public void SubmitForReview()
             {
-                throw new InvalidOperationException("Published document can't be submitted for review");
+                // Published document can't be submitted for review
             }
 
             public void Review(User reviewer, bool approval)
             {
-                throw new InvalidOperationException("Published document can't be reviewed");
+                // Published document can't be reviewed
             }
 
             public void Publish()
             {
-                throw new InvalidOperationException("Published document can't be published");
+                // Published document can't be published
             }
         }
     }
