@@ -4,6 +4,9 @@
 
     using NUnit.Framework.Internal;
 
+    /*
+     * https://refactoring.guru/design-patterns/facade
+     */
     public class GetDressedFacade
     {
         private readonly ShoesCloset       shoesCloset       = new ShoesCloset();

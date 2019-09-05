@@ -13,44 +13,47 @@
         [Test]
         public void ThreeOrders_MinimumNumberOfCacheItems()
         {
-            var shop = new FlyweightCoffeeShop();
-            shop.CreateOrder("Cappuccino");
-            shop.CreateOrder("Espresso");
+            var shop = new FlyweightTreeRepository();
+            shop.CreateTree("Cappuccino", new Position(1, 10, 100));
+            shop.CreateTree("Espresso", new Position(2, 20, 200));
 
-            Assert.AreEqual(2, shop.CoffeeFlavors.Count);
+            Assert.AreEqual(2, shop.TreeTypes.Count);
         }
 
         [Test]
         public void IsReferenceEquals_True()
         {
-            var shop = new FlyweightCoffeeShop();
+            var shop = new FlyweightTreeRepository();
 
-            shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
-            shop.CreateOrder(new CoffeeFlavor("Espresso"));
-            shop.CreateOrder("Cappuccino");
-            shop.CreateOrder("Espresso");
+            shop.CreateTree(new TreeModel("Cappuccino"), new Position(1, 10, 100));
+            shop.CreateTree(new TreeModel("Espresso"), new Position(1, 10, 100));
+            shop.CreateTree("Cappuccino", new Position(1, 10, 100));
+            shop.CreateTree("Espresso", new Position(1, 10, 100));
 
-            var thisOrder = shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
+            var thisOrder = shop.CreateTree(new TreeModel("Cappuccino"), new Position(1, 10, 100));
 
-            Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavors["Cappuccino"], shop.Orders[thisOrder]));
+            Assert.AreEqual(2, shop.TreeTypes.Count);
+            Assert.AreEqual(5, shop.Trees.Count);
+
+            Assert.IsTrue(ReferenceEquals(shop.TreeTypes["Cappuccino"], shop.Trees[thisOrder].TreeModel));
         }
 
         [Test]
         public void SeveralOrders_MinimumNumberOfCacheItems()
         {
-            var shop = new FlyweightCoffeeShop();
+            var shop = new FlyweightTreeRepository();
 
             var input = new string[] { "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe" };
 
             var orderIds = new List<Guid>();
             foreach (var flavor in input)
             {
-                orderIds.Add(shop.CreateOrder(flavor));
+                orderIds.Add(shop.CreateTree(flavor, new Position(1, 10, 100)));
             }
 
-            Assert.AreEqual(3, shop.CoffeeFlavors.Count);
-            Assert.AreEqual(9, shop.Orders.Count);
-            CollectionAssert.AreEquivalent(orderIds, shop.Orders.Keys);
+            Assert.AreEqual(3, shop.TreeTypes.Count);
+            Assert.AreEqual(9, shop.Trees.Count);
+            CollectionAssert.AreEquivalent(orderIds, shop.Trees.Keys);
         }
     }
 }
