@@ -106,7 +106,8 @@
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\Helper.cs" />
     <Compile Include="6. Behavioral patterns\Command\Command.cs" />
     <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
-    <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\FibonacciIterator.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\DaysOfWeekIterator.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\IteratorTests.cs" />
     <Compile Include="6. Behavioral patterns\Mediator\Mediator.cs" />
     <Compile Include="6. Behavioral patterns\Mediator\MediatorTests.cs" />
