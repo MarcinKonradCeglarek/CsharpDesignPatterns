@@ -7,7 +7,6 @@
     [TestFixture]
     public class MediatorTests
     {
-
         [Test]
         public void ProperlyForwardsOneMessage()
         {
@@ -28,7 +27,6 @@
             Assert.AreEqual(1, counter.Counter);
         }
 
-        [Ignore("")]
         [Test]
         public void ProperlyForwardsMultipleMessagesFromOneSender()
         {
@@ -51,7 +49,6 @@
             Assert.AreEqual(3, counter.Counter);
         }
 
-        [Ignore("")]
         [Test]
         public void ProperlyForwardsMultipleMessagesFromMultipleSenders()
         {
@@ -76,6 +73,5 @@
             bobDisplay.Verify(d => d.HandleReceivedMessage(alice.Name, message), Times.Exactly(3));
             Assert.AreEqual(6, counter.Counter);
         }
-
     }
 }
