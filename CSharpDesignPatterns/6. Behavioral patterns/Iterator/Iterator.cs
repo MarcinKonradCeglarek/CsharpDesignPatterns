@@ -21,4 +21,29 @@
             return this.GetEnumerator();
         }
     }
+
+    public class FibonacciIterator : IEnumerable<int>
+    {
+        public IEnumerator<int> GetEnumerator()
+        {
+            var a = 1;
+            var b = 1;
+
+            yield return 1;
+            yield return 1;
+
+            while (true)
+            {
+                var c = a + b;
+                a = b;
+                b = c;
+                yield return b;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+    }
 }

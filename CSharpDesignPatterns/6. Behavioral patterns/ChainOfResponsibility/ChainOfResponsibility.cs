@@ -3,9 +3,10 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
     using System;
 
     /*
+     * https://refactoring.guru/design-patterns/chain-of-responsibility
+     *
      * https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
      */
-
     [Flags]
     public enum LogLevel
     {
@@ -35,71 +36,104 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public abstract class ChainOfResponsibilityLogger
     {
+        private readonly LogLevel mask;
+
         protected ChainOfResponsibilityLogger(LogLevel mask)
         {
-            throw new NotImplementedException();
+            this.mask = mask;
         }
 
-        public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
+        public ChainOfResponsibilityLogger Next { get; set; }
+
+        public ChainOfResponsibilityLogger AddNext(ChainOfResponsibilityLogger newLogger)
         {
-            throw new NotImplementedException();
-            /*var next = this;
-            while (next.Next != null)
+            return this.InsertAsLastElementOfChain(newLogger);
+        }
+
+        public void LogMessage(LogLevel severity, string message)
+        {
+            if (Helper.DoesLevelMatchMask(severity, this.mask))
             {
-                next = next.Next;
+                this.ProcessMessage(message);
             }
 
-            next.Next = nextChainOfResponsibilityLogger;
-            return this;*/
+            this.Next?.LogMessage(severity, message);
         }
 
-        public void LogMessage(LogLevel severity, string msg)
+        protected abstract void ProcessMessage(string message);
+
+        private ChainOfResponsibilityLogger InsertAsFirstElementOfChain(ChainOfResponsibilityLogger newLogger)
         {
-            throw new NotImplementedException();
+            newLogger.Next = this;
+            return newLogger;
         }
 
-        protected abstract void WriteMessage(string msg);
+        private ChainOfResponsibilityLogger InsertAsLastElementOfChain(
+            ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
+        {
+            var currentLogger = this;
+            while (currentLogger.Next != null)
+            {
+                currentLogger = currentLogger.Next;
+            }
+
+            currentLogger.Next = nextChainOfResponsibilityLogger;
+            return this;
+        }
+
+        private ChainOfResponsibilityLogger InsertAsSecondElementOfChain(ChainOfResponsibilityLogger newLogger)
+        {
+            newLogger.Next = this.Next;
+            this.Next      = newLogger;
+            return this;
+        }
     }
 
     public class ChainOfResponsibilityConsoleLogger : ChainOfResponsibilityLogger
     {
+        private readonly IConsole messageConsole;
+
         public ChainOfResponsibilityConsoleLogger(LogLevel mask, IConsole messageConsole)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.messageConsole = messageConsole;
         }
 
-        protected override void WriteMessage(string msg)
+        protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.messageConsole.WriteMessage(message);
         }
     }
 
     public class ChainOfResponsibilityEmailLogger : ChainOfResponsibilityLogger
     {
-        public ChainOfResponsibilityEmailLogger(LogLevel mask, IEmail messageConsole)
+        private readonly IEmail email;
+
+        public ChainOfResponsibilityEmailLogger(LogLevel mask, IEmail email)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.email = email;
         }
 
-        protected override void WriteMessage(string msg)
+        protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.email.SendEmail(message);
         }
     }
 
     internal class ChainOfResponsibilityFileLogger : ChainOfResponsibilityLogger
     {
-        public ChainOfResponsibilityFileLogger(LogLevel mask, IFileWriter messageConsole)
+        private readonly IFileWriter file;
+
+        public ChainOfResponsibilityFileLogger(LogLevel mask, IFileWriter file)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.file = file;
         }
 
-        protected override void WriteMessage(string msg)
+        protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.file.AppendToLogFile(message);
         }
     }
 }
