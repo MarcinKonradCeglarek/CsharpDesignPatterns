@@ -2,23 +2,30 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     public interface IComposite
     {
+        IReadOnlyCollection<IComposite> Children { get; }
         string Print();
+        
     }
 
     public class Composite : IComposite
     {
+        private readonly List<IComposite> children = new List<IComposite>();
+
+        public IReadOnlyCollection<IComposite> Children => new ReadOnlyCollection<IComposite>(this.children);
+
         public void Add(IComposite node)
         {
-            throw new NotImplementedException();
+            this.children.Add(node);
         }
 
         public string Print()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",", this.children.Select(c => c.Print()))}]";
         }
     }
 
@@ -31,9 +38,11 @@
 
         public string Name { get; }
 
+        public IReadOnlyCollection<IComposite> Children { get; } = new List<IComposite>();
+
         public string Print()
         {
-            throw new NotImplementedException();
+            return this.Name;
         }
     }
 }

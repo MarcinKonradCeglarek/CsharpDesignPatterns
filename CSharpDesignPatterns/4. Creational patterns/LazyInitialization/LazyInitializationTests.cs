@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using CSharpDesignPatterns.Common.Model;
 
@@ -50,6 +51,7 @@
             }
             
             Assert.AreEqual(children.Length, children1.Count);
+            CollectionAssert.AreEquivalent(children, children1.Select(c => c.Id));
         }
 
         private Mock<IRepository<T, Node<T>>> GetMock<T>(IEnumerable<T> ids)

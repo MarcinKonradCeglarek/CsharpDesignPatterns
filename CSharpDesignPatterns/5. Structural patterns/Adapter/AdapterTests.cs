@@ -18,7 +18,7 @@
             var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
             sut.SendLogMessage(LogLevel.Debug, message);
 
             // Assert
@@ -37,7 +37,7 @@
             var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
             sut.SendLogMessage(LogLevel.Error, message);
 
             // Assert
@@ -56,7 +56,7 @@
             var message   = Guid.NewGuid().ToString();
             var exception = new Exception();
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
             sut.SendLogMessage(LogLevel.Exception, message, exception);
 
             // Assert
@@ -74,7 +74,7 @@
             var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
             sut.SendLogMessage(LogLevel.Info, message);
 
             // Assert
@@ -92,7 +92,7 @@
             var mock    = new Mock<ILogger>();
             var message = Guid.NewGuid().ToString();
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
             sut.SendLogMessage(LogLevel.Warn, message);
 
             // Assert
@@ -104,7 +104,6 @@
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("nice to have")]
         [Test]
         public void RemoteAdapterThrowsExceptionOnDebug_ProperlyReturnsFalse()
         {
@@ -113,7 +112,7 @@
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogDebug(It.IsAny<string>())).Throws(exception);
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
 
             // Act
             var debugResult = sut.SendLogMessage(LogLevel.Debug, Guid.NewGuid().ToString());
@@ -127,7 +126,6 @@
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("nice to have")]
         [Test]
         public void RemoteAdapterThrowsExceptionOnError_ProperlyReturnsFalse()
         {
@@ -136,7 +134,7 @@
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogError(It.IsAny<string>())).Throws(exception);
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
 
             // Act
             var errorResult = sut.SendLogMessage(LogLevel.Error, Guid.NewGuid().ToString());
@@ -150,7 +148,6 @@
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("nice to have")]
         [Test]
         public void RemoteAdapterThrowsExceptionOnException_ProperlyReturnsFalse()
         {
@@ -159,7 +156,7 @@
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogException(It.IsAny<Exception>(), It.IsAny<string>())).Throws(exception);
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
 
             // Act
             var exceptionResult = sut.SendLogMessage(LogLevel.Exception, Guid.NewGuid().ToString());
@@ -173,7 +170,6 @@
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
 
-        [Ignore("nice to have")]
         [Test]
         public void RemoteAdapterThrowsExceptionOnInfo_ProperlyReturnsFalse()
         {
@@ -182,7 +178,7 @@
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogInfo(It.IsAny<string>())).Throws(exception);
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
 
             // Act
             var infoResult = sut.SendLogMessage(LogLevel.Info, Guid.NewGuid().ToString());
@@ -196,7 +192,6 @@
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
-        [Ignore("nice to have")]
         [Test]
         public void RemoteAdapterThrowsExceptionOnWarn_ProperlyReturnsFalse()
         {
@@ -205,7 +200,7 @@
             var exception = new HttpException(404, "Server not found");
             mock.Setup(m => m.LogWarn(It.IsAny<string>())).Throws(exception);
 
-            var sut = new OurLoggingToNewLoggingAdapter(mock.Object);
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
 
             // Act
             var warnResult = sut.SendLogMessage(LogLevel.Warn, Guid.NewGuid().ToString());

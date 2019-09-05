@@ -18,7 +18,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             Assert.AreEqual("Leaf", composite.Print());
         }
 
-        [Ignore("1")]
         [Test]
         public void CompositeWith3ChildrenProperlyPrints()
         {
@@ -30,7 +29,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             Assert.AreEqual("[L1,L2,L1]", composite.Print());
         }
 
-        [Ignore("2")]
         [Test]
         public void ParentWith2SubCompositesProperlyPrints()
         {
@@ -48,7 +46,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             Assert.AreEqual("[[L1],[L2]]", parent.Print());
         }
 
-        [Ignore("3")]
         [Test]
         public void TreeStructureWithOneBranchOnlyProperlyPrints()
         {
@@ -70,7 +67,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             Assert.AreEqual("[L1,[L2,[L3,[L4]]]]", root.Print());
         }
 
-        [Ignore("4")]
         [Test]
         public void ComplexExampleProperlyPrints()
         {

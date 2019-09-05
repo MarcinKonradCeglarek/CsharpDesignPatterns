@@ -2,17 +2,12 @@
 {
     using NUnit.Framework;
 
+    /*
+     * https://refactoring.guru/design-patterns/abstract-factory
+     *
+     * https://en.wikipedia.org/wiki/Abstract_factory_pattern
+     */
     internal class AbstractFactory
     {
-        // https://en.wikipedia.org/wiki/Abstract_factory_pattern
-    }
-
-    [TestFixture]
-    public class AbstractFactoryTests
-    {
-        [Test]
-        public void X()
-        {
-        }
     }
 }

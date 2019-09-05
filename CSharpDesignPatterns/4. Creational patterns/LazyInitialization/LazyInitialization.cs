@@ -1,19 +1,36 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
-    using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+    using System.Linq;
 
     using CSharpDesignPatterns.Common.Model;
 
     public class Node<T>
     {
-        public Node(T id, IEnumerable<T> childrenIds, IRepository<T, Node<T>> repository)
+        private readonly IEnumerable<T> childrenIds;
+        private IReadOnlyList<Node<T>> children = null;
+
+        public Node(T thisId, IEnumerable<T> childrenIds, IRepository<T, Node<T>> repository)
         {
-            throw new NotImplementedException();
+            this.Id = thisId;
+            this.childrenIds = childrenIds;
+            this.Repository = repository;
         }
 
-        public IReadOnlyList<Node<T>> Children { get; }
+        public T Id { get; }
+
+        public IReadOnlyList<Node<T>> Children
+        {
+            get
+            {
+                if (this.children == null)
+                {
+                    this.children = this.childrenIds.Select(i => this.Repository.Read(i)).ToList();
+                }
+
+                return this.children;
+            }
+        }
 
         private IRepository<T, Node<T>> Repository { get; }
     }
