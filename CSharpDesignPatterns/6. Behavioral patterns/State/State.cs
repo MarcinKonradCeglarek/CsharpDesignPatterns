@@ -118,7 +118,8 @@
 
             public void Review(User reviewer, bool approval)
             {
-                this.document.reviews.Add((reviewer, approval));
+                var newReview = (reviewer, approval);
+                this.document.reviews.Add(newReview);
             }
 
             public void Publish()
