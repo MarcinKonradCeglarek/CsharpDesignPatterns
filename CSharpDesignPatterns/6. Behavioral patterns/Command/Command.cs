@@ -18,7 +18,8 @@
 
         public PowerSwitch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            
+            this.turnOnCommand = turnOnCommand;
+            this.turnOffCommand = turnOffCommand;
         }
 
         public void TurnOff()

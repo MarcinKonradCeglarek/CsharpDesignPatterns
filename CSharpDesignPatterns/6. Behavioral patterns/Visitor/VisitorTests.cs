@@ -49,7 +49,7 @@
                     return 0;
                 };
 
-            var passengers = this.components.Sum(getPassengers);
+            var passengers = this.components.Sum(c => getPassengers(c));
 
             Assert.AreEqual(ExpectedPassengers, passengers);
         }
