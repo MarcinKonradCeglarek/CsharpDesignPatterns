@@ -8,15 +8,17 @@
     public class DecoratorTests
     {
         [Test]
-        public void SimpleCoffeeValidCostAndIngredients()
+        public void CoffeeWithMilkAndSprinklesValidCostAndIngredients()
         {
-            var coffee = new Coffee();
+            var cofee                      = new Coffee();
+            var coffeeWithMilkAndSprinkles = new WithMilkDecorator(new WithSprinklesDecorator(cofee));
 
-            Assert.AreEqual(1,                  coffee.Cost);
-            Assert.AreEqual(1,                  coffee.Contents.Count());
-            Assert.AreEqual(Ingredients.Coffee, coffee.Contents.Single());
+            Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
+            Assert.AreEqual(3,   coffeeWithMilkAndSprinkles.Contents.Count());
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Milk);
+            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
         }
-
 
         [Test]
         public void CoffeeWithMilkValidCostAndIngredients()
@@ -27,6 +29,19 @@
             Assert.AreEqual(2,   coffeeWithMilk.Contents.Count());
             CollectionAssert.Contains(coffeeWithMilk.Contents, Ingredients.Coffee);
             CollectionAssert.Contains(coffeeWithMilk.Contents, Ingredients.Milk);
+        }
+
+        [Test]
+        public void CoffeeWithSprinklesAndMilkValidCostAndIngredients()
+        {
+            var cofee                      = new Coffee();
+            var coffeeWithSprinklesAndMilk = new WithSprinklesDecorator(new WithMilkDecorator(cofee));
+
+            Assert.AreEqual(1.7, coffeeWithSprinklesAndMilk.Cost);
+            Assert.AreEqual(3,   coffeeWithSprinklesAndMilk.Contents.Count());
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Coffee);
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Milk);
+            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Sprinkles);
         }
 
         [Test]
@@ -41,31 +56,13 @@
         }
 
         [Test]
-        public void CoffeeWithMilkAndSprinklesValidCostAndIngredients()
+        public void SimpleCoffeeValidCostAndIngredients()
         {
-            var cofee = new Coffee();
-            var coffeeWithMilkAndSprinkles = new WithMilkDecorator(new WithSprinklesDecorator(cofee));
+            var coffee = new Coffee();
 
-            Assert.AreEqual(1.7, coffeeWithMilkAndSprinkles.Cost);
-            Assert.AreEqual(3,   coffeeWithMilkAndSprinkles.Contents.Count());
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Coffee);
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Milk);
-            CollectionAssert.Contains(coffeeWithMilkAndSprinkles.Contents, Ingredients.Sprinkles);
+            Assert.AreEqual(1,                  coffee.Cost);
+            Assert.AreEqual(1,                  coffee.Contents.Count());
+            Assert.AreEqual(Ingredients.Coffee, coffee.Contents.Single());
         }
-
-        [Test]
-        public void CoffeeWithSprinklesAndMilkValidCostAndIngredients()
-        {
-            var cofee = new Coffee();
-            var coffeeWithSprinklesAndMilk = new WithSprinklesDecorator(new WithMilkDecorator(cofee));
-
-            Assert.AreEqual(1.7, coffeeWithSprinklesAndMilk.Cost);
-            Assert.AreEqual(3,   coffeeWithSprinklesAndMilk.Contents.Count());
-            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Coffee);
-            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Milk);
-            CollectionAssert.Contains(coffeeWithSprinklesAndMilk.Contents, Ingredients.Sprinkles);
-        }
-
-
     }
 }

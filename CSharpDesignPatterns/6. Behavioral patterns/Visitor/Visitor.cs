@@ -23,13 +23,13 @@
      *
      */
 
-    public interface IComponent
+    public interface IVehicle
     {
-        void Accept(IVechicleVisitor vechicleVisitor);
+        void Accept(IVehicleVisitor vehicleVisitor);
     }
 
 
-    public class Car : IComponent
+    public class Car : IVehicle
     {
         public Car(int seats)
         {
@@ -38,13 +38,13 @@
 
         public int Passengers { get; }
 
-        public void Accept(IVechicleVisitor vechicleVisitor)
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vechicleVisitor.Visit(this);
+            vehicleVisitor.Visit(this);
         }
     }
 
-    public class Truck : IComponent
+    public class Truck : IVehicle
     {
         public Truck(double capacity)
         {
@@ -53,28 +53,28 @@
 
         public double CargoCapacity { get; }
 
-        public void Accept(IVechicleVisitor vechicleVisitor)
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vechicleVisitor.Visit(this);
+            vehicleVisitor.Visit(this);
         }
     }
 
-    public class Bus : IComponent
+    public class Bus : IVehicle
     {
-        public void Accept(IVechicleVisitor vechicleVisitor)
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vechicleVisitor.Visit(this);
+            vehicleVisitor.Visit(this);
         }
     }
 
-    public interface IVechicleVisitor
+    public interface IVehicleVisitor
     {
         void Visit(Car car);
         void Visit(Truck truck);
         void Visit(Bus bus);
     }
 
-    public class CargoCapacityVisitor : IVechicleVisitor
+    public class CargoCapacityVisitor : IVehicleVisitor
     {
         private double cargoValue;
         public double GetTotalCargoValue => this.cargoValue;
@@ -94,7 +94,7 @@
         }
     }
 
-    public class PassengersCapacityVisitor : IVechicleVisitor
+    public class PassengersCapacityVisitor : IVehicleVisitor
     {
         private int passengers = 0;
         public int PassengersCapacity => this.passengers;
@@ -116,11 +116,11 @@
 
     public class Client
     {
-        public static void Visit(List<IComponent> components, IVechicleVisitor vechicleVisitor)
+        public static void Visit(List<IVehicle> components, IVehicleVisitor vehicleVisitor)
         {
             foreach (var component in components)
             {
-                component.Accept(vechicleVisitor);
+                component.Accept(vehicleVisitor);
             }
         }
     }

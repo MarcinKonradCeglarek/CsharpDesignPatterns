@@ -8,16 +8,14 @@
     public class Node<T>
     {
         private readonly IEnumerable<T> childrenIds;
-        private IReadOnlyList<Node<T>> children = null;
+        private          IReadOnlyList<Node<T>> children;
 
         public Node(T thisId, IEnumerable<T> childrenIds, IRepository<T, Node<T>> repository)
         {
-            this.Id = thisId;
+            this.Id          = thisId;
             this.childrenIds = childrenIds;
-            this.Repository = repository;
+            this.Repository  = repository;
         }
-
-        public T Id { get; }
 
         public IReadOnlyList<Node<T>> Children
         {
@@ -31,6 +29,8 @@
                 return this.children;
             }
         }
+
+        public T Id { get; }
 
         private IRepository<T, Node<T>> Repository { get; }
     }

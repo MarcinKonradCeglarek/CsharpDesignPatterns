@@ -10,40 +10,40 @@
     public interface IDocument
     {
         void Edit(string changes);
-        void SubmitForReview();
-        void Review(User reviewer, bool approval);
         void Publish();
+        void Review(User reviewer, bool approval);
+        void SubmitForReview();
     }
 
     public class Document : IDocument
     {
-        private readonly User author;
+        private readonly User                                  author;
         private readonly IList<(User reviewer, bool approval)> reviews = new List<(User reviewer, bool approval)>();
-        private IDocument state;
-        private string contents;
+        private          IDocument                             state;
 
         public Document(User author)
         {
             this.author = author;
-            this.state = new DraftState(this);
+            this.state  = new DraftState(this);
         }
 
-        public bool IsPublished => this.state is PublishedState;
-        public bool IsDraft => this.state is DraftState;
-        public bool IsUnderReview => this.state is UnderReviewState;
-        public string Contents => this.contents;
         public IReadOnlyDictionary<User, bool> Approvals =>
-            new ReadOnlyDictionary<User, bool>(
-                this.reviews.GroupBy(r => r.reviewer).ToDictionary(g => g.Key, g => g.Last().approval));
+            new ReadOnlyDictionary<User, bool>(this.reviews.GroupBy(r => r.reviewer).ToDictionary(g => g.Key, g => g.Last().approval));
+        public string Contents { get; private set; }
+
+        public bool IsDraft => this.state is DraftState;
+
+        public bool IsPublished   => this.state is PublishedState;
+        public bool IsUnderReview => this.state is UnderReviewState;
 
         public void Edit(string changes)
         {
             this.state.Edit(changes);
         }
 
-        public void SubmitForReview()
+        public void Publish()
         {
-            this.state.SubmitForReview();
+            this.state.Publish();
         }
 
         public void Review(User reviewer, bool approval)
@@ -51,9 +51,9 @@
             this.state.Review(reviewer, approval);
         }
 
-        public void Publish()
+        public void SubmitForReview()
         {
-            this.state.Publish();
+            this.state.SubmitForReview();
         }
 
         public class DraftState : IDocument
@@ -67,7 +67,17 @@
 
             public void Edit(string changes)
             {
-                this.document.contents = changes;
+                this.document.Contents = changes;
+            }
+
+            public void Publish()
+            {
+                throw new InvalidOperationException("Draft can't be published");
+            }
+
+            public void Review(User reviewer, bool approval)
+            {
+                throw new InvalidOperationException("Draft can't be reviewed");
             }
 
             public void SubmitForReview()
@@ -85,15 +95,28 @@
 
                 this.document.state = new UnderReviewState(this.document);
             }
+        }
 
-            public void Review(User reviewer, bool approval)
+        public class PublishedState : IDocument
+        {
+            public void Edit(string changes)
             {
-                throw new InvalidOperationException("Draft can't be reviewed");
+                throw new InvalidOperationException("Published document can't be edited");
             }
 
             public void Publish()
             {
-                throw new InvalidOperationException("Draft can't be published");
+                throw new InvalidOperationException("Published document can't be published");
+            }
+
+            public void Review(User reviewer, bool approval)
+            {
+                throw new InvalidOperationException("Published document can't be reviewed");
+            }
+
+            public void SubmitForReview()
+            {
+                throw new InvalidOperationException("Published document can't be submitted for review");
             }
         }
 
@@ -108,18 +131,7 @@
 
             public void Edit(string changes)
             {
-                this.document.contents = changes;
-            }
-
-            public void SubmitForReview()
-            {
-                throw new InvalidOperationException("Document is already under review");
-            }
-
-            public void Review(User reviewer, bool approval)
-            {
-                var newReview = (reviewer, approval);
-                this.document.reviews.Add(newReview);
+                this.document.Contents = changes;
             }
 
             public void Publish()
@@ -146,28 +158,16 @@
                     throw new InvalidOperationException("Can't publish document with failed reviews");
                 }
             }
-        }
 
-        public class PublishedState : IDocument
-        {
-            public void Edit(string changes)
+            public void Review(User reviewer, bool approval)
             {
-                throw new InvalidOperationException("Published document can't be edited");
+                var newReview = (reviewer, approval);
+                this.document.reviews.Add(newReview);
             }
 
             public void SubmitForReview()
             {
-                throw new InvalidOperationException("Published document can't be submitted for review");
-            }
-
-            public void Review(User reviewer, bool approval)
-            {
-                throw new InvalidOperationException("Published document can't be reviewed");
-            }
-
-            public void Publish()
-            {
-                throw new InvalidOperationException("Published document can't be published");
+                throw new InvalidOperationException("Document is already under review");
             }
         }
     }

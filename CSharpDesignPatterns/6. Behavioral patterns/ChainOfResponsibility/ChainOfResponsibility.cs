@@ -68,8 +68,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
             return newLogger;
         }
 
-        private ChainOfResponsibilityLogger InsertAsLastElementOfChain(
-            ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
+        private ChainOfResponsibilityLogger InsertAsLastElementOfChain(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
             var currentLogger = this;
             while (currentLogger.Next != null)

@@ -3,8 +3,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
     using System;
     using System.Collections.Generic;
 
-    using Castle.Core.Internal;
-
     using CSharpDesignPatterns.Common.Model;
 
     public class PayLoad
@@ -23,35 +21,45 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
         public void RaiseEvent(string message)
         {
-            throw new NotImplementedException();
+            foreach (var observer in this.Observers)
+            {
+                observer.OnNext(new PayLoad(message));
+            }
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            this.Observers.Add(observer);
+            return new Unsubscriber(this.Observers, observer);
         }
     }
 
     public class Unsubscriber : IDisposable
     {
+        private readonly IObserver<PayLoad> observer;
+        private readonly IList<IObserver<PayLoad>> observers;
+
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            this.observers = observers;
+            this.observer  = observer;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.observers.Remove(this.observer);
         }
     }
 
     public class Observer : IObserver<PayLoad>
     {
+        private readonly IDisplayer logger;
+
         public Observer(IDisplayer logger)
         {
-            throw new NotImplementedException();
+            this.logger = logger;
         }
-        
+
         public void OnCompleted()
         {
         }
@@ -60,9 +68,9 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
         {
         }
 
-        public void OnNext(PayLoad value)
+        public void OnNext(PayLoad payload)
         {
-            throw new NotImplementedException();
+            this.logger.Display(payload.Message);
         }
     }
 }

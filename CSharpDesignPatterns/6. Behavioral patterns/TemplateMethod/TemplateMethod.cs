@@ -1,12 +1,14 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.TemplateMethod
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     /*
-     * AKA Workflow
+     * https://refactoring.guru/design-patterns/template-method
+     *
+     * NameFormatterTemplateMethod provides template and abstract methods
+     *
+     * PeasantNameFormatter and RoyaltyNameFormatter provides implementation for abstract methods
      */
 
     public abstract class NameFormatterTemplateMethod
@@ -73,9 +75,7 @@
             this.suffixes = suffixes;
         }
 
-        protected override IEnumerable<string> GetFirstNames() =>
-            new[] { this.firstName, this.secondName, this.thirdName }.Where(s => !string.IsNullOrEmpty(s));
-       
+        protected override IEnumerable<string> GetFirstNames() => new[] { this.firstName, this.secondName, this.thirdName }.Where(s => !string.IsNullOrEmpty(s));
 
         protected override string GetLastName() => $"von {this.lastName}";
 

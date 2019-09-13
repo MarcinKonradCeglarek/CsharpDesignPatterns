@@ -13,6 +13,24 @@
     public class AdapterTests
     {
         [Test]
+        public void Adapter_WarnMessage_ProperlyInvokesExternalInterface()
+        {
+            var mock    = new Mock<ILogger>();
+            var message = Guid.NewGuid().ToString();
+
+            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
+            sut.SendLogMessage(LogLevel.Warn, message);
+
+            // Assert
+            mock.Verify(o => o.LogWarn(message), Times.Once);
+
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
         public void DebugMessage_ProperlyInvokesExternalInterface()
         {
             var mock    = new Mock<ILogger>();
@@ -82,24 +100,6 @@
 
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
-            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
-            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
-        public void Adapter_WarnMessage_ProperlyInvokesExternalInterface()
-        {
-            var mock    = new Mock<ILogger>();
-            var message = Guid.NewGuid().ToString();
-
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Warn, message);
-
-            // Assert
-            mock.Verify(o => o.LogWarn(message), Times.Once);
-
-            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }

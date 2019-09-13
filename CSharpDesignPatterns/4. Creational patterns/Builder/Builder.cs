@@ -9,17 +9,9 @@
      */
     public class CarBuilder
     {
-        private int? wheelsCount;
+        private EngineType?       engineType;
         private TransmissionType? transmissionType;
-        private EngineType? engineType;
-
-        public Car Build()
-        {
-            return new Car(
-                this.engineType       ?? EngineType.Gasoline,
-                this.transmissionType ?? TransmissionType.Manual,
-                this.wheelsCount      ?? 4);
-        }
+        private int?              wheelsCount;
 
         public CarBuilder AutomaticTransmission()
         {
@@ -32,29 +24,9 @@
             return this;
         }
 
-        public CarBuilder GasolineEngine()
+        public Car Build()
         {
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType = EngineType.Gasoline;
-            return this;
-        }
-
-        public CarBuilder ManualTransmission()
-        {
-            /*
-             * Can not be used with Electric and Hybird engines
-             */
-            if (this.transmissionType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.transmissionType = TransmissionType.Manual;
-            return this;
+            return new Car(this.engineType ?? EngineType.Gasoline, this.transmissionType ?? TransmissionType.Manual, this.wheelsCount ?? 4);
         }
 
         public CarBuilder DieselEngine()
@@ -83,8 +55,19 @@
                 throw new InvalidOperationException();
             }
 
-            this.engineType = EngineType.Electric;
+            this.engineType       = EngineType.Electric;
             this.transmissionType = TransmissionType.Automatic;
+            return this;
+        }
+
+        public CarBuilder GasolineEngine()
+        {
+            if (this.engineType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.engineType = EngineType.Gasoline;
             return this;
         }
 
@@ -105,6 +88,20 @@
 
             this.engineType       = EngineType.Hybrid;
             this.transmissionType = TransmissionType.Automatic;
+            return this;
+        }
+
+        public CarBuilder ManualTransmission()
+        {
+            /*
+             * Can not be used with Electric and Hybird engines
+             */
+            if (this.transmissionType.HasValue)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.transmissionType = TransmissionType.Manual;
             return this;
         }
     }

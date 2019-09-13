@@ -1,26 +1,13 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 {
-    using System;
-
-    using NUnit.Framework.Internal;
-
     /*
-     * https://refactoring.guru/design-patterns/facade
-     */
+         * https://refactoring.guru/design-patterns/facade
+         */
     public class GetDressedFacade
     {
+        private readonly AccessoriesDrawer accessoriesDrawer = new AccessoriesDrawer();
         private readonly ShoesCloset       shoesCloset       = new ShoesCloset();
         private readonly Wardrobe          wardrobe          = new Wardrobe();
-        private readonly AccessoriesDrawer accessoriesDrawer = new AccessoriesDrawer();
-
-        public string GetSmartClothes()
-        {
-            var resultA = this.shoesCloset.GetSmartShoes();
-            var resultB = this.wardrobe.GetSuit();
-            var resultC = this.accessoriesDrawer.GetSmartAccessories();
-
-            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
-        }
 
         public string GetCasualClothes()
         {
@@ -30,44 +17,53 @@
 
             return $"Casual clothes: [{resultA},{resultB},{resultC}]";
         }
+
+        public string GetSmartClothes()
+        {
+            var resultA = this.shoesCloset.GetSmartShoes();
+            var resultB = this.wardrobe.GetSuit();
+            var resultC = this.accessoriesDrawer.GetSmartAccessories();
+
+            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
+        }
     }
 
     internal class ShoesCloset
     {
-        public string GetSmartShoes()
-        {
-            return "Formal Shoes";
-        }
-
         public string GetCasualShoes()
         {
             return "Sneakers";
+        }
+
+        public string GetSmartShoes()
+        {
+            return "Formal Shoes";
         }
     }
 
     internal class Wardrobe
     {
-        public string GetSuit()
-        {
-            return "Formal Jacket,Formal Trousers,Formal Shirt";
-        }
-
         public string GetCasualWear()
         {
             return "T-Shirt,Shorts";
+        }
+
+        public string GetSuit()
+        {
+            return "Formal Jacket,Formal Trousers,Formal Shirt";
         }
     }
 
     internal class AccessoriesDrawer
     {
-        public string GetSmartAccessories()
-        {
-            return "Watch,Tie,Belt";
-        }
-
         public string GetCasualAccessories()
         {
             return "Fitbit";
+        }
+
+        public string GetSmartAccessories()
+        {
+            return "Watch,Tie,Belt";
         }
     }
 }

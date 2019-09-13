@@ -9,17 +9,23 @@
 
     public class ProxyCar : ICar
     {
-        private readonly ICar car;
+        private readonly ICar   car;
+        private readonly Driver driver;
 
         public ProxyCar(Driver driver, ICar car)
         {
+            this.driver = driver;
+            this.car    = car;
         }
-
-        public Driver Driver { get; set; }
 
         public string DriveCar()
         {
-            throw new NotImplementedException();
+            if (this.driver.HasDrivingLicense && this.driver.Age >= 18)
+            {
+                return this.car.DriveCar();
+            }
+
+            throw new InvalidOperationException();
         }
     }
 

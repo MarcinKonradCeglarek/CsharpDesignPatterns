@@ -12,7 +12,7 @@
         private const int ExpectedPassengers = 40 + 40 + 4 + 3;
         private const double ExpectedCargo = 5000 + 7500 + 200 + 200;
 
-        private readonly List<IComponent> components = new List<IComponent>
+        private readonly List<IVehicle> components = new List<IVehicle>
             {
                 new Car(5),
                 new Truck(5000),
@@ -34,7 +34,7 @@
         [Test]
         public void PassengersCapacityWithLinq()
         {
-            Func<IComponent, int> getPassengers = component =>
+            Func<IVehicle, int> getPassengers = component =>
                 {
                     if (component is Car car)
                     {
@@ -67,7 +67,7 @@
         [Test]
         public void HomeAndParkUsingLinq()
         {
-            Func<IComponent, double> getCargoCapacity = component =>
+            Func<IVehicle, double> getCargoCapacity = component =>
                 {
                     if (component is Truck truck)
                     {

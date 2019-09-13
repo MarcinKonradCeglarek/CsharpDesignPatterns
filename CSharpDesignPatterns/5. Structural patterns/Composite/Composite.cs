@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -8,8 +7,7 @@
     public interface IComposite
     {
         IReadOnlyCollection<IComposite> Children { get; }
-        string Print();
-        
+        string                          Print();
     }
 
     public class Composite : IComposite
@@ -36,9 +34,9 @@
             this.Name = name;
         }
 
-        public string Name { get; }
-
         public IReadOnlyCollection<IComposite> Children { get; } = new List<IComposite>();
+
+        public string Name { get; }
 
         public string Print()
         {

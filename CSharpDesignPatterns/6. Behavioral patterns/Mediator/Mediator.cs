@@ -73,8 +73,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
     public class ChatRoomMediator
     {
-        private readonly IDictionary<Guid, Action<string, string>> clients =
-            new Dictionary<Guid, Action<string, string>>();
+        private readonly IDictionary<Guid, Action<string, string>> clients = new Dictionary<Guid, Action<string, string>>();
 
         public void Register(Guid clientId, Action<string, string> callback)
         {

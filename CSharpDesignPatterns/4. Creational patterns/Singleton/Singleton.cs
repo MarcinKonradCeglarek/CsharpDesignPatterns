@@ -7,8 +7,8 @@
      */
     internal class Singleton
     {
-        private static readonly object Lock = new object();
-        private static Singleton instance;
+        private static readonly object    Lock = new object();
+        private static          Singleton instance;
 
         private Singleton()
         {
@@ -26,7 +26,6 @@
                     instance = new Singleton();
                 }
             }
-
 
             return instance;
         }

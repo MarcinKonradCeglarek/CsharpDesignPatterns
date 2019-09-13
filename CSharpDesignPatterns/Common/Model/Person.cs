@@ -18,17 +18,12 @@
             this.Gender    = gender;
         }
 
-        public int Age => (int)((double)(DateTime.Now - this.BirthDate).Days / 365);
-
+        public int      Age       => (int)((double)(DateTime.Now - this.BirthDate).Days / 365);
         public DateTime BirthDate { get; }
-
-        public string Gender { get; private set; }
-
-        public Guid Id { get; }
-
-        public string LastName { get; }
-
-        public string Name { get; }
+        public string   Gender    { get; private set; }
+        public Guid     Id        { get; }
+        public string   LastName  { get; }
+        public string   Name      { get; }
 
         public override string ToString()
         {

@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._4._Creational_patterns.LazyInitialization
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -17,9 +16,9 @@
         public void DontRequestChildrenWhenCreatingObjectAndVerifyThatReadWasNotCalled()
         {
             // Arrange
-            const int RootId = 1;
-            var children = new[] { 3, 5, 12, 15 };
-            var mock = this.GetMock(children);
+            const int RootId   = 1;
+            var       children = new[] { 3, 5, 12, 15 };
+            var       mock     = this.GetMock(children);
 
             // Act
             var sut = new Node<int>(RootId, children, mock.Object);
@@ -32,9 +31,9 @@
         public void RequestChildrenMultipleTimesAndVerifyThatReadWasCalledOncePerChild()
         {
             // Arrange
-            const int RootId = 1;
-            var children = new[] { 3, 5, 12, 15 };
-            var mock     = this.GetMock(children);
+            const int RootId   = 1;
+            var       children = new[] { 3, 5, 12, 15 };
+            var       mock     = this.GetMock(children);
 
             var sut = new Node<int>(RootId, children, mock.Object);
 
@@ -49,7 +48,7 @@
             {
                 mock.Verify(m => m.Read(child), Times.Once);
             }
-            
+
             Assert.AreEqual(children.Length, children1.Count);
             CollectionAssert.AreEquivalent(children, children1.Select(c => c.Id));
         }

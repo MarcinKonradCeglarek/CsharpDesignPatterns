@@ -1,10 +1,8 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Bridge
 {
-    using System;
-
     public interface IBridge
     {
-        string Draw(int radius, int x, int y);
+        string Draw(int    radius, int x, int y);
         string Draw(Circle circle);
     }
 

@@ -10,22 +10,21 @@
     public class ChainOfResponsibilityTests
     {
         [Test]
-        public void CheckSeverityNotMatchingMask()
-        {
-            var mask = LogLevel.Error | LogLevel.Warning;
-            var severity = LogLevel.Info;
-
-            Assert.IsFalse(Helper.DoesLevelMatchMask(severity, mask));
-        }
-
-
-        [Test]
         public void CheckSeverityMatchingMask()
         {
-            var mask = LogLevel.Error | LogLevel.Warning | LogLevel.Debug;
+            var mask     = LogLevel.Error | LogLevel.Warning | LogLevel.Debug;
             var severity = LogLevel.Warning;
 
             Assert.IsTrue(Helper.DoesLevelMatchMask(severity, mask));
+        }
+
+        [Test]
+        public void CheckSeverityNotMatchingMask()
+        {
+            var mask     = LogLevel.Error | LogLevel.Warning;
+            var severity = LogLevel.Info;
+
+            Assert.IsFalse(Helper.DoesLevelMatchMask(severity, mask));
         }
 
         [Test]
@@ -43,7 +42,7 @@
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
             logger.LogMessage(LogLevel.Debug, message1);
-            logger.LogMessage(LogLevel.Info, message2);
+            logger.LogMessage(LogLevel.Info,  message2);
 
             // Assert
             consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
@@ -60,14 +59,14 @@
             var message2 = Guid.NewGuid().ToString();
 
             var consoleWriter = new Mock<IConsole>();
-            var emailWriter = new Mock<IEmail>();
-            var fileWriter  = new Mock<IFileWriter>();
+            var emailWriter   = new Mock<IEmail>();
+            var fileWriter    = new Mock<IFileWriter>();
 
             var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.LogMessage(LogLevel.FunctionalError, message1);
+            logger.LogMessage(LogLevel.FunctionalError,   message1);
             logger.LogMessage(LogLevel.FunctionalMessage, message2);
 
             // Assert
@@ -87,14 +86,14 @@
             var message2 = Guid.NewGuid().ToString();
 
             var consoleWriter = new Mock<IConsole>();
-            var emailWriter = new Mock<IEmail>();
-            var fileWriter  = new Mock<IFileWriter>();
+            var emailWriter   = new Mock<IEmail>();
+            var fileWriter    = new Mock<IFileWriter>();
 
             var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
                         .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
                         .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
-            logger.LogMessage(LogLevel.Error, message1);
+            logger.LogMessage(LogLevel.Error,   message1);
             logger.LogMessage(LogLevel.Warning, message2);
 
             // Assert

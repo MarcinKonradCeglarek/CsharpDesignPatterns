@@ -8,22 +8,17 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
     {
         public FacebookUser(string name, IEnumerable<string> friends)
         {
-            this.Name = name;
+            this.Name    = name;
             this.Friends = friends.ToImmutableList();
         }
 
-        public string       Name    { get; set; }
         public ImmutableList<string> Friends { get; set; }
 
-        public void Restore(FacebookUserMemento memento)
-        {
-            this.Name    = memento.Name;
-            this.Friends = memento.Friends.ToImmutableList();
-        }
+        public string Name { get; set; }
 
-        public FacebookUserMemento CreateMemento()
+        public void AddFriend(string friendName)
         {
-            return new FacebookUserMemento(this.Name, this.Friends);
+            this.Friends = this.Friends.Add(friendName);
         }
 
         public void ChangeName(string newName)
@@ -31,20 +26,26 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
             this.Name = newName;
         }
 
-        public void AddFriend(string friendName)
+        public FacebookUserMemento CreateMemento()
         {
-            this.Friends = this.Friends.Add(friendName);
+            return new FacebookUserMemento(this.Name, this.Friends);
+        }
+
+        public void Restore(FacebookUserMemento memento)
+        {
+            this.Name    = memento.Name;
+            this.Friends = memento.Friends.ToImmutableList();
         }
     }
 
     public class FacebookUserMemento
     {
-        public readonly string Name;
         public readonly IEnumerable<string> Friends;
+        public readonly string              Name;
 
         public FacebookUserMemento(string name, IEnumerable<string> friends)
         {
-            this.Name = name;
+            this.Name    = name;
             this.Friends = friends;
         }
     }

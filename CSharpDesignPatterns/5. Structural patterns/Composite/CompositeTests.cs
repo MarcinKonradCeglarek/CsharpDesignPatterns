@@ -11,11 +11,26 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
         private readonly IComposite leaf4 = new Leaf("L4");
 
         [Test]
-        public void Leaf_ProperlyDisplaysItsName()
+        public void ComplexExampleProperlyPrints()
         {
-            var composite = new Leaf("Leaf");
+            var l4 = new Composite();
+            l4.Add(this.leaf4);
 
-            Assert.AreEqual("Leaf", composite.Print());
+            var l3 = new Composite();
+            l3.Add(this.leaf3);
+            l3.Add(l4);
+
+            var l2 = new Composite();
+            l2.Add(this.leaf2);
+            l2.Add(l3);
+            l2.Add(this.leaf1);
+
+            var root = new Composite();
+            root.Add(new Leaf("Left"));
+            root.Add(l2);
+            root.Add(new Leaf("Right"));
+
+            Assert.AreEqual("[Left,[L2,[L3,[L4]],L1],Right]", root.Print());
         }
 
         [Test]
@@ -27,6 +42,14 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             composite.Add(this.leaf1);
 
             Assert.AreEqual("[L1,L2,L1]", composite.Print());
+        }
+
+        [Test]
+        public void Leaf_ProperlyDisplaysItsName()
+        {
+            var composite = new Leaf("Leaf");
+
+            Assert.AreEqual("Leaf", composite.Print());
         }
 
         [Test]
@@ -65,29 +88,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Composite
             root.Add(l2);
 
             Assert.AreEqual("[L1,[L2,[L3,[L4]]]]", root.Print());
-        }
-
-        [Test]
-        public void ComplexExampleProperlyPrints()
-        {
-            var l4 = new Composite();
-            l4.Add(this.leaf4);
-
-            var l3 = new Composite();
-            l3.Add(this.leaf3);
-            l3.Add(l4);
-
-            var l2 = new Composite();
-            l2.Add(this.leaf2);
-            l2.Add(l3);
-            l2.Add(this.leaf1);
-
-            var root = new Composite();
-            root.Add(new Leaf("Left"));
-            root.Add(l2);
-            root.Add(new Leaf("Right"));
-
-            Assert.AreEqual("[Left,[L2,[L3,[L4]],L1],Right]", root.Print());
         }
     }
 }
