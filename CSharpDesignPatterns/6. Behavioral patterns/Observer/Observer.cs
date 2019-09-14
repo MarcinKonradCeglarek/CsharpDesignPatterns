@@ -21,43 +21,33 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
         public void RaiseEvent(string message)
         {
-            foreach (var observer in this.Observers)
-            {
-                observer.OnNext(new PayLoad(message));
-            }
+            throw new NotImplementedException();
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            this.Observers.Add(observer);
-            return new Unsubscriber(this.Observers, observer);
+            throw new NotImplementedException();
         }
     }
 
     public class Unsubscriber : IDisposable
     {
-        private readonly IObserver<PayLoad> observer;
-        private readonly IList<IObserver<PayLoad>> observers;
-
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            this.observers = observers;
-            this.observer  = observer;
+            throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            this.observers.Remove(this.observer);
+            throw new NotImplementedException();
         }
     }
 
     public class Observer : IObserver<PayLoad>
     {
-        private readonly IDisplayer logger;
-
         public Observer(IDisplayer logger)
         {
-            this.logger = logger;
+            throw new NotImplementedException();
         }
 
         public void OnCompleted()
@@ -70,7 +60,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
         public void OnNext(PayLoad payload)
         {
-            this.logger.Display(payload.Message);
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,6 +7,7 @@
      *
      * Great example: https://demos.telerik.com/aspnet-mvc/grid/custom-datasource
      */
+
     public class CarBuilder
     {
         private EngineType?       engineType;
@@ -15,13 +16,15 @@
 
         public CarBuilder AutomaticTransmission()
         {
-            if (this.transmissionType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.transmissionType = TransmissionType.Automatic;
-            return this;
+            /*
+             * If already set
+             *    throw InvalidOperationException
+             * 
+             * set transmissionType
+             *
+             * return builder
+             */
+            throw new NotImplementedException();
         }
 
         public Car Build()
@@ -31,78 +34,80 @@
 
         public CarBuilder DieselEngine()
         {
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType = EngineType.Diesel;
-            return this;
+            /*
+             * If already set
+             *    throw InvalidOperationException
+             * 
+             * set engineType
+             *
+             * return builder
+             */
+            throw new NotImplementedException();
         }
 
         public CarBuilder ElectricEngine()
         {
             /*
              * Electric engine requires Automatic transmission
+             *
+             * If already set
+             *    throw InvalidOperationException
+             *
+             * if transmissionType is set to manual
+             *    throw InvalidOperationException
+             *
+             * set engineType
+             * set transmissionType
+             *
+             * return builder
              */
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            if (this.transmissionType.HasValue && this.transmissionType == TransmissionType.Manual)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType       = EngineType.Electric;
-            this.transmissionType = TransmissionType.Automatic;
-            return this;
+            throw new NotImplementedException();
         }
 
         public CarBuilder GasolineEngine()
         {
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType = EngineType.Gasoline;
-            return this;
+            /*
+             * If already set
+             *    throw InvalidOperationException
+             *
+             * set engineType
+             * return builder
+             */
+            throw new NotImplementedException();
         }
 
         public CarBuilder HybridEngine()
         {
             /*
              * Electric engine (Hybrid engine is Gasoline and Electric engines duo) requires Automatic Transmission
+             *
+             * If already set
+             *    throw InvalidOperationException
+             *
+             * if transmissionType is set to manual
+             *    throw InvalidOperationException
+             *
+             * set engineType
+             * set transmissionType
+             *
+             * return builder
              */
-            if (this.engineType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            if (this.transmissionType.HasValue && this.transmissionType == TransmissionType.Manual)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.engineType       = EngineType.Hybrid;
-            this.transmissionType = TransmissionType.Automatic;
-            return this;
+            throw new NotImplementedException();
         }
 
         public CarBuilder ManualTransmission()
         {
             /*
              * Can not be used with Electric and Hybird engines
+             *
+             * If already set
+             *    throw InvalidOperationException
+             *
+             * set transmissionType
+             *
+             * return builder
              */
-            if (this.transmissionType.HasValue)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.transmissionType = TransmissionType.Manual;
-            return this;
+            throw new NotImplementedException();
         }
     }
 

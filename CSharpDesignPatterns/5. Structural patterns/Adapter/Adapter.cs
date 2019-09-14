@@ -14,42 +14,14 @@
 
     public class OurOldLoggerToILoggerAdapter : IOurOldLogger
     {
-        private readonly ILogger newLogger;
-
         public OurOldLoggerToILoggerAdapter(ILogger newLogger)
         {
-            this.newLogger = newLogger;
+            throw new NotImplementedException();
         }
 
         public bool SendLogMessage(LogLevel level, string message, Exception exception = null)
         {
-            try
-            {
-                switch (level)
-                {
-                    case LogLevel.Debug:
-                        this.newLogger.LogDebug(message);
-                        break;
-                    case LogLevel.Info:
-                        this.newLogger.LogInfo(message);
-                        break;
-                    case LogLevel.Warn:
-                        this.newLogger.LogWarn(message);
-                        break;
-                    case LogLevel.Error:
-                        this.newLogger.LogError(message);
-                        break;
-                    case LogLevel.Exception:
-                        this.newLogger.LogException(exception, message);
-                        break;
-                }
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            throw new NotImplementedException();
         }
     }
 

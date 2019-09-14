@@ -1,8 +1,10 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 {
+    using System;
+
     /*
-         * https://refactoring.guru/design-patterns/facade
-         */
+     * https://refactoring.guru/design-patterns/facade
+     */
     public class GetDressedFacade
     {
         private readonly AccessoriesDrawer accessoriesDrawer = new AccessoriesDrawer();
@@ -16,11 +18,7 @@
 
         public string GetSmartClothes()
         {
-            var resultA = this.shoesCloset.GetSmartShoes();
-            var resultB = this.wardrobe.GetSuit();
-            var resultC = this.accessoriesDrawer.GetSmartAccessories();
-
-            return $"SmartClothes: [{resultA},{resultB},{resultC}]";
+            throw new NotImplementedException();
         }
     }
 

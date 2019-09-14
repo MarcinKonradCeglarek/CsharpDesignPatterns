@@ -8,15 +8,14 @@
     {
         public void ChangeParent(TChild child, TParent oldParent, TParent newParent)
         {
-            if (this.IsChild(oldParent, child))
-            {
-                this.RemoveChild(oldParent, child);
-                this.AddChild(newParent, child);
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
+            /*
+             * Is child a children element of oldParent
+             *    remove child from oldParent
+             *    add child to newParent
+             * else
+             *    throw InvalidOperationException
+             */
+            throw new NotImplementedException();
         }
 
         protected abstract void AddChild(TParent    newParent, TChild child);
@@ -28,17 +27,17 @@
     {
         protected override void AddChild(Company newParent, Employee child)
         {
-            newParent.Hire(child.Person, "newTitle", 10000);
+            throw new NotImplementedException();
         }
 
         protected override bool IsChild(Company parent, Employee child)
         {
-            return parent.Employees.ContainsKey(child.Person.Id);
+            throw new NotImplementedException();
         }
 
         protected override void RemoveChild(Company oldParent, Employee child)
         {
-            oldParent.Sack(child.Person.Id);
+            throw new NotImplementedException();
         }
     }
 }

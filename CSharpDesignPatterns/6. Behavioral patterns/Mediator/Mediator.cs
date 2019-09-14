@@ -17,19 +17,12 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
     public class ChatClient : IChatRoomClient
     {
-        private readonly ChatRoomMediator         mediator;
-        private readonly IReceivedMessagesHandler receivedMessagesHandler;
-
         public ChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
         {
             /*
              * Register with mediator (so that mediator knows who dispatch messages to)
              */
-            this.mediator                = mediator;
-            this.receivedMessagesHandler = receivedMessagesHandler;
-            this.Name                    = name;
-
-            this.mediator.Register(this.Id, this.ReceiveMessageViaMediator);
+            throw new NotImplementedException();
         }
 
         public Guid   Id   { get; } = Guid.NewGuid();
@@ -37,12 +30,12 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public void SendMessageThroughMediator(string message)
         {
-            this.mediator.SendMessage(this.Id, this.Name, message);
+            throw new NotImplementedException();
         }
 
         private void ReceiveMessageViaMediator(string author, string message)
         {
-            this.receivedMessagesHandler.HandleReceivedMessage(author, message);
+            throw new NotImplementedException();
         }
     }
 
@@ -53,7 +46,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
             /*
              * Register with mediator (so that mediator knows who dispatch messages to)
              */
-            mediator.Register(this.Id, this.ReceiveMessageViaMediator);
+            throw new NotImplementedException();
         }
 
         public int    Counter { get; private set; }
@@ -62,12 +55,12 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public void SendMessageThroughMediator(string message)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
 
         private void ReceiveMessageViaMediator(string author, string message)
         {
-            this.Counter++;
+            throw new NotImplementedException();
         }
     }
 
@@ -77,10 +70,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public void Register(Guid clientId, Action<string, string> callback)
         {
-            if (!this.clients.ContainsKey(clientId))
-            {
-                this.clients.Add(clientId, callback);
-            }
+            throw new NotImplementedException();
         }
 
         public void SendMessage(Guid clientId, string author, string message)
@@ -89,13 +79,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
              * Check if client is on mediator's clients list
              *   if yes, broadcast messages to all other clients
              */
-            if (this.clients.ContainsKey(clientId))
-            {
-                foreach (var client in this.clients.Where(c => c.Key != clientId))
-                {
-                    client.Value(author, message);
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Command
 {
+    using System;
+
     /*
          * https://en.wikipedia.org/wiki/Command_pattern
          */
@@ -10,23 +12,19 @@
 
     public class PowerSwitch
     {
-        private readonly ICommand turnOffCommand;
-        private readonly ICommand turnOnCommand;
-
         public PowerSwitch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            this.turnOnCommand  = turnOnCommand;
-            this.turnOffCommand = turnOffCommand;
+            throw new NotImplementedException();
         }
 
         public void TurnOff()
         {
-            this.turnOffCommand.Execute();
+            throw new NotImplementedException();
         }
 
         public void TurnOn()
         {
-            this.turnOnCommand.Execute();
+            throw new NotImplementedException();
         }
     }
 
@@ -42,12 +40,12 @@
 
         public TurnOffDeviceCommand(IDevice device)
         {
-            this.device = device;
+            throw new NotImplementedException();
         }
 
         public void Execute()
         {
-            this.device.PowerOff();
+            throw new NotImplementedException();
         }
     }
 
@@ -57,12 +55,12 @@
 
         public TurnOnDeviceCommand(IDevice device)
         {
-            this.device = device;
+            throw new NotImplementedException();
         }
 
         public void Execute()
         {
-            this.device.PowerOn();
+            throw new NotImplementedException();
         }
     }
 }

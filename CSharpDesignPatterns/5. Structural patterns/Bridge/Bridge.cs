@@ -1,8 +1,9 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Bridge
 {
+    using System;
+
     public interface IBridge
     {
-        string Draw(int    radius, int x, int y);
         string Draw(Circle circle);
     }
 
@@ -27,40 +28,28 @@
         public Circle(int x, int y, int radius, IBridge drawApi)
             : base(drawApi)
         {
-            this.X      = x;
-            this.Y      = y;
-            this.Radius = radius;
+            throw new NotImplementedException();
         }
 
         public override string Draw()
         {
-            return this.DrawApi.Draw(this);
+            throw new NotImplementedException();
         }
     }
 
     public class ImplementationOfRedCircle : IBridge
     {
-        public string Draw(int radius, int x, int y)
-        {
-            return $"RED, radius: {radius}, x: {x}, {y}]";
-        }
-
         public string Draw(Circle circle)
         {
-            return $"RED, radius: {circle.Radius}, x: {circle.X}, {circle.Y}]";
+            return $"RED circle, radius: {circle.Radius}, x: {circle.X}, {circle.Y}]";
         }
     }
 
     public class ImplementationOfGreenCircle : IBridge
     {
-        public string Draw(int radius, int x, int y)
-        {
-            return $"GREEN, radius: {radius}, x: {x}, {y}]";
-        }
-
         public string Draw(Circle circle)
         {
-            return $"GREEN, radius: [{circle.Radius}, x: {circle.X}, {circle.Y}]";
+            return $"GREEN circle, radius: [{circle.Radius}, x: {circle.X}, {circle.Y}]";
         }
     }
 }

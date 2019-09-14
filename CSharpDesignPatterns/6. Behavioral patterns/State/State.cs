@@ -23,37 +23,34 @@
 
         public Document(User author)
         {
-            this.author = author;
-            this.state  = new DraftState(this);
+            throw new NotImplementedException();
         }
 
-        public IReadOnlyDictionary<User, bool> Approvals =>
-            new ReadOnlyDictionary<User, bool>(this.reviews.GroupBy(r => r.reviewer).ToDictionary(g => g.Key, g => g.Last().approval));
+        public IReadOnlyDictionary<User, bool> Approvals => throw new NotImplementedException();
         public string Contents { get; private set; }
 
-        public bool IsDraft => this.state is DraftState;
-
-        public bool IsPublished   => this.state is PublishedState;
-        public bool IsUnderReview => this.state is UnderReviewState;
+        public bool IsDraft => throw new NotImplementedException();
+        public bool IsPublished   => throw new NotImplementedException();
+        public bool IsUnderReview => throw new NotImplementedException();
 
         public void Edit(string changes)
         {
-            this.state.Edit(changes);
+            throw new NotImplementedException();
         }
 
         public void Publish()
         {
-            this.state.Publish();
+            throw new NotImplementedException();
         }
 
         public void Review(User reviewer, bool approval)
         {
-            this.state.Review(reviewer, approval);
+            throw new NotImplementedException();
         }
 
         public void SubmitForReview()
         {
-            this.state.SubmitForReview();
+            throw new NotImplementedException();
         }
 
         public class DraftState : IDocument
@@ -62,12 +59,12 @@
 
             public DraftState(Document document)
             {
-                this.document = document;
+                throw new NotImplementedException();
             }
 
             public void Edit(string changes)
             {
-                this.document.Contents = changes;
+                throw new NotImplementedException();
             }
 
             public void Publish()
@@ -88,12 +85,7 @@
                  * else
                  *    submit for review
                  */
-                if (string.IsNullOrEmpty(this.document.Contents))
-                {
-                    throw new InvalidOperationException("Document's content can't be empty");
-                }
-
-                this.document.state = new UnderReviewState(this.document);
+                throw new NotImplementedException();
             }
         }
 
@@ -122,16 +114,14 @@
 
         public class UnderReviewState : IDocument
         {
-            private readonly Document document;
-
             public UnderReviewState(Document document)
             {
-                this.document = document;
+                throw new NotImplementedException();
             }
 
             public void Edit(string changes)
             {
-                this.document.Contents = changes;
+                throw new NotImplementedException();
             }
 
             public void Publish()
@@ -144,25 +134,12 @@
                  * else
                  *     throw Can't publish document with failed reviews
                  */
-                if (!this.document.Approvals.Any())
-                {
-                    throw new InvalidOperationException("Can't publish document without at least one approval");
-                }
-
-                if (this.document.Approvals.All(a => a.Value))
-                {
-                    this.document.state = new PublishedState();
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't publish document with failed reviews");
-                }
+                throw new NotImplementedException();
             }
 
             public void Review(User reviewer, bool approval)
             {
-                var newReview = (reviewer, approval);
-                this.document.reviews.Add(newReview);
+                throw new NotImplementedException();
             }
 
             public void SubmitForReview()

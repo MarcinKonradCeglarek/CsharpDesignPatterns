@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Visitor
 {
+    using System;
     using System.Collections.Generic;
 
     /*
@@ -33,14 +34,14 @@
     {
         public Car(int seats)
         {
-            this.Passengers = seats - 1;
+            throw new NotImplementedException();
         }
 
         public int Passengers { get; }
 
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vehicleVisitor.Visit(this);
+            throw new NotImplementedException();
         }
     }
 
@@ -48,14 +49,14 @@
     {
         public Truck(double capacity)
         {
-            this.CargoCapacity = capacity;
+            throw new NotImplementedException();
         }
 
         public double CargoCapacity { get; }
 
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vehicleVisitor.Visit(this);
+            throw new NotImplementedException();
         }
     }
 
@@ -63,7 +64,7 @@
     {
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            vehicleVisitor.Visit(this);
+            throw new NotImplementedException();
         }
     }
 
@@ -76,41 +77,41 @@
 
     public class CargoCapacityVisitor : IVehicleVisitor
     {
-        private double cargoValue;
-        public double GetTotalCargoValue => this.cargoValue;
+        public double GetTotalCargoValue => throw new NotImplementedException();
 
         public void Visit(Car car)
         {
-            this.cargoValue += 200;
+            throw new NotImplementedException();
         }
 
         public void Visit(Truck truck)
         {
-            this.cargoValue += truck.CargoCapacity;
+            throw new NotImplementedException();
         }
 
         public void Visit(Bus bus)
         {
+            throw new NotImplementedException();
         }
     }
 
     public class PassengersCapacityVisitor : IVehicleVisitor
     {
-        private int passengers = 0;
-        public int PassengersCapacity => this.passengers;
+        public int PassengersCapacity => throw new NotImplementedException();
 
         public void Visit(Car car)
         {
-            this.passengers += car.Passengers;
+            throw new NotImplementedException();
         }
 
         public void Visit(Truck truck)
         {
+            throw new NotImplementedException();
         }
 
         public void Visit(Bus bus)
         {
-            this.passengers += 40;
+            throw new NotImplementedException();
         }
     }
 

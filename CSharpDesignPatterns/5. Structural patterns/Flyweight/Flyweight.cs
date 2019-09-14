@@ -10,25 +10,12 @@
 
         public Guid CreateTree(TreeModel treeModel, Position position)
         {
-            return this.CreateTree(treeModel.Name, position);
+            throw new NotImplementedException();
         }
 
         public Guid CreateTree(string name, Position position)
         {
-            TreeModel treeModel;
-            if (this.TreeTypes.ContainsKey(name))
-            {
-                treeModel = this.TreeTypes[name];
-            }
-            else
-            {
-                treeModel = new TreeModel(name);
-                this.TreeTypes.Add(name, treeModel);
-            }
-
-            var newId = Guid.NewGuid();
-            this.Trees.Add(newId, new Tree(treeModel, position));
-            return newId;
+            throw new NotImplementedException();
         }
     }
 

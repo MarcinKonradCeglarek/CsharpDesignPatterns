@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -12,18 +13,16 @@
 
     public class Composite : IComposite
     {
-        private readonly List<IComposite> children = new List<IComposite>();
-
-        public IReadOnlyCollection<IComposite> Children => new ReadOnlyCollection<IComposite>(this.children);
+        public IReadOnlyCollection<IComposite> Children { get; }
 
         public void Add(IComposite node)
         {
-            this.children.Add(node);
+            throw new NotImplementedException();
         }
 
         public string Print()
         {
-            return $"[{string.Join(",", this.children.Select(c => c.Print()))}]";
+            throw new NotImplementedException();
         }
     }
 
@@ -31,16 +30,14 @@
     {
         public Leaf(string name)
         {
-            this.Name = name;
+            throw new NotImplementedException();
         }
 
-        public IReadOnlyCollection<IComposite> Children { get; } = new List<IComposite>();
-
-        public string Name { get; }
+        public IReadOnlyCollection<IComposite> Children { get; }
 
         public string Print()
         {
-            return this.Name;
+            throw new NotImplementedException();
         }
     }
 }

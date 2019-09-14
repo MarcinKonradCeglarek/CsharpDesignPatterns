@@ -1,7 +1,7 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Decorator
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     /*
      *
@@ -21,7 +21,7 @@
 
     public class Coffee : ICoffee
     {
-        public List<Ingredients> Contents => new List<Ingredients> { Ingredients.Coffee };
+        public List<Ingredients> Contents { get; } = new List<Ingredients> { Ingredients.Coffee };
         public double            Cost     => 1.0;
     }
 
@@ -29,9 +29,7 @@
     {
         public WithMilkDecorator(ICoffee coffee)
         {
-            // Everything in costructor
-            this.Cost     = 0.5 + coffee.Cost;
-            this.Contents = coffee.Contents.Concat(new[] { Ingredients.Milk }).ToList();
+            throw new NotImplementedException();
         }
 
         public List<Ingredients> Contents { get; }
@@ -40,16 +38,14 @@
 
     public class WithSprinklesDecorator : ICoffee
     {
-        private readonly ICoffee baseCoffie;
-
         public WithSprinklesDecorator(ICoffee coffee)
         {
-            this.baseCoffie = coffee;
+            throw new NotImplementedException();
         }
 
         // Everything in properties 
-        public List<Ingredients> Contents => this.baseCoffie.Contents.Concat(new[] { Ingredients.Sprinkles }).ToList();
-        public double            Cost     => this.baseCoffie.Cost + 0.2;
+        public List<Ingredients> Contents => throw new NotImplementedException();
+        public double            Cost     => throw new NotImplementedException();
     }
 
     public enum Ingredients

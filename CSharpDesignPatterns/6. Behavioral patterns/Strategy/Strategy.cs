@@ -1,27 +1,26 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class Diner
     {
-        private readonly IList<double> amounts = new List<double>();
-
         public Diner(IBillingStrategy strategy)
         {
-            this.Strategy = strategy;
+            throw new NotImplementedException();
         }
 
         public IBillingStrategy Strategy { get; set; }
 
         public void Order(double price, int quantity)
         {
-            this.amounts.Add(quantity * this.Strategy.GetPrice(price));
+            throw new NotImplementedException();
         }
 
         public double GetTotalAmount()
         {
-            return this.amounts.Sum();
+            throw new NotImplementedException();
         }
     }
 
@@ -34,7 +33,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
     {
         public double GetPrice(double originalPrice)
         {
-            return originalPrice;
+            throw new NotImplementedException();
         }
     }
 
@@ -43,7 +42,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
         // Price is 50% off
         public double GetPrice(double originalPrice)
         {
-            return originalPrice / 2;
+            throw new NotImplementedException();
         }
     }
 }
