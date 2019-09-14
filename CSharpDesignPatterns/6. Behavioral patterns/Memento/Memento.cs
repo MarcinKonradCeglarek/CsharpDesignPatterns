@@ -8,33 +8,31 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
     {
         public FacebookUser(string name, IEnumerable<string> friends)
         {
-            this.Name    = name;
-            this.Friends = friends.ToImmutableList();
+            throw new NotImplementedException();
         }
 
-        public ImmutableList<string> Friends { get; set; }
+        public List<string> Friends { get; set; }
 
         public string Name { get; set; }
 
         public void AddFriend(string friendName)
         {
-            this.Friends = this.Friends.Add(friendName);
+            throw new NotImplementedException();
         }
 
         public void ChangeName(string newName)
         {
-            this.Name = newName;
+            throw new NotImplementedException();
         }
 
         public FacebookUserMemento CreateMemento()
         {
-            return new FacebookUserMemento(this.Name, this.Friends);
+            throw new NotImplementedException();
         }
 
         public void Restore(FacebookUserMemento memento)
         {
-            this.Name    = memento.Name;
-            this.Friends = memento.Friends.ToImmutableList();
+            throw new NotImplementedException();
         }
     }
 

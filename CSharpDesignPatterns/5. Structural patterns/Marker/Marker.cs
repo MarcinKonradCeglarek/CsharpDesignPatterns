@@ -18,7 +18,7 @@
     {
     }
 
-    public abstract class Plant
+    public abstract class Plant : IAlive
     {
     }
 
@@ -34,7 +34,7 @@
     {
     }
 
-    public abstract class Animal
+    public abstract class Animal : IAlive
     {
     }
 

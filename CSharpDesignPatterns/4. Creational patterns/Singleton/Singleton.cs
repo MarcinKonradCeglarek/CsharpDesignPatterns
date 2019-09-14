@@ -13,5 +13,10 @@
         }
 
         public Guid Id { get; }
+
+        public static Singleton GetInstance()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
