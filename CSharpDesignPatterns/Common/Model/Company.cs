@@ -17,14 +17,21 @@
 
         public string Name { get; }
 
-        public void Hire(Person person, string title, double salary)
+        public Employee Hire(Person person, string title, double salary)
         {
             if (this.employees.ContainsKey(person.Id))
             {
                 throw new ApplicationException($"Person {person} is already hired");
             }
 
-            this.employees.Add(person.Id, new Employee(this, person, title, salary));
+            var employee = new Employee(this, person, title, salary);
+            this.employees.Add(person.Id, employee);
+            return employee;
+        }
+
+        public bool IsHired(Guid employeeId)
+        {
+            return this.employees.ContainsKey(employeeId);
         }
 
         public void Raise(Guid id, double newSalary)
@@ -32,6 +39,7 @@
             if (this.employees.ContainsKey(id))
             {
                 this.employees[id].Salary = newSalary;
+                return;
             }
 
             throw new ApplicationException($"Person {id} is not currently hired");
@@ -42,6 +50,7 @@
             if (this.employees.ContainsKey(id))
             {
                 this.employees.Remove(id);
+                return;
             }
 
             throw new ApplicationException($"Person {id} is not currently hired");
@@ -52,7 +61,10 @@
             if (this.employees.ContainsKey(id))
             {
                 this.employees[id].UpdateGender(newGender);
+                return;
             }
+
+            throw new ApplicationException($"Person {id} is not currently hired");
         }
     }
 }

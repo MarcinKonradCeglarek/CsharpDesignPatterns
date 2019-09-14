@@ -3,54 +3,59 @@
     using System;
     using System.Collections.Generic;
 
-    using Castle.Core.Internal;
-
     using NUnit.Framework;
+
+    using Ploeh.AutoFixture;
 
     [TestFixture]
     public class FlyweightTests
     {
-        [Test]
-        public void ThreeOrders_MinimumNumberOfCacheItems()
-        {
-            var shop = new FlyweightCoffeeShop();
-            shop.CreateOrder("Cappuccino");
-            shop.CreateOrder("Espresso");
-
-            Assert.AreEqual(2, shop.CoffeeFlavors.Count);
-        }
+        private static readonly Fixture Fixture = new Fixture();
 
         [Test]
         public void IsReferenceEquals_True()
         {
-            var shop = new FlyweightCoffeeShop();
+            var repository = new FlyweightTreeRepository();
 
-            shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
-            shop.CreateOrder(new CoffeeFlavor("Espresso"));
-            shop.CreateOrder("Cappuccino");
-            shop.CreateOrder("Espresso");
+            repository.CreateTree(new TreeModel("Oak"),   Fixture.Create<Position>());
+            repository.CreateTree(new TreeModel("Birch"), Fixture.Create<Position>());
+            repository.CreateTree("Oak",                  Fixture.Create<Position>());
+            repository.CreateTree("Birch",                Fixture.Create<Position>());
 
-            var thisOrder = shop.CreateOrder(new CoffeeFlavor("Cappuccino"));
+            var treeId = repository.CreateTree(new TreeModel("Oak"), Fixture.Create<Position>());
 
-            Assert.IsTrue(ReferenceEquals(shop.CoffeeFlavors["Cappuccino"], shop.Orders[thisOrder]));
+            Assert.AreEqual(2, repository.TreeTypes.Count);
+            Assert.AreEqual(5, repository.Trees.Count);
+
+            Assert.IsTrue(ReferenceEquals(repository.TreeTypes["Oak"], repository.Trees[treeId].TreeModel));
         }
 
         [Test]
         public void SeveralOrders_MinimumNumberOfCacheItems()
         {
-            var shop = new FlyweightCoffeeShop();
+            var repository = new FlyweightTreeRepository();
 
-            var input = new string[] { "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe", "Cappuccino", "Espresso", "Frappe" };
+            var input = new[] { "Oak", "Birch", "Maple", "Oak", "Birch", "Maple", "Oak", "Birch", "Maple" };
 
-            var orderIds = new List<Guid>();
+            var treeIds = new List<Guid>();
             foreach (var flavor in input)
             {
-                orderIds.Add(shop.CreateOrder(flavor));
+                treeIds.Add(repository.CreateTree(flavor, Fixture.Create<Position>()));
             }
 
-            Assert.AreEqual(3, shop.CoffeeFlavors.Count);
-            Assert.AreEqual(9, shop.Orders.Count);
-            CollectionAssert.AreEquivalent(orderIds, shop.Orders.Keys);
+            Assert.AreEqual(3, repository.TreeTypes.Count);
+            Assert.AreEqual(9, repository.Trees.Count);
+            CollectionAssert.AreEquivalent(treeIds, repository.Trees.Keys);
+        }
+
+        [Test]
+        public void ThreeOrders_MinimumNumberOfCacheItems()
+        {
+            var repository = new FlyweightTreeRepository();
+            repository.CreateTree("Oak",   Fixture.Create<Position>());
+            repository.CreateTree("Birch", Fixture.Create<Position>());
+
+            Assert.AreEqual(2, repository.TreeTypes.Count);
         }
     }
 }

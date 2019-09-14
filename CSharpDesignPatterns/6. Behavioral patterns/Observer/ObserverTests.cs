@@ -14,7 +14,7 @@
         [Test]
         public void Subscribe2AndDispose_BothVisibleInSubject()
         {
-            var sut = new Subject();
+            var sut  = new Subject();
             var mock = new Mock<IDisplayer>();
 
             var observer1 = new Observer(mock.Object);
@@ -33,28 +33,6 @@
             Assert.AreEqual(0, sut.Observers.Count);
         }
 
-        [Test]
-        public void SubscribeTwoObserversAndDisplayEventTwice()
-        {
-            const string Message = "One Ring to rule them all";
-            var sut  = new Subject();
-            var mock = new Mock<IDisplayer>();
-
-            var observer1 = new Observer(mock.Object);
-            var observer2 = new Observer(mock.Object);
-
-            using (sut.Subscribe(observer1))
-            {
-                using (sut.Subscribe(observer2))
-                {
-                    sut.RaiseEvent(Message);
-                }
-            }
-
-            mock.Verify(m => m.Display(Message), Times.Exactly(2));
-        }
-
-        [Ignore("")]
         [Test]
         public void Subscribe2Unsubscribe1_ValidOneRemains()
         {
@@ -76,7 +54,6 @@
             observer2.Verify(o => o.OnNext(It.Is<PayLoad>(p => p.Message == Message)), Times.Once);
         }
 
-        [Ignore("")]
         [Test]
         public void Subscribe2Unsubscribe1SendMessage_MessageIsOnlyForwardedToSubscribedObserver()
         {
@@ -97,6 +74,27 @@
 
             observer1.Verify(o => o.OnNext(It.Is<PayLoad>(p => p.Message == Message)), Times.Once);
             observer2.Verify(o => o.OnNext(It.Is<PayLoad>(p => p.Message == Message)), Times.Never);
+        }
+
+        [Test]
+        public void SubscribeTwoObserversAndDisplayEventTwice()
+        {
+            const string Message = "One Ring to rule them all";
+            var          sut     = new Subject();
+            var          mock    = new Mock<IDisplayer>();
+
+            var observer1 = new Observer(mock.Object);
+            var observer2 = new Observer(mock.Object);
+
+            using (sut.Subscribe(observer1))
+            {
+                using (sut.Subscribe(observer2))
+                {
+                    sut.RaiseEvent(Message);
+                }
+            }
+
+            mock.Verify(m => m.Display(Message), Times.Exactly(2));
         }
     }
 }

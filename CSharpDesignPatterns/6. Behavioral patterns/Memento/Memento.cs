@@ -1,23 +1,29 @@
-﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
+namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Immutable;
 
     public class FacebookUser
     {
         public FacebookUser(string name, IEnumerable<string> friends)
         {
-            this.Name = name;
-            this.Friends = new List<string>(friends);
+            this.Name    = name;
+            this.Friends = friends.ToImmutableList();
         }
 
-        public string       Name    { get; set; }
-        public List<string> Friends { get; set; }
+        public ImmutableList<string> Friends { get; set; }
 
-        public void Restore(FacebookUserMemento memento)
+        public string Name { get; set; }
+
+        public void AddFriend(string friendName)
         {
-            this.Name    = memento.Name;
-            this.Friends = new List<string>(memento.Friends);
+            this.Friends = this.Friends.Add(friendName);
+        }
+
+        public void ChangeName(string newName)
+        {
+            this.Name = newName;
         }
 
         public FacebookUserMemento CreateMemento()
@@ -25,25 +31,21 @@
             return new FacebookUserMemento(this.Name, this.Friends);
         }
 
-        public void ChangeName(string newName)
+        public void Restore(FacebookUserMemento memento)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AddFriend(string friendName)
-        {
-            throw new NotImplementedException();
+            this.Name    = memento.Name;
+            this.Friends = memento.Friends.ToImmutableList();
         }
     }
 
     public class FacebookUserMemento
     {
-        public readonly string Name;
-        public readonly List<string> Friends;
+        public readonly IEnumerable<string> Friends;
+        public readonly string              Name;
 
-        public FacebookUserMemento(string name, List<string> friends)
+        public FacebookUserMemento(string name, IEnumerable<string> friends)
         {
-            this.Name = name;
+            this.Name    = name;
             this.Friends = friends;
         }
     }
@@ -52,7 +54,18 @@
     {
         public CareTaker(FacebookUser user, IEnumerable<Action<FacebookUser>> actions)
         {
-            throw new NotImplementedException();
+            var mememnto = user.CreateMemento();
+            try
+            {
+                foreach (var action in actions)
+                {
+                    action(user);
+                }
+            }
+            catch
+            {
+                user.Restore(mememnto);
+            }
         }
     }
 }

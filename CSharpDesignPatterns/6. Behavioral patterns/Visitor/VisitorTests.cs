@@ -9,61 +9,81 @@
     [TestFixture]
     public class VisitorTests
     {
-        private readonly List<IComponent> components = new List<IComponent>
+        private const int ExpectedPassengers = 40 + 40 + 4 + 3;
+        private const double ExpectedCargo = 5000 + 7500 + 200 + 200;
+
+        private readonly List<IVehicle> components = new List<IVehicle>
             {
-                new Home(),
-                new Park(),
-                new City(3.5),
-                new City(3.0),
-                new Park(),
-                new Home()
+                new Car(5),
+                new Truck(5000),
+                new Bus(),
+                new Bus(),
+                new Truck(7500),
+                new Car(4)
             };
 
         [Test]
-        public void CitiesVisitorVisits2Cities()
+        public void PassengersCapacityVisitor()
         {
-            var citiesVisitor = new CitiesVisitor();
-            Client.ClientCode(this.components, citiesVisitor);
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            Client.Visit(this.components, passengersCapacityVisitor);
 
-            Assert.AreEqual(3.25, citiesVisitor.GetAverage());
+            Assert.AreEqual(ExpectedPassengers, passengersCapacityVisitor.PassengersCapacity);
         }
 
         [Test]
-        public void CitiesUsingLinq()
+        public void PassengersCapacityWithLinq()
         {
-            var average = this.components.OfType<City>().Average(c => c.AirQualityIndex);
-            Assert.AreEqual(3.25, average);
-        }
-
-
-        [Test]
-        public void HomeAndParkVisitorCounts()
-        {
-            var citiesVisitor = new HouseAndParksVisitor();
-            Client.ClientCode(this.components, citiesVisitor);
-
-            Assert.AreEqual(8, citiesVisitor.GetTotalNumber());
-        }
-
-        [Test]
-        public void HomeAndParkUsingLinq()
-        {
-            Func<IComponent, int> actOnObject = c =>
+            Func<IVehicle, int> getPassengers = component =>
                 {
-                    if (c is Home h)
+                    if (component is Car car)
                     {
-                        return h.NumberOfBedrooms();
+                        return car.Passengers;
                     }
-                    else if (c is Park)
+
+                    if (component is Bus)
                     {
-                        return 1;
+                        return 40;
                     }
 
                     return 0;
                 };
 
-            var sum = this.components.Sum(c => actOnObject(c));
-            Assert.AreEqual(8, sum);
+            var passengers = this.components.Sum(c => getPassengers(c));
+
+            Assert.AreEqual(ExpectedPassengers, passengers);
+        }
+
+
+        [Test]
+        public void CargoCapacityVisitor()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+            Client.Visit(this.components, cargoCapacityVisitor);
+
+            Assert.AreEqual(ExpectedCargo, cargoCapacityVisitor.GetTotalCargoValue);
+        }
+
+        [Test]
+        public void HomeAndParkUsingLinq()
+        {
+            Func<IVehicle, double> getCargoCapacity = component =>
+                {
+                    if (component is Truck truck)
+                    {
+                        return truck.CargoCapacity;
+                    }
+
+                    if (component is Car)
+                    {
+                        return 200;
+                    }
+
+                    return 0;
+                };
+
+            var sum = this.components.Sum(getCargoCapacity);
+            Assert.AreEqual(ExpectedCargo, sum);
         }
     }
 }

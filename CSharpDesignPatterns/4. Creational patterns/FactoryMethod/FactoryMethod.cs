@@ -2,11 +2,22 @@
 {
     using System;
 
+    /*
+     * https://refactoring.guru/design-patterns/factory-method
+     */
     public static class PeopleFactory
     {
         public static IPerson GetPerson(PersonType type)
         {
-            throw new NotImplementedException();
+            switch (type)
+            {
+                case PersonType.Rural:
+                    return new Villager();
+                case PersonType.Urban:
+                    return new CityPerson();
+                default:
+                    throw new NotSupportedException();
+            }
         }
     }
 

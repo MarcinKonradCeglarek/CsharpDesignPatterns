@@ -46,8 +46,17 @@
     <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture, Version=3.50.2.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -106,7 +115,8 @@
     <Compile Include="6. Behavioral patterns\ChainOfResponsibility\Helper.cs" />
     <Compile Include="6. Behavioral patterns\Command\Command.cs" />
     <Compile Include="6. Behavioral patterns\Command\CommandTests.cs" />
-    <Compile Include="6. Behavioral patterns\Iterator\Iterator.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\FibonacciIterator.cs" />
+    <Compile Include="6. Behavioral patterns\Iterator\DaysOfWeekIterator.cs" />
     <Compile Include="6. Behavioral patterns\Iterator\IteratorTests.cs" />
     <Compile Include="6. Behavioral patterns\Mediator\Mediator.cs" />
     <Compile Include="6. Behavioral patterns\Mediator\MediatorTests.cs" />
@@ -116,12 +126,17 @@
     <Compile Include="6. Behavioral patterns\Observer\ObserverTests.cs" />
     <Compile Include="6. Behavioral patterns\Specification\Specification.cs" />
     <Compile Include="6. Behavioral patterns\Specification\SpecificationTests.cs" />
+    <Compile Include="6. Behavioral patterns\State\State.cs" />
+    <Compile Include="6. Behavioral patterns\State\StateTests.cs" />
     <Compile Include="6. Behavioral patterns\Strategy\Strategy.cs" />
     <Compile Include="6. Behavioral patterns\Strategy\StrategyTests.cs" />
+    <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateAndGenericMethodTests.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethod.cs" />
+    <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateAndGenericMethod.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\TemplateMethodTests.cs" />
     <Compile Include="6. Behavioral patterns\Visitor\Visitor.cs" />
     <Compile Include="6. Behavioral patterns\Visitor\VisitorTests.cs" />
+    <Compile Include="Common\Helpers\Generator.cs" />
     <Compile Include="Common\Model\Company.cs" />
     <Compile Include="Common\Model\Employee.cs" />
     <Compile Include="Common\Model\IDisplayer.cs" />
@@ -129,13 +144,13 @@
     <Compile Include="Common\Model\IRepository.cs" />
     <Compile Include="Common\Model\Person.cs" />
     <Compile Include="Common\Model\Printer.cs" />
+    <Compile Include="Common\Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Design principles\LawOfDemeter\Helpers\" />
     <Folder Include="5. Structural patterns\FrontController\" />
     <Folder Include="6. Behavioral patterns\Servant\" />
-    <Folder Include="6. Behavioral patterns\State\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

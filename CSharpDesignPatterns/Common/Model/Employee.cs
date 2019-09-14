@@ -1,5 +1,7 @@
 ﻿namespace CSharpDesignPatterns.Common.Model
 {
+    using System;
+
     internal class Employee
     {
         public Employee(Company company, Person person, string title, double salary)
@@ -11,12 +13,10 @@
         }
 
         public Company Company { get; }
-
-        public Person Person { get; }
-
-        public double Salary { get; set; }
-
-        public string Title { get; }
+        public Guid    Id      => this.Person.Id;
+        public Person  Person  { get; }
+        public double  Salary  { get; set; }
+        public string  Title   { get; }
 
         public override string ToString()
         {

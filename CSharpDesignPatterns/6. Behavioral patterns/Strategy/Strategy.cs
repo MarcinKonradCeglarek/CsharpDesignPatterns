@@ -1,6 +1,5 @@
-﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
+namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,19 +9,19 @@
 
         public Diner(IBillingStrategy strategy)
         {
-            throw new NotImplementedException();
+            this.Strategy = strategy;
         }
 
         public IBillingStrategy Strategy { get; set; }
 
         public void Order(double price, int quantity)
         {
-            throw new NotImplementedException();
+            this.amounts.Add(quantity * this.Strategy.GetPrice(price));
         }
 
         public double GetTotalAmount()
         {
-            throw new NotImplementedException();
+            return this.amounts.Sum();
         }
     }
 
@@ -35,15 +34,16 @@
     {
         public double GetPrice(double originalPrice)
         {
-            throw new NotImplementedException();
+            return originalPrice;
         }
     }
 
     public class HappyHourStrategy : IBillingStrategy
     {
+        // Price is 50% off
         public double GetPrice(double originalPrice)
         {
-            throw new NotImplementedException();
+            return originalPrice / 2;
         }
     }
 }

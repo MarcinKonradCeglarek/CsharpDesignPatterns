@@ -1,114 +1,126 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Visitor
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    public interface IComponent
+    /*
+     * https://refactoring.guru/design-patterns/visitor
+     *
+     * Cars:
+     *     Passengers: seats - 1 (driver)
+     *     Cargo: 200
+     *
+     * Buss:
+     *     Passengers: 40
+     *     Cargo: none
+     *
+     * Truck
+     *     Passengers: none
+     *     Cargo: capacity
+     *
+     *
+     * CargoCapacityVisitor: sums cargo capacity of all vehicles
+     * PassengersCapacityVisitor: sums available passengers for all vehicles
+     *
+     */
+
+    public interface IVehicle
     {
-        void Accept(IPlacesVisitor placesVisitor);
+        void Accept(IVehicleVisitor vehicleVisitor);
     }
 
-    public class Home : IComponent
+
+    public class Car : IVehicle
     {
-        public void Accept(IPlacesVisitor placesVisitor)
+        public Car(int seats)
         {
-            throw new NotImplementedException();
+            this.Passengers = seats - 1;
         }
 
-        public int NumberOfBedrooms()
+        public int Passengers { get; }
+
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class Park : IComponent
-    {
-        private Guid id = Guid.NewGuid();
-
-        public string Name => $"Park {id}";
-
-        public void Accept(IPlacesVisitor placesVisitor)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class City : IComponent
-    {
-        public City(double airQuality)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double AirQualityIndex { get; }
-
-        public void Accept(IPlacesVisitor placesVisitor)
-        {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
         }
     }
 
-    public interface IPlacesVisitor
+    public class Truck : IVehicle
     {
-        void Visit(Home home);
-        void Visit(Park park);
-        void Visit(City city);
-    }
-
-    public class HouseAndParksVisitor : IPlacesVisitor
-    {
-        public void Visit(Home home)
+        public Truck(double capacity)
         {
-            throw new NotImplementedException();
+            this.CargoCapacity = capacity;
         }
 
-        public void Visit(Park park)
-        {
-            throw new NotImplementedException();
-        }
+        public double CargoCapacity { get; }
 
-        public void Visit(City city)
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
-        }
-
-        public int GetTotalNumber()
-        {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
         }
     }
 
-    public class CitiesVisitor : IPlacesVisitor
+    public class Bus : IVehicle
     {
-        public void Visit(Home home)
+        public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
+        }
+    }
+
+    public interface IVehicleVisitor
+    {
+        void Visit(Car car);
+        void Visit(Truck truck);
+        void Visit(Bus bus);
+    }
+
+    public class CargoCapacityVisitor : IVehicleVisitor
+    {
+        private double cargoValue;
+        public double GetTotalCargoValue => this.cargoValue;
+
+        public void Visit(Car car)
+        {
+            this.cargoValue += 200;
         }
 
-        public void Visit(Park park)
+        public void Visit(Truck truck)
         {
-            throw new NotImplementedException();
+            this.cargoValue += truck.CargoCapacity;
         }
 
-        public void Visit(City city)
+        public void Visit(Bus bus)
         {
-            throw new NotImplementedException();
+        }
+    }
+
+    public class PassengersCapacityVisitor : IVehicleVisitor
+    {
+        private int passengers = 0;
+        public int PassengersCapacity => this.passengers;
+
+        public void Visit(Car car)
+        {
+            this.passengers += car.Passengers;
         }
 
-        public double GetAverage()
+        public void Visit(Truck truck)
         {
-            throw new NotImplementedException();
+        }
+
+        public void Visit(Bus bus)
+        {
+            this.passengers += 40;
         }
     }
 
     public class Client
     {
-        public static void ClientCode(List<IComponent> components, IPlacesVisitor placesVisitor)
+        public static void Visit(List<IVehicle> components, IVehicleVisitor vehicleVisitor)
         {
             foreach (var component in components)
             {
-                component.Accept(placesVisitor);
+                component.Accept(vehicleVisitor);
             }
         }
     }

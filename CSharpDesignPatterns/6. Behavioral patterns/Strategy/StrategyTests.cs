@@ -32,7 +32,6 @@
             Assert.AreEqual((25.0 + 5 + 15) / 2, customer.GetTotalAmount());
         }
 
-        [Ignore("Switching strategies")]
         [Test]
         public void SwitchingStrategiesPaysValidAmount()
         {

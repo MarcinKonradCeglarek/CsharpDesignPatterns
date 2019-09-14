@@ -6,5 +6,7 @@
         TType Read  (TId   id);
         void  Update(TId   id, TType x);
         void  Delete(TId   id);
+        TType Read(TId     id);
+        void  Update(TId   id, TType x);
     }
 }

@@ -11,10 +11,10 @@
         public void Circle_ImplementationOfGreenCircle_ContainsGreenString()
         {
             // Arrange
-            var redCircle = new Circle(100, 100, 10, new ImplementationOfGreenCircle());
+            var greenCircle = new Circle(100, 100, 10, new ImplementationOfGreenCircle());
 
             // Act
-            var result = redCircle.Draw();
+            var result = greenCircle.Draw();
 
             // Assert
             Assert.IsTrue(result.Contains("GREEN"));
@@ -38,13 +38,13 @@
         {
             // Arrange
             var mock       = new Mock<IBridge>();
-            var mockCircle = new Circle(100, 100, 10, mock.Object);
+            var mockCircle = new Circle(1000, 100, 10, mock.Object);
 
             // Act
             var result = mockCircle.Draw();
 
             // Assert
-            mock.Verify(m => m.Draw(10, 100, 100), Times.Once);
+            mock.Verify(m => m.Draw(mockCircle), Times.Once);
         }
     }
 }
