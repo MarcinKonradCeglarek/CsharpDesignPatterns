@@ -19,10 +19,8 @@ namespace CSharpDesignPatterns._2._Design_principles.CleanCode
 
         public static int AlwaysUseBraces(int i)
         {
-            for (var j = 0; j < 100; j++)
-            {
+            for (var j = 0; j < 100; j++);
                 i++;
-            }
 
             return i;
         }
