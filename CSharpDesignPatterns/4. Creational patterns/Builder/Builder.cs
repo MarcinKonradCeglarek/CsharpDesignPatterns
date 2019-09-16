@@ -10,10 +10,6 @@
 
     public class CarBuilder
     {
-        private EngineType?       engineType;
-        private TransmissionType? transmissionType;
-        private int?              wheelsCount;
-
         public CarBuilder AutomaticTransmission()
         {
             /*
@@ -29,7 +25,7 @@
 
         public Car Build()
         {
-            return new Car(this.engineType ?? EngineType.Gasoline, this.transmissionType ?? TransmissionType.Manual, this.wheelsCount ?? 4);
+            throw new NotImplementedException();
         }
 
         public CarBuilder DieselEngine()

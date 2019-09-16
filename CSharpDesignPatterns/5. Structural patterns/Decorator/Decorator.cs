@@ -21,8 +21,8 @@
 
     public class Coffee : ICoffee
     {
-        public List<Ingredients> Contents { get; } = new List<Ingredients> { Ingredients.Coffee };
-        public double            Cost     => 1.0;
+        public List<Ingredients> Contents { get; }
+        public double Cost { get; }
     }
 
     public class WithMilkDecorator : ICoffee
