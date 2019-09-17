@@ -6,6 +6,14 @@
     {
     }
 
+    public interface IPlant
+    {
+    }
+
+    public interface IAnimal
+    {
+    }
+
     public class PlantAttribute : Attribute
     {
     }

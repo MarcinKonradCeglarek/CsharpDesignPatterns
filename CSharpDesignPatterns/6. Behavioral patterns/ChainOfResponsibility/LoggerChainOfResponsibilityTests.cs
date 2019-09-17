@@ -9,7 +9,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class ChainOfResponsibilityTests
+    public class LoggerChainOfResponsibilityTests
     {
         [Test]
         public void CheckSeverityMatchingMask()
@@ -38,7 +38,7 @@
         {
             var message1 = Guid.NewGuid().ToString();
             var consoleWriter = new Mock<IConsole>();
-            var logger = new ChainOfResponsibilityConsoleLogger(logLevel, consoleWriter.Object);
+            var logger = new ConsoleLoggerChainOfResponsibility(logLevel, consoleWriter.Object);
 
             logger.LogMessage(logLevel, message1);
 
@@ -55,7 +55,7 @@
         {
             var message1      = Guid.NewGuid().ToString();
             var emailWriter = new Mock<IEmail>();
-            var logger        = new ChainOfResponsibilityEmailLogger(logLevel, emailWriter.Object);
+            var logger        = new EmailLoggerChainOfResponsibility(logLevel, emailWriter.Object);
 
             logger.LogMessage(logLevel, message1);
 
@@ -73,7 +73,7 @@
             var message1 = Guid.NewGuid().ToString();
             var fileWriter    = new Mock<IFileWriter>();
 
-            var logger = new ChainOfResponsibilityFileLogger(logLevel, fileWriter.Object);
+            var logger = new FileLoggerChainOfResponsibility(logLevel, fileWriter.Object);
 
             logger.LogMessage(logLevel, message1);
 
@@ -91,9 +91,9 @@
             var emailWriter   = new Mock<IEmail>();
             var fileWriter    = new Mock<IFileWriter>();
 
-            var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
-                        .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
-                        .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
+            var logger = new ConsoleLoggerChainOfResponsibility(LogLevel.All, consoleWriter.Object)
+                        .AddNext(new EmailLoggerChainOfResponsibility(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
+                        .AddNext(new FileLoggerChainOfResponsibility(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
             logger.LogMessage(LogLevel.Debug, message1);
             logger.LogMessage(LogLevel.Info,  message2);
@@ -116,9 +116,9 @@
             var emailWriter   = new Mock<IEmail>();
             var fileWriter    = new Mock<IFileWriter>();
 
-            var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
-                        .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
-                        .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
+            var logger = new ConsoleLoggerChainOfResponsibility(LogLevel.All, consoleWriter.Object)
+                        .AddNext(new EmailLoggerChainOfResponsibility(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
+                        .AddNext(new FileLoggerChainOfResponsibility(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
             logger.LogMessage(LogLevel.FunctionalError,   message1);
             logger.LogMessage(LogLevel.FunctionalMessage, message2);
@@ -143,9 +143,9 @@
             var emailWriter   = new Mock<IEmail>();
             var fileWriter    = new Mock<IFileWriter>();
 
-            var logger = new ChainOfResponsibilityConsoleLogger(LogLevel.All, consoleWriter.Object)
-                        .AddNext(new ChainOfResponsibilityEmailLogger(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
-                        .AddNext(new ChainOfResponsibilityFileLogger(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
+            var logger = new ConsoleLoggerChainOfResponsibility(LogLevel.All, consoleWriter.Object)
+                        .AddNext(new EmailLoggerChainOfResponsibility(LogLevel.FunctionalMessage | LogLevel.FunctionalError, emailWriter.Object))
+                        .AddNext(new FileLoggerChainOfResponsibility(LogLevel.Warning            | LogLevel.Error, fileWriter.Object));
 
             logger.LogMessage(LogLevel.Error,   message1);
             logger.LogMessage(LogLevel.Warning, message2);
