@@ -2,6 +2,8 @@
 {
     using System;
 
+    using CSharpDesignPatterns._4._Creational_patterns.Builder.Model;
+
     /*
      * https://refactoring.guru/design-patterns/builder
      *
@@ -44,8 +46,6 @@
         public CarBuilder ElectricEngine()
         {
             /*
-             * Electric engine requires Automatic transmission
-             *
              * If already set
              *    throw InvalidOperationException
              *
@@ -75,8 +75,6 @@
         public CarBuilder HybridEngine()
         {
             /*
-             * Electric engine (Hybrid engine is Gasoline and Electric engines duo) requires Automatic Transmission
-             *
              * If already set
              *    throw InvalidOperationException
              *
@@ -105,36 +103,5 @@
              */
             throw new NotImplementedException();
         }
-    }
-
-    public class Car
-    {
-        public Car(EngineType engineType, TransmissionType transmissionType, int wheels)
-        {
-            this.EngineType       = engineType;
-            this.TransmissionType = transmissionType;
-            this.Wheels           = wheels;
-        }
-
-        public EngineType EngineType { get; }
-
-        public TransmissionType TransmissionType { get; }
-
-        public int Wheels { get; }
-    }
-
-    [Flags]
-    public enum EngineType
-    {
-        Diesel   = 1,
-        Gasoline = 2,
-        Electric = 4,
-        Hybrid   = 6
-    }
-
-    public enum TransmissionType
-    {
-        Automatic,
-        Manual
     }
 }

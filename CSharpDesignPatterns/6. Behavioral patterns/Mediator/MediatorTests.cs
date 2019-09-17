@@ -8,9 +8,9 @@
     public class MediatorTests
     {
         [Test]
-        public void ProperlyForwardsMultipleMessagesFromMultipleSenders()
+        public void ProperlyForwardsOneMessage()
         {
-            var message      = "Hello there, General Kenobi!";
+            var message      = "Hi Alice";
             var bobDisplay   = new Mock<IReceivedMessagesHandler>();
             var aliceDisplay = new Mock<IReceivedMessagesHandler>();
 
@@ -21,15 +21,10 @@
             var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
-            alice.SendMessageThroughMediator(message);
-            bob.SendMessageThroughMediator(message);
-            alice.SendMessageThroughMediator(message);
-            bob.SendMessageThroughMediator(message);
-            alice.SendMessageThroughMediator(message);
 
-            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name, message), Times.Exactly(3));
-            bobDisplay.Verify(d => d.HandleReceivedMessage(alice.Name, message), Times.Exactly(3));
-            Assert.AreEqual(6, counter.Counter);
+            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name,         message), Times.Once);
+            bobDisplay.Verify(d => d.HandleReceivedMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            Assert.AreEqual(1, counter.Counter);
         }
 
         [Test]
@@ -55,9 +50,9 @@
         }
 
         [Test]
-        public void ProperlyForwardsOneMessage()
+        public void ProperlyForwardsMultipleMessagesFromMultipleSenders()
         {
-            var message      = "Hi Alice";
+            var message      = "Hello there, General Kenobi!";
             var bobDisplay   = new Mock<IReceivedMessagesHandler>();
             var aliceDisplay = new Mock<IReceivedMessagesHandler>();
 
@@ -68,10 +63,15 @@
             var counter = new ChatMessageCounter(mediator);
 
             bob.SendMessageThroughMediator(message);
+            alice.SendMessageThroughMediator(message);
+            bob.SendMessageThroughMediator(message);
+            alice.SendMessageThroughMediator(message);
+            bob.SendMessageThroughMediator(message);
+            alice.SendMessageThroughMediator(message);
 
-            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name,         message), Times.Once);
-            bobDisplay.Verify(d => d.HandleReceivedMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            Assert.AreEqual(1, counter.Counter);
+            aliceDisplay.Verify(d => d.HandleReceivedMessage(bob.Name, message), Times.Exactly(3));
+            bobDisplay.Verify(d => d.HandleReceivedMessage(alice.Name, message), Times.Exactly(3));
+            Assert.AreEqual(6, counter.Counter);
         }
     }
 }
