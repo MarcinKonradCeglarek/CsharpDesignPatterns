@@ -7,9 +7,11 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
     public class Observer : IObserver<PayLoad>
     {
+        private readonly IDisplayer logger;
+
         public Observer(IDisplayer logger)
         {
-            throw new NotImplementedException();
+            this.logger = logger;
         }
 
         public void OnCompleted()
@@ -22,7 +24,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
         public void OnNext(PayLoad payload)
         {
-            throw new NotImplementedException();
+            this.logger.Display(payload.Message);
         }
     }
 }

@@ -5,15 +5,19 @@
 
     public class PeasantNameFormatter : NameFormatterTemplateMethod
     {
+        private readonly string firstName;
+        private readonly string lastName;
+
         public PeasantNameFormatter(string firstName, string lastName)
         {
-            throw new NotImplementedException();
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
 
-        protected override IEnumerable<string> GetFirstNames() => throw new NotImplementedException();
+        protected override IEnumerable<string> GetFirstNames() => new[] { this.firstName };
 
-        protected override string GetLastName() => throw new NotImplementedException();
+        protected override string GetLastName() => this.lastName;
 
-        protected override string GetPrefix() => throw new NotImplementedException();
+        protected override string GetPrefix() => null;
     }
 }

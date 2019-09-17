@@ -8,17 +8,17 @@
     {
         protected override void AddChild(Company parent, Employee child)
         {
-            throw new NotImplementedException();
+            parent.Hire(child.Person, child.Title, child.Salary);
         }
 
         protected override bool IsChild(Company parent, Employee child)
         {
-            throw new NotImplementedException();
+            return parent.Employees.ContainsKey(child.Id);
         }
 
         protected override void RemoveChild(Company parent, Employee child)
         {
-            throw new NotImplementedException();
+            parent.Sack(child.Id);
         }
     }
 }

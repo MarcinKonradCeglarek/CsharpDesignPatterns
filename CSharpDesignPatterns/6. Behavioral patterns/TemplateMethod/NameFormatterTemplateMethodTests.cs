@@ -42,7 +42,7 @@
         }
 
         [Test]
-        public void RoyaltyFormatterWithJustFirstAndLastName()
+        public void PoorVonPeasant()
         {
             const string FirstName = "Poor";
             const string LastName  = "Peasant";

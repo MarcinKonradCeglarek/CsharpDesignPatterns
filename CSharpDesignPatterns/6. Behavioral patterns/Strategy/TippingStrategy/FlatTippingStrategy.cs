@@ -7,7 +7,7 @@
         // 5$ per order
         public double GetTip(double originalPrice)
         {
-            throw new NotImplementedException();
+            return 5;
         }
     }
 }

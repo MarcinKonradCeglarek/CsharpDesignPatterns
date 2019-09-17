@@ -2,20 +2,31 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class RoyaltyNameFormatter : NameFormatterTemplateMethod
     {
+        private readonly string prefix;
+        private readonly string firstName;
+        private readonly string secondName;
+        private readonly string thirdName;
+        private readonly string lastName;
 
         public RoyaltyNameFormatter(string prefix, string firstName, string secondName, string thirdName, string lastName)
         {
-            throw new NotImplementedException();
+            this.prefix = prefix;
+            this.firstName = firstName;
+            this.secondName = secondName;
+            this.thirdName = thirdName;
+            this.lastName = lastName;
         }
 
-        protected override IEnumerable<string> GetFirstNames() => throw new NotImplementedException();
+        protected override IEnumerable<string> GetFirstNames() =>
+            new[] { this.firstName, this.secondName, this.thirdName }.Where(s => !string.IsNullOrEmpty(s));
 
-        protected override string GetLastName() => throw new NotImplementedException();
+        protected override string GetLastName() => $"von {this.lastName}";
 
-        protected override string GetPrefix() => throw new NotImplementedException();
+        protected override string GetPrefix() => this.prefix;
 
     }
 }

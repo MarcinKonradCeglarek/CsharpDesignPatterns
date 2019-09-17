@@ -16,7 +16,11 @@
     {
         public string GetName()
         {
-            throw new NotImplementedException();
+            var input = new List<string>() { this.GetPrefix() };
+            input.AddRange(this.GetFirstNames());
+            input.Add(this.GetLastName());
+
+            return string.Join(" ", input.Where(s => !string.IsNullOrEmpty(s)));
         }
 
         protected abstract IEnumerable<string> GetFirstNames();

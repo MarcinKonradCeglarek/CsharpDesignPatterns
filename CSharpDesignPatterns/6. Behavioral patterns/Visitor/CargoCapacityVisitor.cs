@@ -26,21 +26,21 @@
      */
     public class CargoCapacityVisitor : IVehicleVisitor
     {
-        public double GetTotalCargoValue => throw new NotImplementedException();
+        private double cargo;
+        public double GetTotalCargoValue => this.cargo;
 
         public void Visit(Car car)
         {
-            throw new NotImplementedException();
+            this.cargo += 200;
         }
 
         public void Visit(Truck truck)
         {
-            throw new NotImplementedException();
+            this.cargo += truck.CargoCapacity;
         }
 
         public void Visit(Bus bus)
         {
-            throw new NotImplementedException();
         }
     }
 }

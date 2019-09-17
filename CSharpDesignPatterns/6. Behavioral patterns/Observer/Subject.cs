@@ -11,12 +11,15 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
         public void RaiseEvent(string message)
         {
-            throw new NotImplementedException();
+            foreach (var observer in this.Observers)
+            {
+                observer.OnNext(new PayLoad(message));
+            }
         }
 
         public IDisposable Subscribe(IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            return new Unsubscriber(this.Observers, observer);
         }
     }
 }

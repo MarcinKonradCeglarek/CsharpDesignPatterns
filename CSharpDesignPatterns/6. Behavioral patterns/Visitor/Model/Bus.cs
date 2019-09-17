@@ -6,7 +6,7 @@
     {
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
         }
     }
 }

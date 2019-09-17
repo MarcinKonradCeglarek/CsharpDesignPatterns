@@ -11,8 +11,8 @@
     [TestFixture]
     public class VisitorTests
     {
-        private const int ExpectedPassengers = 40 + 40 + 4 + 3;
-        private const double ExpectedCargo = 5000 + 7500 + 200 + 200;
+        private const int    ExpectedPassengers = 40 + 40 + 4       + 3;
+        private const double ExpectedCargo      = 5000 + 7500 + 200 + 200;
 
         private readonly List<IVehicle> components = new List<IVehicle>
             {
@@ -23,6 +23,84 @@
                 new Truck(7500),
                 new Car(4)
             };
+
+        [Test]
+        public void PassengersCapacityVisitorForOneCar()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var car                       = new Car(4);
+
+            // Act
+            car.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(3, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void PassengersCapacityVisitorForOneTruck()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var truck                     = new Truck(5000);
+
+            // Act
+            truck.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(0, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void PassengersCapacityVisitorForOneBus()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var bus                       = new Bus();
+
+            // Act
+            bus.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(40, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void CargoCapacityVisitorForOneCar()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+            var car                  = new Car(4);
+
+            // Act
+            car.Accept(cargoCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(200, cargoCapacityVisitor.GetTotalCargoValue);
+        }
+
+        [Test]
+        public void CargoCapacityVisitorForOneTruck()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+            var truck                = new Truck(5000);
+
+            // Act
+            truck.Accept(cargoCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(5000, cargoCapacityVisitor.GetTotalCargoValue);
+        }
+
+        [Test]
+        public void CargoCapacityVisitorForOneBus()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+            var bus                  = new Bus();
+
+            // Act
+            bus.Accept(cargoCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(0, cargoCapacityVisitor.GetTotalCargoValue);
+        }
 
         [Test]
         public void PassengersCapacityVisitor()

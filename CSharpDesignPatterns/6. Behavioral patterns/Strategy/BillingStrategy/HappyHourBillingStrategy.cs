@@ -7,7 +7,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
         // Price is 50% off
         public double GetPrice(double originalPrice)
         {
-            throw new NotImplementedException();
+            return originalPrice / 2;
         }
     }
 }

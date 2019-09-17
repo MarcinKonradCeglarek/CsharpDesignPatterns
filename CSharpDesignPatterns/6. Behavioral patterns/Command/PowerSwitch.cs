@@ -4,19 +4,23 @@
 
     public class PowerSwitch
     {
+        private readonly ICommand turnOnCommand;
+        private readonly ICommand turnOffCommand;
+
         public PowerSwitch(ICommand turnOnCommand, ICommand turnOffCommand)
         {
-            throw new NotImplementedException();
+            this.turnOnCommand = turnOnCommand;
+            this.turnOffCommand = turnOffCommand;
         }
 
         public void TurnOff()
         {
-            throw new NotImplementedException();
+            this.turnOffCommand.Execute();
         }
 
         public void TurnOn()
         {
-            throw new NotImplementedException();
+            this.turnOnCommand.Execute();
         }
     }
 }

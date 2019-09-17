@@ -8,12 +8,12 @@
 
         public TurnOnDeviceCommand(IDevice device)
         {
-            throw new NotImplementedException();
+            this.device = device;
         }
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            this.device.PowerOn();
         }
     }
 }

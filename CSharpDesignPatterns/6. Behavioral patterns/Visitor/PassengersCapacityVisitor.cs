@@ -27,21 +27,21 @@
 
     public class PassengersCapacityVisitor : IVehicleVisitor
     {
-        public int PassengersCapacity => throw new NotImplementedException();
+        private int passengers;
+        public int PassengersCapacity => this.passengers;
 
         public void Visit(Car car)
         {
-            throw new NotImplementedException();
+            this.passengers += car.Passengers;
         }
 
         public void Visit(Truck truck)
         {
-            throw new NotImplementedException();
         }
 
         public void Visit(Bus bus)
         {
-            throw new NotImplementedException();
+            this.passengers += 40;
         }
     }
 }

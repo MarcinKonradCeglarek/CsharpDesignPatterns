@@ -7,14 +7,19 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 
     public class Unsubscriber : IDisposable
     {
+        private readonly IList<IObserver<PayLoad>> observers;
+        private readonly IObserver<PayLoad> observer;
+
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
-            throw new NotImplementedException();
+            this.observers = observers;
+            this.observer = observer;
+            this.observers.Add(observer);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.observers.Remove(this.observer);
         }
     }
 }

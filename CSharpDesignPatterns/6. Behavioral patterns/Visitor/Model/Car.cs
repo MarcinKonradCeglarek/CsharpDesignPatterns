@@ -6,14 +6,14 @@
     {
         public Car(int seats)
         {
-            throw new NotImplementedException();
+            this.Passengers = seats - 1;
         }
 
         public int Passengers { get; }
 
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
         }
     }
 }

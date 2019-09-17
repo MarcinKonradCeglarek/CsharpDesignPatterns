@@ -6,14 +6,14 @@
     {
         public Truck(double capacity)
         {
-            throw new NotImplementedException();
+            this.CargoCapacity = capacity;
         }
 
         public double CargoCapacity { get; }
 
         public void Accept(IVehicleVisitor vehicleVisitor)
         {
-            throw new NotImplementedException();
+            vehicleVisitor.Visit(this);
         }
     }
 }

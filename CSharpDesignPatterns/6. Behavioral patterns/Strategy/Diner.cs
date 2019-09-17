@@ -4,8 +4,11 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 
     public class Diner
     {
+        private double total;
         public Diner(IBillingStrategy billingStrategy, ITippingStrategy tippingStrategy)
         {
+            this.BillingStrategy = billingStrategy;
+            this.TippingStrategy = tippingStrategy;
         }
 
         public IBillingStrategy BillingStrategy { get; set; }
@@ -14,12 +17,14 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 
         public void Order(double price)
         {
-            throw new NotImplementedException();
+            var billAmount = this.BillingStrategy.GetPrice(price);
+            var tipAmount = this.TippingStrategy.GetTip(billAmount);
+            this.total += billAmount + tipAmount;
         }
 
         public double GetTotalAmount()
         {
-            throw new NotImplementedException();
+            return this.total;
         }
     }
 }

@@ -11,7 +11,19 @@
     {
         public IEnumerator<int> GetEnumerator()
         {
-            throw new NotImplementedException();
+            yield return 0;
+            yield return 1;
+
+            var a = 0;
+            var b = 1;
+
+            while (true)
+            {
+                var sum = a + b;
+                a = b;
+                b = sum;
+                yield return sum;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
