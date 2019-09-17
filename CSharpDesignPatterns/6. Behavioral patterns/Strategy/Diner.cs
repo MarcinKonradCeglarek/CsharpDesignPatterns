@@ -1,26 +1,28 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class Diner
     {
-        public Diner(IBillingStrategy strategy)
+        private double totalAmount = 0;
+
+        public Diner(IBillingStrategy billingStrategy, ITippingStrategy tippingStrategy)
         {
-            throw new NotImplementedException();
+            this.BillingStrategy = billingStrategy;
+            this.TippingStrategy = tippingStrategy;
         }
 
-        public IBillingStrategy Strategy { get; set; }
+        public IBillingStrategy BillingStrategy { get; set; }
 
-        public void Order(double price, int quantity)
+        public ITippingStrategy TippingStrategy { get; set; }
+
+        public void Order(double price)
         {
-            throw new NotImplementedException();
+            var priceAfterBilling = this.BillingStrategy.GetPrice(price);
+            this.totalAmount += priceAfterBilling + this.TippingStrategy.GetTip(priceAfterBilling);
         }
 
         public double GetTotalAmount()
         {
-            throw new NotImplementedException();
+            return this.totalAmount;
         }
     }
 }

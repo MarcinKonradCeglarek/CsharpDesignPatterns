@@ -5,47 +5,78 @@
     [TestFixture]
     public class DinerTests
     {
-        private readonly IBillingStrategy happyHourStrategy = new HappyHourStrategy();
-        private readonly IBillingStrategy normalStrategy    = new NormalStrategy();
+        private const    double           Delta              = 0.000001;
+        private readonly IBillingStrategy happyHourStrategy  = new HappyHourBillingStrategy();
+        private readonly IBillingStrategy normalStrategy     = new DefaultBillingStrategy();
+        private readonly ITippingStrategy flaTippingStrategy = new FlatTippingStrategy();
+        private readonly ITippingStrategy fivePercentTip     = new PercentageTippingStrategy(0.05);
 
         [Test]
-        public void UsingNormalStrategyPaysNormalAmount()
+        public void DinerWithDefaultBillingAndFlatTippingStrategy()
         {
-            var customer = new Diner(this.normalStrategy);
+            var diner = new Diner(this.normalStrategy, this.flaTippingStrategy);
 
-            customer.Order(5, 5); // 25
-            customer.Order(1, 5); // 5
-            customer.Order(3, 5); // 15
+            diner.Order(25);
+            diner.Order(5);
 
-            Assert.AreEqual(25 + 5 + 15, customer.GetTotalAmount());
+            Assert.AreEqual(30 + 10, diner.GetTotalAmount(), Delta);
         }
 
         [Test]
-        public void UsingHappyHourStrategyPaysHalf()
+        public void DinerWithHappyHoursBillingAndFlatTippingStrategy()
         {
-            var customer = new Diner(this.happyHourStrategy);
+            var diner = new Diner(this.happyHourStrategy, this.flaTippingStrategy);
 
-            customer.Order(5, 5); // 25 / 2
-            customer.Order(1, 5); // 5 / 2
-            customer.Order(3, 5); // 15 / 2
+            diner.Order(25);
+            diner.Order(5);
 
-            Assert.AreEqual((25.0 + 5 + 15) / 2, customer.GetTotalAmount());
+            Assert.AreEqual(17.5 + 7.5, diner.GetTotalAmount(), Delta);
+        }
+
+        [Test]
+        public void DinerWithDefaultBillingAndPercentageTippingStrategy()
+        {
+            var diner = new Diner(this.normalStrategy, this.fivePercentTip);
+
+            diner.Order(25);
+            diner.Order(5);
+
+            Assert.AreEqual((25 + 5) * 1.05, diner.GetTotalAmount(), Delta);
+        }
+
+        [Test]
+        public void DinerWithHappyHoursBillingAndPercentageTippingStrategy()
+        {
+            var diner = new Diner(this.happyHourStrategy, this.fivePercentTip);
+
+            diner.Order(25);
+            diner.Order(5);
+
+            Assert.AreEqual((12.5 + 2.5) * 1.05, diner.GetTotalAmount(), Delta);
         }
 
         [Test]
         public void SwitchingStrategiesPaysValidAmount()
         {
-            var customer = new Diner(this.happyHourStrategy);
+            var customer = new Diner(this.normalStrategy, this.flaTippingStrategy);
 
-            customer.Order(5, 5); // 25.0 / 2 = 12.5
-            customer.Order(1, 5); // 5.0 / 2 = 2.5
+            customer.Order(25); // 25 + 5
+            customer.Order(5);  // 5 + 5
 
-            customer.Strategy = this.normalStrategy;
+            customer.BillingStrategy = this.happyHourStrategy;
 
-            customer.Order(3, 5); // 15
-            customer.Order(2, 5); // 10
+            customer.Order(15); // 7.5 + 5
+            customer.Order(10); // 5 + 5
 
-            Assert.AreEqual(12.5 + 2.5 + 15 + 10, customer.GetTotalAmount());
+            customer.TippingStrategy = this.fivePercentTip;
+
+            customer.Order(20); // 10 + 0.5
+
+            customer.BillingStrategy = this.normalStrategy;
+
+            customer.Order(30); // 30 + 1.5
+
+            Assert.AreEqual(30 + 10 + 12.5 + 10 + 10.5 + 31.5, customer.GetTotalAmount());
         }
     }
 }

@@ -152,9 +152,12 @@
     <Compile Include="6. Behavioral patterns\Observer\Model\PayLoad.cs" />
     <Compile Include="6. Behavioral patterns\Observer\Subject.cs" />
     <Compile Include="6. Behavioral patterns\Observer\Unsubscriber.cs" />
-    <Compile Include="6. Behavioral patterns\Strategy\HappyHourStrategy.cs" />
-    <Compile Include="6. Behavioral patterns\Strategy\IBillingStrategy.cs" />
-    <Compile Include="6. Behavioral patterns\Strategy\NormalStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\TippingStrategy\FlatTippingStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\BillingStrategy\HappyHourBillingStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\BillingStrategy\IBillingStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\TippingStrategy\ITippingStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\BillingStrategy\DefaultBillingStrategy.cs" />
+    <Compile Include="6. Behavioral patterns\Strategy\TippingStrategy\PercentageTippingStrategy.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\GenericTemplateMethod\CompanyGenericTemplateMethod.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\GenericTemplateMethod\HashSetGenericTemplateMethodTests.cs" />
     <Compile Include="6. Behavioral patterns\TemplateMethod\GenericTemplateMethod\HashSetGenericTemplateMethod.cs" />

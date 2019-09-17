@@ -23,6 +23,9 @@
             Assert.IsFalse(document.IsUnderReview);
         }
 
+        /*
+         * Draft
+         */
         [Test]
         public void DocumentInDraftStateCanBeEdited()
         {
@@ -34,16 +37,26 @@
         }
 
         [Test]
-        public void DocumentInDraftStateCantBePublished()
+        public void DocumentInDraftStateWithoutContentsCanNotBeSubmittedForReview()
         {
             var document  = new Document(this.user);
-            var exception = Assert.Throws<InvalidOperationException>(() => document.Publish());
+            var exception = Assert.Throws<InvalidOperationException>(() => document.SubmitForReview());
 
-            Assert.AreEqual("Draft can't be published", exception.Message);
+            Assert.AreEqual("Document's content can't be empty", exception.Message);
         }
 
         [Test]
-        public void DocumentInDraftStateCantBeReviewed()
+        public void DocumentInDraftStateWithContentsCanBeSubmittedForReview()
+        {
+            var document = new Document(this.user);
+            document.Edit(Guid.NewGuid().ToString());
+            document.SubmitForReview();
+
+            Assert.IsTrue(document.IsUnderReview);
+        }
+
+        [Test]
+        public void DocumentInDraftStateCanNotBeReviewed()
         {
             var document  = new Document(this.user);
             var exception = Assert.Throws<InvalidOperationException>(() => document.Review(this.moderator, true));
@@ -51,6 +64,18 @@
             Assert.AreEqual("Draft can't be reviewed", exception.Message);
         }
 
+        [Test]
+        public void DocumentInDraftStateCanNotBePublished()
+        {
+            var document  = new Document(this.user);
+            var exception = Assert.Throws<InvalidOperationException>(() => document.Publish());
+
+            Assert.AreEqual("Draft can't be published", exception.Message);
+        }
+
+        /*
+         * SubmittedForReview
+         */
         [Test]
         public void DocumentSubmittedForReviewCanBeEdited()
         {
@@ -78,7 +103,7 @@
         }
 
         [Test]
-        public void DocumentSubmittedForReviewCantBePublishedWithFailingReview()
+        public void DocumentSubmittedForReviewWithFailingReviewCanNotBePublished()
         {
             var document = new Document(this.user);
             document.Edit(Guid.NewGuid().ToString());
@@ -90,7 +115,7 @@
         }
 
         [Test]
-        public void DocumentSubmittedForReviewCantBePublishedWithoutReview()
+        public void DocumentSubmittedForReviewWithoutReviewCanNotBePublished()
         {
             var document = new Document(this.user);
             document.Edit(Guid.NewGuid().ToString());
@@ -101,7 +126,7 @@
         }
 
         [Test]
-        public void DocumentSubmittedForReviewCantBeSubmittedForReview()
+        public void DocumentSubmittedForReviewCanNotBeSubmittedForReview()
         {
             var document = new Document(this.user);
             document.Edit(Guid.NewGuid().ToString());
@@ -112,7 +137,7 @@
         }
 
         [Test]
-        public void DocumentSubmittedForReviewWithOneFailingAndOnePassingReviewCantBePublished()
+        public void DocumentSubmittedForReviewWithOneFailingAndOnePassingReviewCanNotBePublished()
         {
             var document = new Document(this.user);
             document.Edit(Guid.NewGuid().ToString());
@@ -140,7 +165,7 @@
         }
 
         [Test]
-        public void DocumentSubmittedForReviewWithPassingThenFailingReviewCantBePublished()
+        public void DocumentSubmittedForReviewWithPassingThenFailingReviewCanNotBePublished()
         {
             var document = new Document(this.user);
             document.Edit(Guid.NewGuid().ToString());
@@ -170,25 +195,9 @@
             Assert.AreEqual(true, document.IsPublished);
         }
 
-        [Test]
-        public void DocumentWithContentsInDraftStateCanBeSubmittedForReview()
-        {
-            var document = new Document(this.user);
-            document.Edit(Guid.NewGuid().ToString());
-            document.SubmitForReview();
-
-            Assert.IsTrue(document.IsUnderReview);
-        }
-
-        [Test]
-        public void EmptyDocumentInDraftStateCantBeSubmittedForReview()
-        {
-            var document  = new Document(this.user);
-            var exception = Assert.Throws<InvalidOperationException>(() => document.SubmitForReview());
-
-            Assert.AreEqual("Document's content can't be empty", exception.Message);
-        }
-
+        /*
+         * Published
+         */
         [Test]
         public void PublishedDocumentCantBeEdited()
         {

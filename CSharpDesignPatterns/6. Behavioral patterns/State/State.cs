@@ -7,6 +7,23 @@
 
     using CSharpDesignPatterns.Common.Model;
 
+    /*
+     * Document as state machine
+     *
+     * Initial state is Draft
+     *
+     * In Draft state:
+     * - Document can be edited
+     * - Document can be SubmittedForReview if it's not empty
+     *
+     * In SubmittedForReview state:
+     * - Document can be edited
+     * - Document can be reviewed (by others)
+     * - Document can be Published if most recent approval from each reviewer is positive
+     *
+     * In Published state:
+     * - no operations on document are permitted
+     */
     public interface IDocument
     {
         void Edit(string changes);
@@ -79,12 +96,6 @@
 
             public void SubmitForReview()
             {
-                /*
-                 * if document.contents is empty
-                 *    throw Document's content can't be empty
-                 * else
-                 *    submit for review
-                 */
                 throw new NotImplementedException();
             }
         }
@@ -126,14 +137,6 @@
 
             public void Publish()
             {
-                /*
-                 * if document doesn't have approvals
-                 *     throw Can't publish document without at least one approval
-                 * else if all approvals are true
-                 *     publish
-                 * else
-                 *     throw Can't publish document with failed reviews
-                 */
                 throw new NotImplementedException();
             }
 
