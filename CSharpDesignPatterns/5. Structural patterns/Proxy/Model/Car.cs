@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Proxy
+﻿namespace CSharpDesignPatterns._5._Structural_patterns.Proxy.Model
 {
     public class Car : ICar
     {

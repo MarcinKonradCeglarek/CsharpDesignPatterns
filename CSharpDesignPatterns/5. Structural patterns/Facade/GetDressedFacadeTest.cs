@@ -3,7 +3,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class FacadeTest
+    public class GetDressedFacadeTest
     {
         [Test]
         public void GetSmartClothes()

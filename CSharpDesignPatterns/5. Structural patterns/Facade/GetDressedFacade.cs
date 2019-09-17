@@ -3,6 +3,8 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
     using System;
     using System.Collections.Generic;
 
+    using CSharpDesignPatterns._5._Structural_patterns.Facade.Model;
+
     /*
      * https://refactoring.guru/design-patterns/facade
      */
@@ -20,45 +22,6 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
         public string GetSmartClothes()
         {
             throw new NotImplementedException();
-        }
-    }
-
-    internal class ShoesCloset
-    {
-        public string GetCasualShoes()
-        {
-            return "Sneakers";
-        }
-
-        public string GetSmartShoes()
-        {
-            return "Formal Shoes";
-        }
-    }
-
-    internal class Wardrobe
-    {
-        public string GetCasualWear()
-        {
-            return "T-Shirt,Shorts";
-        }
-
-        public string GetSuit()
-        {
-            return "Formal Jacket,Formal Trousers,Formal Shirt";
-        }
-    }
-
-    internal class AccessoriesDrawer
-    {
-        public string GetCasualAccessories()
-        {
-            return "Fitbit";
-        }
-
-        public string GetSmartAccessories()
-        {
-            return "Watch,Tie,Belt";
         }
     }
 }

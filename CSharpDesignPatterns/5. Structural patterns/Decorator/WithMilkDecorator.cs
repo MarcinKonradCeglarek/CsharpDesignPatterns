@@ -3,6 +3,15 @@
     using System;
     using System.Collections.Generic;
 
+    /*
+     *
+     * https://refactoring.guru/design-patterns/decorator
+     *
+     * Cost:
+     * Coffee:      1.0,
+     * Milk:        0.5,
+     * Sprinkles:   0.2
+     */
     public class WithMilkDecorator : ICoffee
     {
         public WithMilkDecorator(ICoffee coffee)

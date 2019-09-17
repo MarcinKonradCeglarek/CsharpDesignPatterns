@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade
+﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade.Model
 {
     internal class AccessoriesDrawer
     {

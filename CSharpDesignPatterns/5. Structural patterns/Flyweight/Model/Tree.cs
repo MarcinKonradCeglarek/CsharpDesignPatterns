@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
+﻿namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight.Model
 {
     public struct Tree
     {
