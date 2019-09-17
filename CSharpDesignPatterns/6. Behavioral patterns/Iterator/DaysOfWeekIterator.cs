@@ -11,13 +11,7 @@
     {
         public IEnumerator<DayOfWeek> GetEnumerator()
         {
-            yield return DayOfWeek.Monday;
-            yield return DayOfWeek.Tuesday;
-            yield return DayOfWeek.Wednesday;
-            yield return DayOfWeek.Thursday;
-            yield return DayOfWeek.Friday;
-            yield return DayOfWeek.Saturday;
-            yield return DayOfWeek.Sunday;
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

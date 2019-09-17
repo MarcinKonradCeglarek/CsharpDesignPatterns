@@ -16,17 +16,6 @@
             Assert.AreEqual(DayOfWeek.Monday, sut.First());
         }
 
-        [TestCase(0, 1)]
-        [TestCase(1, 1)]
-        [TestCase(2, 2)]
-        [TestCase(3, 3)]
-        [TestCase(4, 5)]
-        [TestCase(5, 8)]
-        public void IsFibonacciNthElementValid(int skipCount, int result)
-        {
-            Assert.AreEqual(result, new FibonacciIterator().Skip(skipCount).First());
-        }
-
         [TestCase(0, DayOfWeek.Monday)]
         [TestCase(1, DayOfWeek.Tuesday)]
         [TestCase(2, DayOfWeek.Wednesday)]
@@ -55,6 +44,19 @@
             }
 
             Assert.AreEqual(7, result.Count);
+        }
+
+        [TestCase(0,  0)]
+        [TestCase(1,  1)]
+        [TestCase(2,  1)]
+        [TestCase(3,  2)]
+        [TestCase(4,  3)]
+        [TestCase(5,  5)]
+        [TestCase(6,  8)]
+        [TestCase(20, 6765)]
+        public void IsFibonacciNthElementValid(int skipCount, int result)
+        {
+            Assert.AreEqual(result, new FibonacciIterator().Skip(skipCount).First());
         }
     }
 }

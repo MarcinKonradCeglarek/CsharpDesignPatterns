@@ -4,15 +4,13 @@
 
     internal class Employee
     {
-        public Employee(Company company, Person person, string title, double salary)
+        public Employee(Person person, string title, double salary)
         {
-            this.Company = company;
             this.Person  = person;
             this.Title   = title;
             this.Salary  = salary;
         }
 
-        public Company Company { get; }
         public Guid    Id      => this.Person.Id;
         public Person  Person  { get; }
         public double  Salary  { get; set; }
@@ -20,7 +18,7 @@
 
         public override string ToString()
         {
-            return $"{this.Person}, {this.Title} at {this.Company}";
+            return $"{this.Person}, {this.Title}";
         }
 
         public void UpdateGender(string newGender)

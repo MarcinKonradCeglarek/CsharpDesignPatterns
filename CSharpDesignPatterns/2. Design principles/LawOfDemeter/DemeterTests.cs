@@ -16,7 +16,7 @@
         private static readonly Person AlexWesker = new Person("Alex", "Wesker", "Female", new DateTime(1960, 01, 01));
 
         [Test]
-        public void X()
+        public void UpdateEmployeeGenderBeginnerWay()
         {
             // Arrange
             var company = this.GetCompany();
@@ -29,7 +29,7 @@
         }
 
         [Test]
-        public void Y()
+        public void UpdateEmployeeGenderDemeterWay()
         {
             // Arrange
             var company = this.GetCompany();

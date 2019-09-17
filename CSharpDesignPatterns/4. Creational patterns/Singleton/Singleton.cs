@@ -7,9 +7,6 @@
      */
     internal class Singleton
     {
-        private static readonly object    Lock = new object();
-        private static          Singleton instance;
-
         private Singleton()
         {
             this.Id = Guid.NewGuid();
@@ -19,15 +16,7 @@
 
         public static Singleton GetInstance()
         {
-            lock (Lock)
-            {
-                if (instance == null)
-                {
-                    instance = new Singleton();
-                }
-            }
-
-            return instance;
+            throw new NotImplementedException();
         }
     }
 }

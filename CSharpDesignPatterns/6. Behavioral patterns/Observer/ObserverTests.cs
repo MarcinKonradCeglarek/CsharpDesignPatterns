@@ -3,6 +3,7 @@
     using System;
 
     using CSharpDesignPatterns.Common.Model;
+    using CSharpDesignPatterns._6._Behavioral_patterns.Observer.Model;
 
     using Moq;
 
@@ -25,8 +26,7 @@
                 using (sut.Subscribe(observer2))
                 {
                     Assert.AreEqual(2,         sut.Observers.Count);
-                    Assert.AreEqual(observer1, sut.Observers[0]);
-                    Assert.AreEqual(observer2, sut.Observers[1]);
+                    CollectionAssert.AreEquivalent(new[] { observer1, observer2 }, sut.Observers);
                 }
             }
 
@@ -34,7 +34,7 @@
         }
 
         [Test]
-        public void Subscribe2Unsubscribe1_ValidOneRemains()
+        public void Subscribe2Unsubscribe1AndRaiseEvent_ValidOneRemains()
         {
             const string Message = "TestMessage";
             var          sut     = new Subject();
@@ -55,7 +55,7 @@
         }
 
         [Test]
-        public void Subscribe2Unsubscribe1SendMessage_MessageIsOnlyForwardedToSubscribedObserver()
+        public void Subscribe2Unsubscribe1RaiseEvent_MessageIsOnlyForwardedToSubscribedObserver()
         {
             const string Message = "TestMessage";
             var          sut     = new Subject();
@@ -77,7 +77,7 @@
         }
 
         [Test]
-        public void SubscribeTwoObserversAndDisplayEventTwice()
+        public void SubscribeTwoObserversAndRaiseEvent_EventIsDisplayedTwice()
         {
             const string Message = "One Ring to rule them all";
             var          sut     = new Subject();

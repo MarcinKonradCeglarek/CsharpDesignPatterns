@@ -15,7 +15,9 @@
         {
             var original = new FacebookUser(OriginalName, new[] { "John Wick", "Thomas Anderson" });
 
-            var caretaker = new CareTaker(original, new Action<FacebookUser>[] { u => u.ChangeName(NewName), u => u.AddFriend("Barbie") });
+            var caretaker = new CareTaker(
+                original,
+                new Action<FacebookUser>[] { u => u.ChangeName(NewName), u => u.AddFriend("Barbie") });
 
             Assert.AreEqual(NewName, original.Name);
             Assert.AreEqual(3,       original.Friends.Count);
@@ -28,7 +30,12 @@
 
             var caretaker = new CareTaker(
                 original,
-                new Action<FacebookUser>[] { u => u.ChangeName(NewName), u => u.AddFriend("Barbie"), u => throw new InvalidOperationException() });
+                new Action<FacebookUser>[]
+                    {
+                        u => u.ChangeName(NewName),
+                        u => u.AddFriend("Barbie"),
+                        u => throw new InvalidOperationException()
+                    });
 
             Assert.AreEqual(OriginalName, original.Name);
             Assert.AreEqual(2,            original.Friends.Count);

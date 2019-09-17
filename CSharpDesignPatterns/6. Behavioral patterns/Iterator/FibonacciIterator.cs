@@ -1,5 +1,6 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Iterator
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -10,19 +11,7 @@
     {
         public IEnumerator<int> GetEnumerator()
         {
-            var a = 1;
-            var b = 1;
-
-            yield return 1;
-            yield return 1;
-
-            while (true)
-            {
-                var c = a + b;
-                a = b;
-                b = c;
-                yield return b;
-            }
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
