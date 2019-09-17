@@ -1,13 +1,11 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
+    using System;
+
     public class Diner
     {
-        private double totalAmount = 0;
-
         public Diner(IBillingStrategy billingStrategy, ITippingStrategy tippingStrategy)
         {
-            this.BillingStrategy = billingStrategy;
-            this.TippingStrategy = tippingStrategy;
         }
 
         public IBillingStrategy BillingStrategy { get; set; }
@@ -16,13 +14,12 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 
         public void Order(double price)
         {
-            var priceAfterBilling = this.BillingStrategy.GetPrice(price);
-            this.totalAmount += priceAfterBilling + this.TippingStrategy.GetTip(priceAfterBilling);
+            throw new NotImplementedException();
         }
 
         public double GetTotalAmount()
         {
-            return this.totalAmount;
+            throw new NotImplementedException();
         }
     }
 }

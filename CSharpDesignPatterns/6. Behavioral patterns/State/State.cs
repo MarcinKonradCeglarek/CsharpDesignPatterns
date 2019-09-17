@@ -86,12 +86,12 @@
 
             public void Publish()
             {
-                throw new InvalidOperationException("Draft can't be published");
+                throw new NotImplementedException();
             }
 
             public void Review(User reviewer, bool approval)
             {
-                throw new InvalidOperationException("Draft can't be reviewed");
+                throw new NotImplementedException();
             }
 
             public void SubmitForReview()
@@ -104,22 +104,22 @@
         {
             public void Edit(string changes)
             {
-                throw new InvalidOperationException("Published document can't be edited");
+                throw new NotImplementedException();
             }
 
             public void Publish()
             {
-                throw new InvalidOperationException("Published document can't be published");
+                throw new NotImplementedException();
             }
 
             public void Review(User reviewer, bool approval)
             {
-                throw new InvalidOperationException("Published document can't be reviewed");
+                throw new NotImplementedException();
             }
 
             public void SubmitForReview()
             {
-                throw new InvalidOperationException("Published document can't be submitted for review");
+                throw new NotImplementedException();
             }
         }
 
@@ -147,7 +147,7 @@
 
             public void SubmitForReview()
             {
-                throw new InvalidOperationException("Document is already under review");
+                throw new NotImplementedException();
             }
         }
     }
