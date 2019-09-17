@@ -1,19 +1,19 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
+namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
 {
     using System;
     using System.Collections.Generic;
 
     internal class FlyweightTreeRepository
     {
-        public IDictionary<Guid, Tree> Trees     { get; } = new Dictionary<Guid, Tree>();
-        public IDictionary<string, TreeModel> TreeTypes { get; } = new Dictionary<string, TreeModel>();
+        public IDictionary<int, Tree> Trees     { get; } = new Dictionary<int, Tree>();
+        public IDictionary<string, TreeModel> TreeModels { get; } = new Dictionary<string, TreeModel>();
 
-        public Guid CreateTree(TreeModel treeModel, Position position)
+        public int CreateTree(TreeModel treeModel, Position position)
         {
             return this.CreateTree(treeModel.Name, position);
         }
 
-        public Guid CreateTree(string name, Position position)
+        public int CreateTree(string name, Position position)
         {
             TreeModel treeModel;
             if (this.TreeTypes.ContainsKey(name))

@@ -1,5 +1,8 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade
+namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 {
+    using System;
+    using System.Collections.Generic;
+
     /*
          * https://refactoring.guru/design-patterns/facade
          */
