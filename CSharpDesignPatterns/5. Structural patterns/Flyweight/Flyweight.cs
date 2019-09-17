@@ -5,6 +5,7 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
 
     internal class FlyweightTreeRepository
     {
+        private int counter;
         public IDictionary<int, Tree> Trees     { get; } = new Dictionary<int, Tree>();
         public IDictionary<string, TreeModel> TreeModels { get; } = new Dictionary<string, TreeModel>();
 
@@ -16,17 +17,17 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Flyweight
         public int CreateTree(string name, Position position)
         {
             TreeModel treeModel;
-            if (this.TreeTypes.ContainsKey(name))
+            if (this.TreeModels.ContainsKey(name))
             {
-                treeModel = this.TreeTypes[name];
+                treeModel = this.TreeModels[name];
             }
             else
             {
                 treeModel = new TreeModel(name);
-                this.TreeTypes.Add(name, treeModel);
+                this.TreeModels.Add(name, treeModel);
             }
 
-            var newId = Guid.NewGuid();
+            var newId = this.counter++;
             this.Trees.Add(newId, new Tree(treeModel, position));
             return newId;
         }

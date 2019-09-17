@@ -70,13 +70,15 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
         private ChainOfResponsibilityLogger InsertAsLastElementOfChain(ChainOfResponsibilityLogger nextChainOfResponsibilityLogger)
         {
-            var currentLogger = this;
-            while (currentLogger.Next != null)
+            if (this.Next != null)
             {
-                currentLogger = currentLogger.Next;
+                this.Next.AddNext(nextChainOfResponsibilityLogger);
+            }
+            else
+            {
+                this.Next = nextChainOfResponsibilityLogger;
             }
 
-            currentLogger.Next = nextChainOfResponsibilityLogger;
             return this;
         }
 
