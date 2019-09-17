@@ -11,15 +11,17 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public class EmailLoggerChainOfResponsibility : LoggerChainOfResponsibility
     {
+        private readonly IEmail email;
+
         public EmailLoggerChainOfResponsibility(LogLevel mask, IEmail email)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.email = email;
         }
 
         protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.email.SendEmail(message);
         }
     }
 }

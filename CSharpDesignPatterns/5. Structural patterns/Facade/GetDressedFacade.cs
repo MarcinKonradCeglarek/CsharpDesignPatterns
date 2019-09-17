@@ -16,12 +16,20 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 
         public string GetCasualClothes()
         {
-            throw new NotImplementedException();
+            var shoes = this.shoesCloset.GetCasualShoes();
+            var clothes = this.wardrobe.GetCasualWear();
+            var accesories = this.accessoriesDrawer.GetCasualAccessories();
+
+            return $"Casual clothes: [{shoes},{clothes},{accesories}]";
         }
 
         public string GetSmartClothes()
         {
-            throw new NotImplementedException();
+            var shoes      = this.shoesCloset.GetSmartShoes();
+            var clothes    = this.wardrobe.GetSuit();
+            var accesories = this.accessoriesDrawer.GetSmartAccessories();
+
+            return $"Smart clothes: [{shoes},{clothes},{accesories}]";
         }
     }
 }

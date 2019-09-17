@@ -11,15 +11,17 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public class ConsoleLoggerChainOfResponsibility : LoggerChainOfResponsibility
     {
+        private readonly IConsole messageConsole;
+
         public ConsoleLoggerChainOfResponsibility(LogLevel mask, IConsole messageConsole)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.messageConsole = messageConsole;
         }
 
         protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.messageConsole.WriteMessage(message);
         }
     }
 }

@@ -26,34 +26,42 @@
     {
     }
 
-    public abstract class Plant : IAlive
+    [Plant]
+    public abstract class Plant : IAlive, IPlant
     {
     }
 
+    [Plant]
     public class Tree : Plant
     {
     }
 
+    [Plant]
     public class Mushroom : Plant
     {
     }
 
+    [Plant]
     public class Bush : Plant
     {
     }
 
-    public abstract class Animal : IAlive
+    [Animal]
+    public abstract class Animal : IAlive, IAnimal
     {
     }
 
+    [Animal]
     public class Dog : Animal
     {
     }
 
+    [Animal]
     public class Elephant : Animal
     {
     }
 
+    [Animal, Sentient]
     public class Human : Animal
     {
     }

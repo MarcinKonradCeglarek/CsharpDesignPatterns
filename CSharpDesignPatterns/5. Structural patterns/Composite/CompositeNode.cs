@@ -7,16 +7,17 @@
 
     public class CompositeNode : IComposite
     {
-        public IReadOnlyCollection<IComposite> Children { get; }
+        private readonly List<IComposite> children = new List<IComposite>();
+        public IReadOnlyCollection<IComposite> Children => new ReadOnlyCollection<IComposite>(this.children);
 
         public void Add(IComposite node)
         {
-            throw new NotImplementedException();
+            this.children.Add(node);
         }
 
         public string Print()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",", this.children.Select(c => c.Print()))}]";
         }
     }
 }

@@ -11,15 +11,17 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     internal class FileLoggerChainOfResponsibility : LoggerChainOfResponsibility
     {
+        private readonly IFileWriter file;
+
         public FileLoggerChainOfResponsibility(LogLevel mask, IFileWriter file)
             : base(mask)
         {
-            throw new NotImplementedException();
+            this.file = file;
         }
 
         protected override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
+            this.file.AppendToLogFile(message);
         }
     }
 }

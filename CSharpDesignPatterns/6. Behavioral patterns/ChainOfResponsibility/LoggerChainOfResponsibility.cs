@@ -12,21 +12,37 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
     public abstract class LoggerChainOfResponsibility
     {
+        private readonly LogLevel mask;
+
         protected LoggerChainOfResponsibility(LogLevel mask)
         {
-            throw new NotImplementedException();
+            this.mask = mask;
         }
 
-        public LoggerChainOfResponsibility Next { get; }
+        public LoggerChainOfResponsibility Next { get; private set; }
 
         public LoggerChainOfResponsibility AddNext(LoggerChainOfResponsibility @new)
         {
-            throw new NotImplementedException();
+            if (this.Next == null)
+            {
+                this.Next = @new;
+            }
+            else
+            {
+                this.Next.AddNext(@new);
+            }
+
+            return this;
         }
 
         public void LogMessage(LogLevel severity, string message)
         {
-            throw new NotImplementedException();
+            if (Helper.DoesLevelMatchMask(severity, this.mask))
+            {
+                this.ProcessMessage(message);
+            }
+
+            this.Next?.LogMessage(severity, message);
         }
 
         protected abstract void ProcessMessage(string message);

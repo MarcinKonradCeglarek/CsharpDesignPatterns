@@ -5,16 +5,18 @@
 
     public class CompositeLeaf : IComposite
     {
+        private readonly string name;
+
         public CompositeLeaf(string name)
         {
-            throw new NotImplementedException();
+            this.name = name;
         }
 
         public IReadOnlyCollection<IComposite> Children { get; }
 
         public string Print()
         {
-            throw new NotImplementedException();
+            return this.name;
         }
     }
 }

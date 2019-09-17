@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /*
      *
@@ -14,12 +15,14 @@
      */
     public class WithMilkDecorator : ICoffee
     {
+        private readonly ICoffee coffee;
+
         public WithMilkDecorator(ICoffee coffee)
         {
-            throw new NotImplementedException();
+            this.coffee = coffee;
         }
 
-        public List<Ingredients> Contents { get; }
-        public double            Cost     { get; }
+        public List<Ingredients> Contents => this.coffee.Contents.Concat(new[] { Ingredients.Milk }).ToList();
+        public double Cost => this.coffee.Cost + 0.5;
     }
 }

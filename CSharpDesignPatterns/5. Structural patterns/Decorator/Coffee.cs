@@ -20,7 +20,7 @@
 
     public class Coffee : ICoffee
     {
-        public List<Ingredients> Contents { get; }
-        public double Cost { get; }
+        public List<Ingredients> Contents { get; } = new List<Ingredients>() { Ingredients.Coffee };
+        public double Cost { get; } = 1;
     }
 }

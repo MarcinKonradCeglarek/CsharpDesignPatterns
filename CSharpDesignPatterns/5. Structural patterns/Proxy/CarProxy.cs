@@ -11,14 +11,25 @@
 
     public class CarProxy : ICar
     {
+        private readonly Driver driver;
+        private readonly ICar car;
+
         public CarProxy(Driver driver, ICar car)
         {
-            throw new NotImplementedException();
+            this.driver = driver;
+            this.car = car;
         }
 
         public string DriveCar()
         {
-            throw new NotImplementedException();
+            if (this.driver.HasDrivingLicense && this.driver.Age >= 18)
+            {
+                return this.car.DriveCar();
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
         }
     }
 }

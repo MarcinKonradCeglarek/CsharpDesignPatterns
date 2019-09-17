@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /*
      *
@@ -16,11 +17,12 @@
     {
         public WithSprinklesDecorator(ICoffee coffee)
         {
-            throw new NotImplementedException();
+            this.Cost = coffee.Cost + 0.2;
+            this.Contents = coffee.Contents.Concat(new[] { Ingredients.Sprinkles }).ToList();
         }
 
         // Everything in properties 
-        public List<Ingredients> Contents => throw new NotImplementedException();
-        public double            Cost     => throw new NotImplementedException();
+        public List<Ingredients> Contents { get; }
+        public double Cost { get; }
     }
 }
