@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using CSharpDesignPatterns._6._Behavioral_patterns.Visitor.Model;
+
     using NUnit.Framework;
 
     [TestFixture]
@@ -26,9 +28,30 @@
         public void PassengersCapacityVisitor()
         {
             var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            Client.Visit(this.components, passengersCapacityVisitor);
 
+            // Act
+            foreach (var component in this.components)
+            {
+                component.Accept(passengersCapacityVisitor);
+            }
+
+            // Assert
             Assert.AreEqual(ExpectedPassengers, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void CargoCapacityVisitor()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+
+            // Act
+            foreach (var component in this.components)
+            {
+                component.Accept(cargoCapacityVisitor);
+            }
+
+            // Assert
+            Assert.AreEqual(ExpectedCargo, cargoCapacityVisitor.GetTotalCargoValue);
         }
 
         [Test]
@@ -52,16 +75,6 @@
             var passengers = this.components.Sum(c => getPassengers(c));
 
             Assert.AreEqual(ExpectedPassengers, passengers);
-        }
-
-
-        [Test]
-        public void CargoCapacityVisitor()
-        {
-            var cargoCapacityVisitor = new CargoCapacityVisitor();
-            Client.Visit(this.components, cargoCapacityVisitor);
-
-            Assert.AreEqual(ExpectedCargo, cargoCapacityVisitor.GetTotalCargoValue);
         }
 
         [Test]

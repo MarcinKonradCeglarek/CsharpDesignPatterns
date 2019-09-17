@@ -23,26 +23,4 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
             throw new NotImplementedException();
         }
     }
-
-    public interface IBillingStrategy
-    {
-        double GetPrice(double originalPrice);
-    }
-
-    public class NormalStrategy : IBillingStrategy
-    {
-        public double GetPrice(double originalPrice)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class HappyHourStrategy : IBillingStrategy
-    {
-        // Price is 50% off
-        public double GetPrice(double originalPrice)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

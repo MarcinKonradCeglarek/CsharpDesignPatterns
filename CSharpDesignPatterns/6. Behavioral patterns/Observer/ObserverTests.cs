@@ -3,6 +3,7 @@
     using System;
 
     using CSharpDesignPatterns.Common.Model;
+    using CSharpDesignPatterns._6._Behavioral_patterns.Observer.Model;
 
     using Moq;
 

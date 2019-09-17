@@ -1,26 +1,18 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
 {
     using System;
+    using System.Collections.Generic;
 
-    using CSharpDesignPatterns.Common.Model;
     using CSharpDesignPatterns._6._Behavioral_patterns.Observer.Model;
 
-    public class Observer : IObserver<PayLoad>
+    public class Unsubscriber : IDisposable
     {
-        public Observer(IDisplayer logger)
+        public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
             throw new NotImplementedException();
         }
 
-        public void OnCompleted()
-        {
-        }
-
-        public void OnError(Exception error)
-        {
-        }
-
-        public void OnNext(PayLoad payload)
+        public void Dispose()
         {
             throw new NotImplementedException();
         }

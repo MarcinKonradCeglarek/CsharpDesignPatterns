@@ -3,7 +3,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class StrategyTests
+    public class DinerTests
     {
         private readonly IBillingStrategy happyHourStrategy = new HappyHourStrategy();
         private readonly IBillingStrategy normalStrategy    = new NormalStrategy();
