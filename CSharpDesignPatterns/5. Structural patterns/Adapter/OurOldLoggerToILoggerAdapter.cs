@@ -6,6 +6,13 @@
 
     /*
      * https://refactoring.guru/design-patterns/adapter
+     *
+     * LogLevel.Debug                -> LogDebug
+     * LogLevel.Info                 -> LogInfo
+     * LogLevel.Warning              -> LogWarn
+     * LogLevel.Error                -> LogError
+     * LogLevel.Error with Exception -> LogException
+     * LogLevel.Functional*          -> none;
      */
     public interface IOurOldLogger
     {
@@ -23,14 +30,5 @@
         {
             throw new NotImplementedException();
         }
-    }
-
-    public enum LogLevel
-    {
-        Debug,
-        Info,
-        Warn,
-        Error,
-        Exception
     }
 }

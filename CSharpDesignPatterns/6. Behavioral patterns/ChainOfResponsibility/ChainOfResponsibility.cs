@@ -2,22 +2,13 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 {
     using System;
 
+    using CSharpDesignPatterns.Common.Model;
+
     /*
      * https://refactoring.guru/design-patterns/chain-of-responsibility
      *
      * https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
      */
-    [Flags]
-    public enum LogLevel
-    {
-        Info              = 0b00000001,
-        Debug             = 0b00000010,
-        Warning           = 0b00000100,
-        Error             = 0b00001000,
-        FunctionalMessage = 0b00010000,
-        FunctionalError   = 0b00100000,
-        All               = 0b00111111
-    }
 
     public interface IConsole
     {

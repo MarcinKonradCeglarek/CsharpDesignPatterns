@@ -2,6 +2,8 @@
 {
     using System;
 
+    using CSharpDesignPatterns.Common.Model;
+
     using Moq;
 
     using NUnit.Framework;
