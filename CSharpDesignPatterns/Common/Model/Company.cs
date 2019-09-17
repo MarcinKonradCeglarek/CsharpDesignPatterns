@@ -24,7 +24,7 @@
                 throw new ApplicationException($"Person {person} is already hired");
             }
 
-            var employee = new Employee(this, person, title, salary);
+            var employee = new Employee(person, title, salary);
             this.employees.Add(person.Id, employee);
             return employee;
         }

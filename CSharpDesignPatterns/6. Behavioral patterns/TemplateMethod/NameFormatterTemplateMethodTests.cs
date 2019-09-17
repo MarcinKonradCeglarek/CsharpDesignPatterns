@@ -3,7 +3,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class TemplateMethodTests
+    public class NameFormatterTemplateMethodTests
     {
         [Test]
         public void PeasantFormatter()
@@ -23,11 +23,10 @@
             var secondName = "Peter";
             var thirdName  = "Andrew";
             var lastName   = "Bailish";
-            var suffix     = new[] { "the third", "king of Andals" };
 
-            var formatter = new RoyaltyNameFormatter("sir", firstName, secondName, thirdName, lastName, suffix);
+            var formatter = new RoyaltyNameFormatter("sir", firstName, secondName, thirdName, lastName);
 
-            Assert.AreEqual($"sir {firstName} {secondName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
+            Assert.AreEqual($"sir {firstName} {secondName} {thirdName} von {lastName}", formatter.GetName());
         }
 
         [Test]
@@ -36,13 +35,11 @@
             var firstName = "Gregory";
             var thirdName = "Andrew";
             var lastName  = "Bailish";
-            var suffix    = new[] { "the third", "king of Andals" };
 
-            var formatter = new RoyaltyNameFormatter("sir", firstName, null, thirdName, lastName, suffix);
+            var formatter = new RoyaltyNameFormatter("sir", firstName, null, thirdName, lastName);
 
-            Assert.AreEqual($"sir {firstName} {thirdName} von {lastName} {suffix[0]}, {suffix[1]}", formatter.GetName());
+            Assert.AreEqual($"sir {firstName} {thirdName} von {lastName}", formatter.GetName());
         }
-
 
         [Test]
         public void RoyaltyFormatterWithJustFirstAndLastName()
@@ -50,7 +47,7 @@
             const string FirstName = "Poor";
             const string LastName  = "Peasant";
 
-            var formatter = new RoyaltyNameFormatter(null, FirstName, null, null, LastName, null);
+            var formatter = new RoyaltyNameFormatter(null, FirstName, null, null, LastName);
 
             Assert.AreEqual($"{FirstName} von {LastName}", formatter.GetName());
         }
