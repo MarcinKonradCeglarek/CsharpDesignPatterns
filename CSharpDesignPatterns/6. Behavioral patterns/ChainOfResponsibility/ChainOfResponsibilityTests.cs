@@ -27,6 +27,58 @@
             Assert.IsFalse(Helper.DoesLevelMatchMask(severity, mask));
         }
 
+        [TestCase(LogLevel.Debug)]
+        [TestCase(LogLevel.Info)]
+        [TestCase(LogLevel.Error)]
+        [TestCase(LogLevel.FunctionalError)]
+        [TestCase(LogLevel.FunctionalMessage)]
+        public void MessagesHandledBySingleConsoleLogger(LogLevel logLevel)
+        {
+            var message1 = Guid.NewGuid().ToString();
+            var consoleWriter = new Mock<IConsole>();
+            var logger = new ChainOfResponsibilityConsoleLogger(logLevel, consoleWriter.Object);
+
+            logger.LogMessage(logLevel, message1);
+
+            // Assert
+            consoleWriter.Verify(m => m.WriteMessage(message1), Times.Once);
+        }
+
+        [TestCase(LogLevel.Debug)]
+        [TestCase(LogLevel.Info)]
+        [TestCase(LogLevel.Error)]
+        [TestCase(LogLevel.FunctionalError)]
+        [TestCase(LogLevel.FunctionalMessage)]
+        public void MessagesHandledBySingleEmailLogger(LogLevel logLevel)
+        {
+            var message1      = Guid.NewGuid().ToString();
+            var emailWriter = new Mock<IEmail>();
+            var logger        = new ChainOfResponsibilityEmailLogger(logLevel, emailWriter.Object);
+
+            logger.LogMessage(logLevel, message1);
+
+            // Assert
+            emailWriter.Verify(m => m.SendEmail(message1), Times.Once);
+        }
+
+        [TestCase(LogLevel.Debug)]
+        [TestCase(LogLevel.Info)]
+        [TestCase(LogLevel.Error)]
+        [TestCase(LogLevel.FunctionalError)]
+        [TestCase(LogLevel.FunctionalMessage)]
+        public void MessagesHandledBySingleFileLogger(LogLevel logLevel)
+        {
+            var message1 = Guid.NewGuid().ToString();
+            var fileWriter    = new Mock<IFileWriter>();
+
+            var logger = new ChainOfResponsibilityFileLogger(logLevel, fileWriter.Object);
+
+            logger.LogMessage(logLevel, message1);
+
+            // Assert
+            fileWriter.Verify(m => m.AppendToLogFile(message1), Times.Once);
+        }
+
         [Test]
         public void DebugAndInfoMessagesHandledOnlyByConsoleLogger()
         {
