@@ -5,17 +5,20 @@
     public class Circle : Shape
     {
         private readonly double radius;
+        private readonly IDrawBridge drawBridge;
         private readonly Point  center;
 
         public Circle(Point center, double radius, IDrawBridge drawBridge)
             : base(drawBridge)
         {
-            throw new NotImplementedException();
+            this.center = center;
+            this.radius = radius;
+            this.drawBridge = drawBridge;
         }
 
         public override string Draw()
         {
-            throw new NotImplementedException();
+            return this.drawBridge.DrawCircle(this.center, this.radius);
         }
     }
 }

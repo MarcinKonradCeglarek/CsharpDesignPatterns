@@ -11,7 +11,17 @@
     {
         public static IDriver GetDriver(DriverType type)
         {
-            throw new NotImplementedException();
+            switch (type)
+            {
+                case DriverType.Graphics:
+                    return new GraphicsCardDriver();
+                case DriverType.HardDisk:
+                    return new HardDiskDriver();
+                case DriverType.Usb:
+                    return new UsbDriver();
+                default:
+                    throw new NotSupportedException();
+            }
         }
     }
 }

@@ -16,17 +16,17 @@
 
         public DrawBridge(string color)
         {
-            throw new NotImplementedException();
+            this.color = color;
         }
 
         public string DrawCircle(Point center, double radius)
         {
-            throw new NotImplementedException();
+            return $"{this.color} circle at [{center.X:N2}, {center.Y:N2}], radius: {radius:N2}";
         }
 
         public string DrawRectangle(Point upperLeft, double width, double height)
         {
-            throw new NotImplementedException();
+            return $"{this.color} rectangle starting at [{upperLeft.X:N2}, {upperLeft.Y:N2}] with width: {width:N2} and height {height:N2}";
         }
     }
 }
