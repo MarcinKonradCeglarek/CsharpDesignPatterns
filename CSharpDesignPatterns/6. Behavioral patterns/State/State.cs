@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.State
+namespace CSharpDesignPatterns._6._Behavioral_patterns.State
 {
     using System;
     using System.Collections.Generic;
@@ -15,11 +15,12 @@
      * In Draft state:
      * - Document can be edited
      * - Document can be SubmittedForReview if it's not empty
+     *      State changed to SubmittedForReview
      *
      * In SubmittedForReview state:
      * - Document can be edited
      * - Document can be reviewed (by others)
-     * - Document can be Published if most recent approval from each reviewer is positive
+     * - Document can be Published if have at least one approval and most recent approval from each reviewer is positive
      *
      * In Published state:
      * - no operations on document are permitted

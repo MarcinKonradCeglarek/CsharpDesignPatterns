@@ -24,7 +24,7 @@
         [Test]
         public void Alternative()
         {
-            Func<int, bool> myCondition = a => a > 9000 | (a > 0 && a < 10);
+            Func<int, bool> myCondition = a => a > 9000 || (a > 0 && a < 10);
 
             Assert.IsTrue(myCondition(5));
             Assert.IsTrue(myCondition(9999));

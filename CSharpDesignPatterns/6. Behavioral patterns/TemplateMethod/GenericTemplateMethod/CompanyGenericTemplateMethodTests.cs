@@ -39,12 +39,11 @@
         {
             var person     = Generator.GeneratePerson();
             var company    = Generator.GenerateCompany();
-            var newCompany = Generator.GenerateCompany();
 
             var sut = new CompanyGenericTemplateMethod();
 
             Assert.Throws<InvalidOperationException>(
-                () => sut.MoveChild(company, newCompany, new Employee(person, "Title", 10000)));
+                () => sut.RemoveFromParent(company, new Employee(person, "Title", 10000)));
         }
 
         [Test]
