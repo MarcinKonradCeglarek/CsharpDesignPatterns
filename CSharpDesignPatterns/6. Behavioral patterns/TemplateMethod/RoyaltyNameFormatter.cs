@@ -22,7 +22,7 @@
         }
 
         protected override IEnumerable<string> GetFirstNames() =>
-            new[] { this.firstName, this.secondName, this.thirdName }.Where(s => !string.IsNullOrEmpty(s));
+            new[] { this.firstName, this.secondName, this.thirdName };
 
         protected override string GetLastName() => $"von {this.lastName}";
 

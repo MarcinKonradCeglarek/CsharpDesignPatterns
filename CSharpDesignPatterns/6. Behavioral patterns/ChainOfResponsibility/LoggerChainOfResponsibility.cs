@@ -23,16 +23,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
 
         public LoggerChainOfResponsibility AddNext(LoggerChainOfResponsibility @new)
         {
-            if (this.Next == null)
-            {
-                this.Next = @new;
-            }
-            else
-            {
-                this.Next.AddNext(@new);
-            }
-
-            return this;
+            return this.AddToChainAsLastItem(@new);
         }
 
         public void LogMessage(LogLevel severity, string message)
@@ -46,5 +37,32 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
         }
 
         protected abstract void ProcessMessage(string message);
+
+        private LoggerChainOfResponsibility AddToChainAsHeadItem(LoggerChainOfResponsibility @new)
+        {
+            @new.Next = this;
+            return @new;
+        }
+
+        private LoggerChainOfResponsibility AddToChainAsSecondItem(LoggerChainOfResponsibility @new)
+        {
+            @new.Next = this.Next;
+            this.Next = @new;
+            return this;
+        }
+
+        private LoggerChainOfResponsibility AddToChainAsLastItem(LoggerChainOfResponsibility @new)
+        {
+            if (this.Next == null)
+            {
+                this.Next = @new;
+            }
+            else
+            {
+                this.Next.AddNext(@new);
+            }
+
+            return this;
+        }
     }
 }

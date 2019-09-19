@@ -85,6 +85,7 @@
     <Compile Include="3. SOLID principles\3. ListkovSubstitution.cs" />
     <Compile Include="3. SOLID principles\4. InterfaceSegregation.cs" />
     <Compile Include="3. SOLID principles\5. DependencyInversion.cs" />
+    <Compile Include="3. SOLID principles\DependencyInversionTests.cs" />
     <Compile Include="4. Creational patterns\AbstractFactory\AbstractFactory.cs" />
     <Compile Include="4. Creational patterns\Builder\CarBuilder.cs" />
     <Compile Include="4. Creational patterns\Builder\CarBuilderTests.cs" />

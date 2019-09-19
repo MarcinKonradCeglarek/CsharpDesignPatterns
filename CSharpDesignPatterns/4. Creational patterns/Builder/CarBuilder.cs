@@ -25,13 +25,6 @@
 
         public CarBuilder GasolineEngine()
         {
-            /*
-             * If already set
-             *    throw InvalidOperationException
-             *
-             * set engineType
-             * return builder
-             */
             if (this.engineType.HasValue)
             {
                 throw new InvalidOperationException();
@@ -43,14 +36,6 @@
 
         public CarBuilder DieselEngine()
         {
-            /*
-             * If already set
-             *    throw InvalidOperationException
-             * 
-             * set engineType
-             *
-             * return builder
-             */
             if (this.engineType.HasValue)
             {
                 throw new InvalidOperationException();
@@ -62,18 +47,6 @@
 
         public CarBuilder ElectricEngine()
         {
-            /*
-             * If already set
-             *    throw InvalidOperationException
-             *
-             * if transmissionType is set to manual
-             *    throw InvalidOperationException
-             *
-             * set engineType
-             * set transmissionType
-             *
-             * return builder
-             */
             if (this.engineType.HasValue)
             {
                 throw new InvalidOperationException();
@@ -91,18 +64,6 @@
 
         public CarBuilder HybridEngine()
         {
-            /*
-             * If already set
-             *    throw InvalidOperationException
-             *
-             * if transmissionType is set to manual
-             *    throw InvalidOperationException
-             *
-             * set engineType
-             * set transmissionType
-             *
-             * return builder
-             */
             if (this.engineType.HasValue)
             {
                 throw new InvalidOperationException();
@@ -120,16 +81,6 @@
 
         public CarBuilder ManualTransmission()
         {
-            /*
-             * Can not be used with Electric and Hybird engines
-             *
-             * If already set
-             *    throw InvalidOperationException
-             *
-             * set transmissionType
-             *
-             * return builder
-             */
             if (this.transmissionType.HasValue)
             {
                 throw new InvalidOperationException();
@@ -141,14 +92,6 @@
 
         public CarBuilder AutomaticTransmission()
         {
-            /*
-             * If already set
-             *    throw InvalidOperationException
-             * 
-             * set transmissionType
-             *
-             * return builder
-             */
             if (this.transmissionType.HasValue)
             {
                 throw new InvalidOperationException();
