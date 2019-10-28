@@ -18,6 +18,7 @@
             Assert.AreEqual(new GraphicsCardDriver().DeviceType, driver.DeviceType);
         }
 
+        [Test]
         public void GetDriverForUsbReturnsUsbDriver()
         {
             var driver = DriverFactoryMethod.GetDriver(DriverType.Usb);
@@ -26,6 +27,7 @@
             Assert.AreEqual(new UsbDriver().DeviceType, driver.DeviceType);
         }
 
+        [Test]
         public void GetDriverForHardDiskReturnsHardDiskDriver()
         {
             var driver = DriverFactoryMethod.GetDriver(DriverType.HardDisk);
