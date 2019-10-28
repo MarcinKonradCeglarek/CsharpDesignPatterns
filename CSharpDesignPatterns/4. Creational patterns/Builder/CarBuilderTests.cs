@@ -122,5 +122,13 @@
         {
             Assert.Throws<InvalidOperationException>(() => new CarBuilder().ElectricEngine().ManualTransmission().Build());
         }
+
+        [Test]
+        public void AlternativelyBuildCarWithSixWheels()
+        {
+            var car = new Car(wheels: 6, engineType: EngineType.Electric);
+
+            Assert.AreEqual(6, car.Wheels);
+        }
     }
 }
