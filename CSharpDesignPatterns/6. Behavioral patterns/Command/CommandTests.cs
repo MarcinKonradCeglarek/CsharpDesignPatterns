@@ -38,9 +38,10 @@
             device.Verify(d => d.PowerOn(),  Times.Once);
             device.Verify(d => d.PowerOff(), Times.Never);
 
+            device.ResetCalls();
             @switch.TurnOff();
 
-            device.Verify(d => d.PowerOn(),  Times.Once);
+            device.Verify(d => d.PowerOn(),  Times.Never);
             device.Verify(d => d.PowerOff(), Times.Once);
         }
 
