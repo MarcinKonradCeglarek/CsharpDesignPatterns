@@ -20,7 +20,7 @@
         [Test]
         public void CoffeeWithMilk()
         {
-            var coffee = new Coffee();
+            var coffee         = new Coffee();
             var coffeeWithMilk = new WithMilkDecorator(coffee);
 
             // Coffee
@@ -38,7 +38,7 @@
         [Test]
         public void CoffeeWithSprinkles()
         {
-            var coffee = new Coffee();
+            var coffee              = new Coffee();
             var coffeeWithSprinkles = new WithSprinklesDecorator(coffee);
 
             // Coffee
@@ -82,8 +82,8 @@
         [Test]
         public void CoffeeWithDoubleMilk()
         {
-            var cofee = new Coffee();
-            var coffee = new WithMilkDecorator(new WithMilkDecorator(cofee));
+            var coffee               = new Coffee();
+            var coffeeWithDoubleMilk = new WithMilkDecorator(new WithMilkDecorator(coffee));
 
             // Coffee
             Assert.AreEqual(1,                  coffee.Cost);
@@ -91,11 +91,11 @@
             Assert.AreEqual(Ingredients.Coffee, coffee.Contents.Single());
 
             // CoffeeWithDoubleMilk
-            Assert.AreEqual(2,                  coffee.Cost);
-            Assert.AreEqual(3,                  coffee.Contents.Count);
+            Assert.AreEqual(2, coffeeWithDoubleMilk.Cost);
+            Assert.AreEqual(3, coffeeWithDoubleMilk.Contents.Count);
             CollectionAssert.AreEquivalent(
                 new[] { Ingredients.Coffee, Ingredients.Milk, Ingredients.Milk },
-                coffee.Contents);
+                coffeeWithDoubleMilk.Contents);
         }
     }
 }
