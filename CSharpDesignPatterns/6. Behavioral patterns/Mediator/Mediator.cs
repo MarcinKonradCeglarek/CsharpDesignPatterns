@@ -21,7 +21,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public void Register(Guid clientId, Action<string, string> callback)
         {
-            this.clients.Add(clientId, callback);
+            throw new NotImplementedException();
         }
 
         public void SendMessage(Guid clientId, string author, string message)
@@ -30,13 +30,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
              * Check if client is on mediator's clients list
              *   if yes, broadcast messages to all other clients
              */
-            if (this.clients.ContainsKey(clientId))
-            {
-                foreach (var client in this.clients.Where(c => c.Key != clientId))
-                {
-                    client.Value(author, message);
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

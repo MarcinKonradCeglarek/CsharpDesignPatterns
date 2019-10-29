@@ -6,10 +6,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
     {
         public ChatMessageCounter(ChatRoomMediator mediator)
         {
-            /*
-             * Register with mediator (so that mediator knows who dispatch messages to)
-             */
-            mediator.Register(this.Id, (s1, s2) => this.Counter++);
+            throw new NotImplementedException();
         }
 
         public int    Counter { get; private set; }

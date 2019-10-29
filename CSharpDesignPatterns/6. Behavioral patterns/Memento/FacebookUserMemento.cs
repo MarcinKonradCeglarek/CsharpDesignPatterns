@@ -1,5 +1,6 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
+    using System;
     using System.Collections.Immutable;
 
     public class FacebookUserMemento
@@ -9,8 +10,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 
         public FacebookUserMemento(string name, ImmutableList<string> friends)
         {
-            this.Name    = name;
-            this.Friends = friends;
+            throw new NotImplementedException();
         }
     }
 }
