@@ -43,6 +43,7 @@
             diner.Order(25);
             diner.Order(5);
 
+            // 25 * 105% + 5 * 105%
             Assert.AreEqual((25 + 5) * 1.05, diner.GetTotalAmount(), Delta);
         }
 
@@ -54,6 +55,7 @@
             diner.Order(25);
             diner.Order(5);
 
+            // 25 * 50% * 105% + 5 * 50% * 105%
             Assert.AreEqual((12.5 + 2.5) * 1.05, diner.GetTotalAmount(), Delta);
         }
 
