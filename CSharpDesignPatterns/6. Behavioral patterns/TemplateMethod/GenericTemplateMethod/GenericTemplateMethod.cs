@@ -38,8 +38,11 @@
                 this.RemoveChild(oldParent, child);
                 this.AddChild(newParent, child);
             }
-
-            throw new InvalidOperationException();
+            else
+            {
+                throw new InvalidOperationException();
+            }
+            
         }
 
         protected abstract void AddChild(TParent    parent, TChild child);
