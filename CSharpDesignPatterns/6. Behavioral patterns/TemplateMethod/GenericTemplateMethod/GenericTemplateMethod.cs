@@ -6,15 +6,25 @@
     {
         public void AddToParent(TParent parent, TChild child)
         {
-            throw new NotImplementedException();
+            if (this.IsChild(parent, child))
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.AddChild(parent, child);
         }
 
         public void RemoveFromParent(TParent parent, TChild child)
         {
-            throw new NotImplementedException();
+            if (!this.IsChild(parent, child))
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.RemoveChild(parent, child);
         }
 
-        public void MoveChild(TParent oldParent, TParent newParent, TChild child)
+        public void MoveChildBetweenParents(TParent oldParent, TParent newParent, TChild child)
         {
             /*
              * Is child a children element of oldParent and not children element of newParent
@@ -23,8 +33,13 @@
              * else
              *    throw InvalidOperationException
              */
+            if (this.IsChild(oldParent, child) && !this.IsChild(newParent, child))
+            {
+                this.RemoveChild(oldParent, child);
+                this.AddChild(newParent, child);
+            }
 
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
 
         protected abstract void AddChild(TParent    parent, TChild child);

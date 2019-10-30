@@ -56,7 +56,7 @@
 
             var sut = new CompanyGenericTemplateMethod();
 
-            sut.MoveChild(oldCompany, newCompany, employee);
+            sut.MoveChildBetweenParents(oldCompany, newCompany, employee);
 
             Assert.IsTrue(newCompany.IsHired(person.Id));
             Assert.IsFalse(oldCompany.IsHired(person.Id));
