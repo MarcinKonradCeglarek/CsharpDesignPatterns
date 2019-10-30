@@ -130,7 +130,7 @@
                 aliceDisplay.Verify(m => m.HandleReceivedMessage("Bob", bobsMessage), Times.Once);
             }
 
-            Assert.AreEqual(6, counter.Counter);
+            Assert.AreEqual(bobsMessages.Count + aliceMessages.Count, counter.Counter);
         }
     }
 }
