@@ -12,7 +12,7 @@
         [Repeat(25)]
         public async Task AccessFromMultipleTasksReturnsSingleInstance()
         {
-            var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => Singleton.GetInstance()));
+            var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => SingletonViaLocking.GetInstance()));
             var singletons = await Task.WhenAll(tasks);
 
             var firstId = singletons[0].Id;
@@ -23,8 +23,8 @@
         [Repeat(25)]
         public void GetInstanceTwiceSameId()
         {
-            var instance1 = Singleton.GetInstance();
-            var instance2 = Singleton.GetInstance();
+            var instance1 = SingletonViaLocking.GetInstance();
+            var instance2 = SingletonViaLocking.GetInstance();
 
             Assert.AreEqual(instance1.Id, instance2.Id);
         }

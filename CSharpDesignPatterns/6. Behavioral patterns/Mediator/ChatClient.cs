@@ -8,7 +8,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
         public ChatClient(string name, ChatRoomMediator mediator, IReceivedMessagesHandler receivedMessagesHandler)
         {
-            this.Name     = name;
+            this.Name = name;
             this.mediator = mediator;
             this.mediator.Register(this.Id, receivedMessagesHandler.HandleReceivedMessage);
         }

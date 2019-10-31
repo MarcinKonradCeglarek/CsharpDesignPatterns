@@ -9,8 +9,8 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 
         public FacebookUserMemento(string name, ImmutableList<string> friends)
         {
-            this.Name    = name;
             this.Friends = friends;
+            this.Name    = name;
         }
     }
 }

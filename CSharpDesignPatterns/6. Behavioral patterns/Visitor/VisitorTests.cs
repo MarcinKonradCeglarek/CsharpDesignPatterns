@@ -25,45 +25,6 @@
             };
 
         [Test]
-        public void PassengersCapacityVisitorForOneCar()
-        {
-            var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var car                       = new Car(4);
-
-            // Act
-            car.Accept(passengersCapacityVisitor);
-
-            // Assert
-            Assert.AreEqual(3, passengersCapacityVisitor.PassengersCapacity);
-        }
-
-        [Test]
-        public void PassengersCapacityVisitorForOneTruck()
-        {
-            var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var truck                     = new Truck(5000);
-
-            // Act
-            truck.Accept(passengersCapacityVisitor);
-
-            // Assert
-            Assert.AreEqual(0, passengersCapacityVisitor.PassengersCapacity);
-        }
-
-        [Test]
-        public void PassengersCapacityVisitorForOneBus()
-        {
-            var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var bus                       = new Bus();
-
-            // Act
-            bus.Accept(passengersCapacityVisitor);
-
-            // Assert
-            Assert.AreEqual(40, passengersCapacityVisitor.PassengersCapacity);
-        }
-
-        [Test]
         public void CargoCapacityVisitorForOneCar()
         {
             var cargoCapacityVisitor = new CargoCapacityVisitor();
@@ -103,6 +64,60 @@
         }
 
         [Test]
+        public void CargoCapacityVisitor()
+        {
+            var cargoCapacityVisitor = new CargoCapacityVisitor();
+
+            // Act
+            foreach (var component in this.components)
+            {
+                component.Accept(cargoCapacityVisitor);
+            }
+
+            // Assert
+            Assert.AreEqual(ExpectedCargo, cargoCapacityVisitor.GetTotalCargoValue);
+        }
+
+        [Test]
+        public void PassengersCapacityVisitorForOneCar()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var car                       = new Car(4);
+
+            // Act
+            car.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(3, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void PassengersCapacityVisitorForOneTruck()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var truck                     = new Truck(5000);
+
+            // Act
+            truck.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(0, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
+        public void PassengersCapacityVisitorForOneBus()
+        {
+            var passengersCapacityVisitor = new PassengersCapacityVisitor();
+            var bus                       = new Bus();
+
+            // Act
+            bus.Accept(passengersCapacityVisitor);
+
+            // Assert
+            Assert.AreEqual(40, passengersCapacityVisitor.PassengersCapacity);
+        }
+
+        [Test]
         public void PassengersCapacityVisitor()
         {
             var passengersCapacityVisitor = new PassengersCapacityVisitor();
@@ -117,19 +132,29 @@
             Assert.AreEqual(ExpectedPassengers, passengersCapacityVisitor.PassengersCapacity);
         }
 
+        /*
+         * Alternatively if we only use public properties we don't need visitor!
+         */
         [Test]
-        public void CargoCapacityVisitor()
+        public void CargoCapacityWithLinq()
         {
-            var cargoCapacityVisitor = new CargoCapacityVisitor();
+            Func<IVehicle, double> getCargoCapacity = component =>
+                {
+                    if (component is Truck truck)
+                    {
+                        return truck.CargoCapacity;
+                    }
 
-            // Act
-            foreach (var component in this.components)
-            {
-                component.Accept(cargoCapacityVisitor);
-            }
+                    if (component is Car)
+                    {
+                        return 200;
+                    }
 
-            // Assert
-            Assert.AreEqual(ExpectedCargo, cargoCapacityVisitor.GetTotalCargoValue);
+                    return 0;
+                };
+
+            var sum = this.components.Sum(getCargoCapacity);
+            Assert.AreEqual(ExpectedCargo, sum);
         }
 
         [Test]
@@ -155,26 +180,5 @@
             Assert.AreEqual(ExpectedPassengers, passengers);
         }
 
-        [Test]
-        public void HomeAndParkUsingLinq()
-        {
-            Func<IVehicle, double> getCargoCapacity = component =>
-                {
-                    if (component is Truck truck)
-                    {
-                        return truck.CargoCapacity;
-                    }
-
-                    if (component is Car)
-                    {
-                        return 200;
-                    }
-
-                    return 0;
-                };
-
-            var sum = this.components.Sum(getCargoCapacity);
-            Assert.AreEqual(ExpectedCargo, sum);
-        }
     }
 }

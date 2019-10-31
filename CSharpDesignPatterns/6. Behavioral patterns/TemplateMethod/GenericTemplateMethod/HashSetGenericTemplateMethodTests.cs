@@ -70,7 +70,7 @@
             sut.AddToParent(hashSet1, value);
             sut.AddToParent(hashSet2, value);
 
-            Assert.Throws<InvalidOperationException>(() => sut.MoveChild(hashSet1, hashSet2, value));
+            Assert.Throws<InvalidOperationException>(() => sut.MoveChildBetweenParents(hashSet1, hashSet2, value));
         }
 
         [Test]
@@ -90,7 +90,7 @@
             sut.AddToParent(hashSet2, 12);
 
             sut.AddToParent(hashSet1, value);
-            sut.MoveChild(hashSet1, hashSet2, value);
+            sut.MoveChildBetweenParents(hashSet1, hashSet2, value);
             sut.RemoveFromParent(hashSet2, value);
 
             Assert.IsFalse(hashSet1.Contains(value));

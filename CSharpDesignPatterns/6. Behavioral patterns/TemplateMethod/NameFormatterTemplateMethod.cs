@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.TemplateMethod
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 

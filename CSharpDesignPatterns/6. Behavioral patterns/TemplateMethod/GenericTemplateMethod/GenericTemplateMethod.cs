@@ -28,7 +28,7 @@
             }
         }
 
-        public void MoveChild(TParent oldParent, TParent newParent, TChild child)
+        public void MoveChildBetweenParents(TParent oldParent, TParent newParent, TChild child)
         {
             if (this.IsChild(oldParent, child) && !this.IsChild(newParent, child))
             {
@@ -42,7 +42,7 @@
         }
 
         protected abstract void AddChild(TParent    parent, TChild child);
-        protected abstract bool IsChild(TParent     parent,    TChild child);
+        protected abstract bool IsChild(TParent     parent, TChild child);
         protected abstract void RemoveChild(TParent parent, TChild child);
     }
 }

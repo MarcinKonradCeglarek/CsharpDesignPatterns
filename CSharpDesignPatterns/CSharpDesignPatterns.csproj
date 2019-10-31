@@ -101,7 +101,7 @@
     <Compile Include="4. Creational patterns\FactoryMethod\Model\HardDiskDriver.cs" />
     <Compile Include="4. Creational patterns\LazyInitialization\NodeWithLazyChildren.cs" />
     <Compile Include="4. Creational patterns\LazyInitialization\NodeWithLazyChildrenTests.cs" />
-    <Compile Include="4. Creational patterns\Singleton\Singleton.cs" />
+    <Compile Include="4. Creational patterns\Singleton\SingletonViaLocking.cs" />
     <Compile Include="4. Creational patterns\Singleton\SingletonTests.cs" />
     <Compile Include="5. Structural patterns\Adapter\OurOldLoggerToILoggerAdapter.cs" />
     <Compile Include="5. Structural patterns\Adapter\OurOldLoggerToILoggerAdapterTests.cs" />

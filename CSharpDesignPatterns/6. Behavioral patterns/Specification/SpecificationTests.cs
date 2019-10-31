@@ -1,12 +1,14 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Specification
 {
     using System;
+    using System.Security.Cryptography.X509Certificates;
 
     using NUnit.Framework;
 
     [TestFixture]
     public class SpecificationTests
     {
+
         [Test]
         public void OrAnd_ProperlyWorksForGivenConditions()
         {
@@ -24,10 +26,27 @@
         [Test]
         public void Alternative()
         {
-            Func<int, bool> myCondition = a => a > 9000 | (a > 0 && a < 10);
+            Func<int, bool> myCondition = a => a > 9000 || (a > 0 && a < 10);
 
             Assert.IsTrue(myCondition(5));
             Assert.IsTrue(myCondition(9999));
+        }
+
+        /*
+         * https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators
+         */
+        [Test]
+        public void ConditionalLogicalOperator()
+        {
+            string x      = null;
+            var    result = x != null && x.StartsWith("D");
+        }
+
+        [Test]
+        public void LogicalOperator()
+        {
+            string x      = null;
+            var    result = x != null & x.StartsWith("D");
         }
     }
 }

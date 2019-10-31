@@ -127,5 +127,17 @@
             Assert.Throws<InvalidOperationException>(
                 () => new CarBuilder().ElectricEngine().ManualTransmission().Build());
         }
+
+        /******************************
+         * Alternatively: you can use constructor with default values and specify only ones you're interested in
+         ******************************/
+        [Test]
+        public void AlternativelyBuildCarWithSixWheels()
+        {
+            var car = new Car(wheels: 6, engineType: EngineType.Diesel);
+
+            Assert.AreEqual(6, car.Wheels);
+            Assert.AreEqual(EngineType.Diesel, car.EngineType);
+        }
     }
 }
