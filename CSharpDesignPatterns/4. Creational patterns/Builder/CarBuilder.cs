@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._4._Creational_patterns.Builder
+namespace CSharpDesignPatterns._4._Creational_patterns.Builder
 {
     using System;
 
@@ -33,7 +33,7 @@
         public CarBuilder DieselEngine()
         {
             /*
-             * If already set
+             * If engineType already set
              *    throw InvalidOperationException
              * 
              * set engineType
@@ -46,7 +46,7 @@
         public CarBuilder ElectricEngine()
         {
             /*
-             * If already set
+             * If engineType already set
              *    throw InvalidOperationException
              *
              * if transmissionType is set to manual
@@ -63,7 +63,7 @@
         public CarBuilder GasolineEngine()
         {
             /*
-             * If already set
+             * If engineType already set
              *    throw InvalidOperationException
              *
              * set engineType
@@ -75,7 +75,7 @@
         public CarBuilder HybridEngine()
         {
             /*
-             * If already set
+             * If engineType already set
              *    throw InvalidOperationException
              *
              * if transmissionType is set to manual
@@ -92,7 +92,7 @@
         public CarBuilder ManualTransmission()
         {
             /*
-             * Can not be used with Electric and Hybird engines
+             * Can not be used with Electric and Hybrid engines
              *
              * If already set
              *    throw InvalidOperationException
