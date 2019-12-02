@@ -10,6 +10,7 @@
 
     internal class DependencyInversion
     {
+        /* We could use System.IO.Abstractions here to inject IFile to better test this */
         public string GetAndFormatData()
         {
             var lines = File.ReadAllLines("3. SOLID principles\\data.txt");
@@ -41,12 +42,12 @@
         }
     }
 
-    /*public interface IFileX
+    /*public interface IFile
     {
         string[] ReadAllLines(string filename);
     }
 
-    public class FileX : IFileX
+    public class FileX : IFile
     {
         public string[] ReadAllLines(string filename)
         {
