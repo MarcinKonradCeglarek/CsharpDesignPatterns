@@ -1,7 +1,7 @@
-﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade
-{
-    using NUnit.Framework;
+﻿using NUnit.Framework;
 
+namespace CSharpDesignPatterns._5._Structural_patterns.Facade
+{
     [TestFixture]
     public class GetDressedFacadeTest
     {
@@ -10,8 +10,8 @@
         {
             var sut = new GetDressedFacade();
 
-            Assert.AreEqual(
-                "Smart clothes: [Formal Shoes,Formal Jacket,Formal Trousers,Formal Shirt,Watch,Tie,Belt]",
+            CollectionAssert.AreEquivalent(
+                new[] {"Formal Shoes", "Formal Jacket", "Formal Trousers", "Formal Shirt", "Watch", "Tie", "Belt"},
                 sut.GetSmartClothes());
         }
 
@@ -20,7 +20,7 @@
         {
             var sut = new GetDressedFacade();
 
-            Assert.AreEqual("Casual clothes: [Sneakers,T-Shirt,Shorts,Fitbit]", sut.GetCasualClothes());
+            CollectionAssert.AreEquivalent(new[] {"Sneakers", "T-Shirt", "Shorts", "Fitbit"}, sut.GetCasualClothes());
         }
     }
 }
