@@ -14,12 +14,12 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
         private readonly ShoesCloset       shoesCloset       = new ShoesCloset();
         private readonly Wardrobe          wardrobe          = new Wardrobe();
 
-        public string GetCasualClothes()
+        public IEnumerable<string> GetCasualClothes()
         {
             throw new NotImplementedException();
         }
 
-        public string GetSmartClothes()
+        public IEnumerable<string> GetSmartClothes()
         {
             throw new NotImplementedException();
         }
