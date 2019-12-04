@@ -46,7 +46,8 @@
         public void LogicalOperator()
         {
             string x      = null;
-            var    result = x != null & x.StartsWith("D");
+            var    result1 = x != null && x.StartsWith("D");
+            var    result2 = x != null &  x.StartsWith("D");
         }
     }
 }
