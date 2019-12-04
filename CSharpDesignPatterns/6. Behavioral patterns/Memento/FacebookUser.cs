@@ -13,7 +13,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
             throw new NotImplementedException();
         }
 
-        public ImmutableList<string> Friends { get; private set; }
+        public List<string> Friends { get; private set; }
 
         public string Name { get; set; }
 
