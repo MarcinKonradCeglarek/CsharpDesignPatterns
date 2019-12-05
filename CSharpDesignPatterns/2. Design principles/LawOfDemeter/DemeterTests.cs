@@ -11,7 +11,11 @@
     {
         private const string NewGender = "NewGender";
 
-        private static readonly Person AlbertWesker = new Person("Albert", "Wesker", "Male", new DateTime(1960, 01, 01));
+        private static readonly Person AlbertWesker = new Person(
+            "Albert",
+            "Wesker",
+            "Male",
+            new DateTime(1960, 01, 01));
 
         private static readonly Person AlexWesker = new Person("Alex", "Wesker", "Female", new DateTime(1960, 01, 01));
 

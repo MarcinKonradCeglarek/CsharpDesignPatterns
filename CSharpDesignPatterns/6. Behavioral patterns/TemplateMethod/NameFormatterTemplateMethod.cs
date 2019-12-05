@@ -10,7 +10,6 @@
      *
      * PeasantNameFormatter and RoyaltyNameFormatter provides implementation for abstract methods
      */
-
     public abstract class NameFormatterTemplateMethod
     {
         public string GetName()

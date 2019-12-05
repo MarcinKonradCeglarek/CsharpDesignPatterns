@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
-    using System;
-
     using NUnit.Framework;
 
     [TestFixture]

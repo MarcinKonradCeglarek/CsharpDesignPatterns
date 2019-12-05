@@ -5,17 +5,15 @@ namespace CSharpDesignPatterns._2._Design_principles.CleanCode
 
     internal class CleanCode
     {
-        private static Url OReillyUrl { get; } = new Url("https://www.oreilly.com/library/view/clean-code/9780136083238/");
+        private static Url OReillyUrl { get; } =
+            new Url("https://www.oreilly.com/library/view/clean-code/9780136083238/");
 
         private static Dictionary<string, string> UsefulTools { get; } = new Dictionary<string, string>()
-                                                                         {
-                                                                             {
-                                                                                 "Resharper.StyleCop",
-                                                                                 "A Resharper plugin for automatic code formatting"
-                                                                             },
-                                                                             { "ESLint", "A Linter for Ecma Script (JS)" },
-                                                                             { "TSLint", "A linter for Type Script (JS)" }
-                                                                         };
+            {
+                { "Resharper.StyleCop", "A Resharper plugin for automatic code formatting" },
+                { "ESLint", "A Linter for Ecma Script (JS)" },
+                { "TSLint", "A linter for Type Script (JS)" }
+            };
 
         public static int AlwaysUseBraces(int i)
         {

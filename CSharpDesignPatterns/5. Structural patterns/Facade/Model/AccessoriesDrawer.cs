@@ -1,15 +1,17 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade.Model
 {
+    using System.Collections.Generic;
+
     internal class AccessoriesDrawer
     {
-        public string GetCasualAccessories()
+        public IEnumerable<string> GetCasualAccessories()
         {
-            return "Fitbit";
+            return new[] { "Fitbit" };
         }
 
-        public string GetSmartAccessories()
+        public IEnumerable<string> GetSmartAccessories()
         {
-            return "Watch,Tie,Belt";
+            return new[] { "Watch", "Tie", "Belt" };
         }
     }
 }

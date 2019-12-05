@@ -5,6 +5,7 @@
 
     internal class DependencyInversion
     {
+        /* We could use System.IO.Abstractions here to inject IFile to better test this */
         public string GetAndFormatData()
         {
             var lines = File.ReadAllLines("3. SOLID principles\\data.txt");

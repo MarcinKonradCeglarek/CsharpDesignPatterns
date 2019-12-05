@@ -10,8 +10,17 @@
     [TestFixture]
     public class MarkerTests
     {
-        private readonly IList<IAlive> aliveEntities =
-            new List<IAlive> { new Human(), new Elephant(), new Human(), new Dog(), new Mushroom(), new Mushroom(), new Tree(), new Bush() };
+        private readonly IList<IAlive> aliveEntities = new List<IAlive>
+            {
+                new Human(),
+                new Elephant(),
+                new Human(),
+                new Dog(),
+                new Mushroom(),
+                new Mushroom(),
+                new Tree(),
+                new Bush()
+            };
 
         [Test]
         public void ClassesWithAnimalAttribute()
@@ -40,7 +49,10 @@
         [Test]
         public void ClassesWithAnimalAttributeAndWithoutSentientAttribute()
         {
-            var sentientItems = this.aliveEntities.Where(i => i.GetType().HasAttribute<AnimalAttribute>() && !i.GetType().HasAttribute<SentientAttribute>()).ToList();
+            var sentientItems = this.aliveEntities.Where(
+                                         i => i.GetType().HasAttribute<AnimalAttribute>()
+                                              && !i.GetType().HasAttribute<SentientAttribute>())
+                                    .ToList();
 
             Assert.AreEqual(2, sentientItems.Count);
         }

@@ -14,7 +14,7 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
         private readonly ShoesCloset       shoesCloset       = new ShoesCloset();
         private readonly Wardrobe          wardrobe          = new Wardrobe();
 
-        public string GetCasualClothes()
+        public IEnumerable<string> GetCasualClothes()
         {
             var shoes = this.shoesCloset.GetCasualShoes();
             var clothes = this.wardrobe.GetCasualWear();
@@ -23,7 +23,7 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
             return $"Casual clothes: [{shoes},{clothes},{accesories}]";
         }
 
-        public string GetSmartClothes()
+        public IEnumerable<string> GetSmartClothes()
         {
             var shoes      = this.shoesCloset.GetSmartShoes();
             var clothes    = this.wardrobe.GetSuit();

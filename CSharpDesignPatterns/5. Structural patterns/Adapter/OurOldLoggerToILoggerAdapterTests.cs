@@ -23,10 +23,11 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Debug, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.Debug, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogDebug(message), Times.Once);
 
             mock.Verify(o => o.LogDebug(It.Is<string>(s => s != message)),              Times.Never);
@@ -42,13 +43,15 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Info, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.Info, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogInfo(message), Times.Once);
 
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.Is<string>(s => s != message)),               Times.Never);
             mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
@@ -60,14 +63,16 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Warning, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.Warning, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogWarn(message), Times.Once);
 
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.Is<string>(s => s != message)),               Times.Never);
             mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
@@ -78,15 +83,17 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Error, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.Error, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogError(message), Times.Once);
 
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.Is<string>(s => s != message)),              Times.Never);
             mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Never);
         }
 
@@ -97,16 +104,18 @@
             var message   = Fixture.Create<string>();
             var exception = Fixture.Create<Exception>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.Error, message, exception);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.Error, message, exception);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogException(exception, message), Times.Once);
 
-            mock.Verify(o => o.LogDebug(It.IsAny<string>()), Times.Never);
-            mock.Verify(o => o.LogInfo(It.IsAny<string>()),  Times.Never);
-            mock.Verify(o => o.LogWarn(It.IsAny<string>()),  Times.Never);
-            mock.Verify(o => o.LogError(It.IsAny<string>()), Times.Never);
+            mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
+            mock.Verify(o => o.LogError(It.IsAny<string>()),                            Times.Never);
+            mock.Verify(o => o.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
 
         [Test]
@@ -115,10 +124,11 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.FunctionalMessage, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.FunctionalMessage, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);
@@ -132,10 +142,11 @@
             var mock    = new Mock<ILogger>();
             var message = Fixture.Create<string>();
 
-            var sut = new OurOldLoggerToILoggerAdapter(mock.Object);
-            sut.SendLogMessage(LogLevel.FunctionalError, message);
+            var sut    = new OurOldLoggerToILoggerAdapter(mock.Object);
+            var result = sut.SendLogMessage(LogLevel.FunctionalError, message);
 
             // Assert
+            Assert.IsTrue(result);
             mock.Verify(o => o.LogDebug(It.IsAny<string>()),                            Times.Never);
             mock.Verify(o => o.LogInfo(It.IsAny<string>()),                             Times.Never);
             mock.Verify(o => o.LogWarn(It.IsAny<string>()),                             Times.Never);

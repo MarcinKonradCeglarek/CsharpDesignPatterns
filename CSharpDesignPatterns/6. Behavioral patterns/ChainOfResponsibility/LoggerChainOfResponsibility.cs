@@ -9,7 +9,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.ChainOfResponsibility
      *
      * https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
      */
-
     public abstract class LoggerChainOfResponsibility
     {
         private readonly LogLevel mask;

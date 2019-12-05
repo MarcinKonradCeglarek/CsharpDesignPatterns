@@ -34,7 +34,6 @@
             company.UpdateEmployeeGender(id, newGender);
         }
 
-
         public void DoesThisLinqFollowTheDemeterLaw()
         {
             var result = Enumerable.Range(0, 100)

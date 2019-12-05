@@ -1,15 +1,17 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Facade.Model
 {
+    using System.Collections.Generic;
+
     internal class Wardrobe
     {
-        public string GetCasualWear()
+        public IEnumerable<string> GetCasualWear()
         {
-            return "T-Shirt,Shorts";
+            return new[] { "T-Shirt", "Shorts" };
         }
 
-        public string GetSuit()
+        public IEnumerable<string> GetSuit()
         {
-            return "Formal Jacket,Formal Trousers,Formal Shirt";
+            return new[] { "Formal Jacket", "Formal Trousers", "Formal Shirt" };
         }
     }
 }

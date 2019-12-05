@@ -2,8 +2,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.State
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
 
     using CSharpDesignPatterns.Common.Model;
 

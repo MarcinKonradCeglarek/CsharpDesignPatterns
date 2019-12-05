@@ -97,10 +97,10 @@
         public void ProperlyForwardsAndCountsMultipleMessagesFromMultipleSenders()
         {
             // Arrange
-            var bobsMessages = Fixture.CreateMany<string>().ToList();
+            var bobsMessages  = Fixture.CreateMany<string>().ToList();
             var aliceMessages = Fixture.CreateMany<string>().ToList();
-            var bobDisplay   = new Mock<IReceivedMessagesHandler>();
-            var aliceDisplay = new Mock<IReceivedMessagesHandler>();
+            var bobDisplay    = new Mock<IReceivedMessagesHandler>();
+            var aliceDisplay  = new Mock<IReceivedMessagesHandler>();
 
             var mediator = new ChatRoomMediator();
 

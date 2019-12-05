@@ -24,7 +24,6 @@
      * PassengersCapacityVisitor: sums available passengers for all vehicles
      *
      */
-
     public class PassengersCapacityVisitor : IVehicleVisitor
     {
         private int passengers;

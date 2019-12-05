@@ -25,7 +25,7 @@
             {
                 using (sut.Subscribe(observer2))
                 {
-                    Assert.AreEqual(2,         sut.Observers.Count);
+                    Assert.AreEqual(2, sut.Observers.Count);
                     CollectionAssert.AreEquivalent(new[] { observer1, observer2 }, sut.Observers);
                 }
             }

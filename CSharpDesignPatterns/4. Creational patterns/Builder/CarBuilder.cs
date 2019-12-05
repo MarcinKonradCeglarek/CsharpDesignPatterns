@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._4._Creational_patterns.Builder
+namespace CSharpDesignPatterns._4._Creational_patterns.Builder
 {
     using System;
 

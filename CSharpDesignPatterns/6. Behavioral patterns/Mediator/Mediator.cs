@@ -2,7 +2,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public interface IReceivedMessagesHandler
     {
@@ -17,7 +16,8 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Mediator
 
     public class ChatRoomMediator
     {
-        private readonly IDictionary<Guid, Action<string, string>> clients = new Dictionary<Guid, Action<string, string>>();
+        private readonly IDictionary<Guid, Action<string, string>> clients =
+            new Dictionary<Guid, Action<string, string>>();
 
         public void Register(Guid clientId, Action<string, string> callback)
         {

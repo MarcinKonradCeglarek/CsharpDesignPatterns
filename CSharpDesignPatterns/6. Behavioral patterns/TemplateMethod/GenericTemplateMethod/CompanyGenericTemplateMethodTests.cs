@@ -37,8 +37,8 @@
         [Test]
         public void RemoveNotHiredEmployeeShouldThrow()
         {
-            var person     = Generator.GeneratePerson();
-            var company    = Generator.GenerateCompany();
+            var person  = Generator.GeneratePerson();
+            var company = Generator.GenerateCompany();
 
             var sut = new CompanyGenericTemplateMethod();
 
