@@ -136,7 +136,7 @@
         {
             var car = new Car(wheels: 6, engineType: EngineType.Diesel);
 
-            Assert.AreEqual(6, car.Wheels);
+            Assert.AreEqual(6,                 car.Wheels);
             Assert.AreEqual(EngineType.Diesel, car.EngineType);
         }
     }

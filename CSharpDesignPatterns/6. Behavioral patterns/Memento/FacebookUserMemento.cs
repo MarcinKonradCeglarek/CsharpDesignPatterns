@@ -1,7 +1,5 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
-    using System.Collections.Immutable;
-
     public class FacebookUserMemento
     {
         public readonly List<string> Friends;

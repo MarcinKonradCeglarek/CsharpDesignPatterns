@@ -22,7 +22,9 @@
         [Repeat(2500)]
         public async Task AccessFromMultipleTasksReturnsSingleInstance()
         {
-            var tasks      = Enumerable.Range(0, 5).AsParallel().Select(t => Task.Run(() => SingletonViaLocking.GetInstance()));
+            var tasks = Enumerable.Range(0, 5)
+                                  .AsParallel()
+                                  .Select(t => Task.Run(() => SingletonViaLocking.GetInstance()));
             var singletons = await Task.WhenAll(tasks);
 
             var firstId = singletons[0].Id;

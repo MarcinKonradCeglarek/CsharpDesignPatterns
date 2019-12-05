@@ -179,6 +179,5 @@
 
             Assert.AreEqual(ExpectedPassengers, passengers);
         }
-
     }
 }

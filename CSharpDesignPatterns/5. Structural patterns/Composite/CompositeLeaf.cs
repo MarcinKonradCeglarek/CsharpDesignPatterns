@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Composite
 {
-    using System;
     using System.Collections.Generic;
 
     public class CompositeLeaf : IComposite

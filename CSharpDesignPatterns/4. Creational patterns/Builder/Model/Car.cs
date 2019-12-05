@@ -9,7 +9,8 @@
             TransmissionType transmissionType = TransmissionType.Manual,
             int              wheels           = 4)
         {
-            if ((engineType == EngineType.Electric || engineType == EngineType.Hybrid) && (transmissionType == TransmissionType.Manual))
+            if ((engineType == EngineType.Electric || engineType == EngineType.Hybrid)
+                && (transmissionType == TransmissionType.Manual))
             {
                 throw new InvalidOperationException("Can't use Manual Transmission with Electric or Hybrid engines");
             }

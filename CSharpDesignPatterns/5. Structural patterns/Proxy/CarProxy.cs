@@ -12,12 +12,12 @@
     public class CarProxy : ICar
     {
         private readonly Driver driver;
-        private readonly ICar car;
+        private readonly ICar   car;
 
         public CarProxy(Driver driver, ICar car)
         {
             this.driver = driver;
-            this.car = car;
+            this.car    = car;
         }
 
         public string DriveCar()

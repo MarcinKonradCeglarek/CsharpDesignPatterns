@@ -1,10 +1,9 @@
 namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
 {
-    using System;
-
     public class Diner
     {
         private double total;
+
         public Diner(IBillingStrategy billingStrategy, ITippingStrategy tippingStrategy)
         {
             this.BillingStrategy = billingStrategy;
@@ -18,7 +17,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Strategy
         public void Order(double price)
         {
             var billAmount = this.BillingStrategy.GetPrice(price);
-            var tipAmount = this.TippingStrategy.GetTip(billAmount);
+            var tipAmount  = this.TippingStrategy.GetTip(billAmount);
             this.total += billAmount + tipAmount;
         }
 

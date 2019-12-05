@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Decorator
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -23,6 +22,6 @@
         }
 
         public List<Ingredients> Contents => this.coffee.Contents.Concat(new[] { Ingredients.Milk }).ToList();
-        public double Cost => this.coffee.Cost + 0.5;
+        public double            Cost     => this.coffee.Cost + 0.5;
     }
 }

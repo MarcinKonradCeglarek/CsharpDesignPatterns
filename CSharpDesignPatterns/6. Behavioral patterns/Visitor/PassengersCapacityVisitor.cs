@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Visitor
 {
-    using System;
-
     using CSharpDesignPatterns._6._Behavioral_patterns.Visitor.Model;
 
     /*
@@ -27,7 +25,7 @@
     public class PassengersCapacityVisitor : IVehicleVisitor
     {
         private int passengers;
-        public int PassengersCapacity => this.passengers;
+        public  int PassengersCapacity => this.passengers;
 
         public void Visit(Car car)
         {

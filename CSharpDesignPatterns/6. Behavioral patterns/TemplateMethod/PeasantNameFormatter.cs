@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.TemplateMethod
 {
-    using System;
     using System.Collections.Generic;
 
     public class PeasantNameFormatter : NameFormatterTemplateMethod
@@ -11,7 +10,7 @@
         public PeasantNameFormatter(string firstName, string lastName)
         {
             this.firstName = firstName;
-            this.lastName = lastName;
+            this.lastName  = lastName;
         }
 
         protected override IEnumerable<string> GetFirstNames() => new[] { this.firstName };

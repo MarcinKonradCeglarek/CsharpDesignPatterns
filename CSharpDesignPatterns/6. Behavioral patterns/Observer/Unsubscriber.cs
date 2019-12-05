@@ -13,7 +13,7 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Observer
         public Unsubscriber(IList<IObserver<PayLoad>> observers, IObserver<PayLoad> observer)
         {
             this.observers = observers;
-            this.observer = observer;
+            this.observer  = observer;
             this.observers.Add(observer);
         }
 

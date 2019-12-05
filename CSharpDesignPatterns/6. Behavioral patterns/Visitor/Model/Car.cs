@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Visitor.Model
 {
-    using System;
-
     public class Car : IVehicle
     {
         public Car(int seats)

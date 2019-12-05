@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Iterator
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
 

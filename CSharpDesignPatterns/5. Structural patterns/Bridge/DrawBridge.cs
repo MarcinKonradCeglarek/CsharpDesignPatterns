@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._5._Structural_patterns.Bridge
 {
-    using System;
-
     using CSharpDesignPatterns._5._Structural_patterns.Bridge.Model;
 
     public interface IDrawBridge
@@ -26,7 +24,8 @@
 
         public string DrawRectangle(Point upperLeft, double width, double height)
         {
-            return $"{this.color} rectangle starting at [{upperLeft.X:N2}, {upperLeft.Y:N2}] with width: {width:N2} and height {height:N2}";
+            return
+                $"{this.color} rectangle starting at [{upperLeft.X:N2}, {upperLeft.Y:N2}] with width: {width:N2} and height {height:N2}";
         }
     }
 }

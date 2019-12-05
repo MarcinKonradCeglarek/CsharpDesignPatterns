@@ -57,7 +57,7 @@ namespace CSharpDesignPatterns._4._Creational_patterns.Builder
                 throw new InvalidOperationException();
             }
 
-            this.engineType = EngineType.Electric;
+            this.engineType       = EngineType.Electric;
             this.transmissionType = TransmissionType.Automatic;
             return this;
         }

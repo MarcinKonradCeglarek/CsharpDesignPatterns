@@ -37,7 +37,7 @@
      */
     internal class SingletonViaStaticConstructor
     {
-        private static readonly SingletonViaStaticConstructor Instance  = new SingletonViaStaticConstructor();
+        private static readonly SingletonViaStaticConstructor Instance = new SingletonViaStaticConstructor();
 
         private SingletonViaStaticConstructor()
         {

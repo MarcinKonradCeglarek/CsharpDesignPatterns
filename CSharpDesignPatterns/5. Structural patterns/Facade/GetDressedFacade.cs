@@ -1,6 +1,5 @@
 namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 {
-    using System;
     using System.Collections.Generic;
 
     using CSharpDesignPatterns._5._Structural_patterns.Facade.Model;
@@ -16,8 +15,8 @@ namespace CSharpDesignPatterns._5._Structural_patterns.Facade
 
         public IEnumerable<string> GetCasualClothes()
         {
-            var shoes = this.shoesCloset.GetCasualShoes();
-            var clothes = this.wardrobe.GetCasualWear();
+            var shoes      = this.shoesCloset.GetCasualShoes();
+            var clothes    = this.wardrobe.GetCasualWear();
             var accesories = this.accessoriesDrawer.GetCasualAccessories();
 
             return $"Casual clothes: [{shoes},{clothes},{accesories}]";

@@ -1,7 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Command
 {
-    using System;
-
     public class TurnOffDeviceCommand : ICommand
     {
         private readonly IDevice device;
