@@ -42,11 +42,10 @@
             {
                 throw new InvalidOperationException();
             }
-            
         }
 
         protected abstract void AddChild(TParent    parent, TChild child);
-        protected abstract bool IsChild(TParent     parent,    TChild child);
+        protected abstract bool IsChild(TParent     parent, TChild child);
         protected abstract void RemoveChild(TParent parent, TChild child);
     }
 }

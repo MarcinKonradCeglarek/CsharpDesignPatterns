@@ -12,7 +12,6 @@
          * Customer collaboration           over contract negotiation
          * Responding to change             over following a plan
          */
-
         public static Url ManifestoUrl { get; } = new Url("https://agilemanifesto.org");
 
         public static Url WikiPage { get; } = new Url("https://pl.wikipedia.org/wiki/Manifest_Agile");

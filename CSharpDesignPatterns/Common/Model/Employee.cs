@@ -6,15 +6,15 @@
     {
         public Employee(Person person, string title, double salary)
         {
-            this.Person  = person;
-            this.Title   = title;
-            this.Salary  = salary;
+            this.Person = person;
+            this.Title  = title;
+            this.Salary = salary;
         }
 
-        public Guid    Id      => this.Person.Id;
-        public Person  Person  { get; }
-        public double  Salary  { get; set; }
-        public string  Title   { get; }
+        public Guid   Id     => this.Person.Id;
+        public Person Person { get; }
+        public double Salary { get; set; }
+        public string Title  { get; }
 
         public override string ToString()
         {

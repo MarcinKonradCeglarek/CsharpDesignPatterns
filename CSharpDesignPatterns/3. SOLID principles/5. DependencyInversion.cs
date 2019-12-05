@@ -4,8 +4,6 @@
     using System.IO;
     using System.Text;
 
-    using Moq;
-
     using NUnit.Framework;
 
     internal class DependencyInversion

@@ -1,6 +1,5 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.TemplateMethod
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,7 +10,6 @@
      *
      * PeasantNameFormatter and RoyaltyNameFormatter provides implementation for abstract methods
      */
-
     public abstract class NameFormatterTemplateMethod
     {
         public string GetName()

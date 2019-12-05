@@ -1,22 +1,20 @@
 ﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Specification
 {
     using System;
-    using System.Security.Cryptography.X509Certificates;
 
     using NUnit.Framework;
 
     [TestFixture]
     public class SpecificationTests
     {
-
         [Test]
         public void OrAnd_ProperlyWorksForGivenConditions()
         {
             var greaterThan0 = new IntGreaterThan(0);
-            var lessThan10 = new IntLessThan(10);
+            var lessThan10   = new IntLessThan(10);
 
             var over9000 = new IntGreaterThan(9000);
-        
+
             var myCondition = over9000.Or(greaterThan0.And(lessThan10));
 
             Assert.IsTrue(myCondition.IsSatisfiedBy(5));
@@ -45,9 +43,9 @@
         [Test]
         public void LogicalOperator()
         {
-            string x      = null;
+            string x       = null;
             var    result1 = x != null && x.StartsWith("D");
-            var    result2 = x != null &  x.StartsWith("D");
+            var    result2 = (x != null) & x.StartsWith("D");
         }
     }
 }

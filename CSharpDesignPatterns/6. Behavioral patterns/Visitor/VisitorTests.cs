@@ -11,8 +11,8 @@
     [TestFixture]
     public class VisitorTests
     {
-        private const int ExpectedPassengers = 40 + 40 + 4 + 3;
-        private const double ExpectedCargo = 5000 + 7500 + 200 + 200;
+        private const int    ExpectedPassengers = 40 + 40 + 4       + 3;
+        private const double ExpectedCargo      = 5000 + 7500 + 200 + 200;
 
         private readonly List<IVehicle> components = new List<IVehicle>
             {
@@ -28,7 +28,7 @@
         public void PassengersCapacityVisitorForOneCar()
         {
             var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var car = new Car(4);
+            var car                       = new Car(4);
 
             // Act
             car.Accept(passengersCapacityVisitor);
@@ -41,7 +41,7 @@
         public void PassengersCapacityVisitorForOneTruck()
         {
             var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var truck = new Truck(5000);
+            var truck                     = new Truck(5000);
 
             // Act
             truck.Accept(passengersCapacityVisitor);
@@ -54,7 +54,7 @@
         public void PassengersCapacityVisitorForOneBus()
         {
             var passengersCapacityVisitor = new PassengersCapacityVisitor();
-            var bus = new Bus();
+            var bus                       = new Bus();
 
             // Act
             bus.Accept(passengersCapacityVisitor);
@@ -67,7 +67,7 @@
         public void CargoCapacityVisitorForOneCar()
         {
             var cargoCapacityVisitor = new CargoCapacityVisitor();
-            var car = new Car(4);
+            var car                  = new Car(4);
 
             // Act
             car.Accept(cargoCapacityVisitor);
@@ -80,7 +80,7 @@
         public void CargoCapacityVisitorForOneTruck()
         {
             var cargoCapacityVisitor = new CargoCapacityVisitor();
-            var truck = new Truck(5000);
+            var truck                = new Truck(5000);
 
             // Act
             truck.Accept(cargoCapacityVisitor);
@@ -93,7 +93,7 @@
         public void CargoCapacityVisitorForOneBus()
         {
             var cargoCapacityVisitor = new CargoCapacityVisitor();
-            var bus = new Bus();
+            var bus                  = new Bus();
 
             // Act
             bus.Accept(cargoCapacityVisitor);

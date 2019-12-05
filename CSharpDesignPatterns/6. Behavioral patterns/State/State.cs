@@ -2,8 +2,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.State
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
 
     using CSharpDesignPatterns.Common.Model;
 
@@ -45,9 +43,9 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.State
         }
 
         public IReadOnlyDictionary<User, bool> Approvals => throw new NotImplementedException();
-        public string Contents { get; private set; }
+        public string                          Contents  { get; private set; }
 
-        public bool IsDraft => throw new NotImplementedException();
+        public bool IsDraft       => throw new NotImplementedException();
         public bool IsPublished   => throw new NotImplementedException();
         public bool IsUnderReview => throw new NotImplementedException();
 

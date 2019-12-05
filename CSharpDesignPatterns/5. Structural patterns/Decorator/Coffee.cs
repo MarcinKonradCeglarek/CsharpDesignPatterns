@@ -21,6 +21,6 @@
     public class Coffee : ICoffee
     {
         public List<Ingredients> Contents { get; }
-        public double Cost { get; }
+        public double            Cost     { get; }
     }
 }

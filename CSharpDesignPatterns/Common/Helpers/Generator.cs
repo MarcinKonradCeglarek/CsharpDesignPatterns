@@ -10,7 +10,11 @@
         private static readonly string[] FemaleNames = { "Chloe", "Emily", "Emma", "Aaliyah", "Olivia", "Lauren" };
         private static readonly string[] MaleNames   = { "Jacob", "Michael", "Aaron", "Shawn", "Daniel", "Alex" };
         private static readonly Random   Random      = new Random();
-        private static readonly string[] Surnames    = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller" };
+
+        private static readonly string[] Surnames =
+            {
+                "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller"
+            };
 
         internal static Company GenerateCompany()
         {

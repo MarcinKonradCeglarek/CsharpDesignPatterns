@@ -9,7 +9,6 @@ namespace CSharpDesignPatterns._4._Creational_patterns.Builder
      *
      * Great example: https://demos.telerik.com/aspnet-mvc/grid/custom-datasource
      */
-
     public class CarBuilder
     {
         public CarBuilder AutomaticTransmission()

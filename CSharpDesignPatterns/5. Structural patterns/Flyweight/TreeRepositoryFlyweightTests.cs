@@ -49,10 +49,10 @@
             var position1  = Fixture.Create<Position>();
             var position2  = Fixture.Create<Position>();
 
-            repository.CreateTree("Oak", position1);
+            repository.CreateTree("Oak",   position1);
             repository.CreateTree("Birch", position2);
 
-            Assert.AreEqual(2,         repository.TreeModels.Count);
+            Assert.AreEqual(2, repository.TreeModels.Count);
             Assert.IsTrue(repository.TreeModels.ContainsKey("Oak"));
             Assert.IsTrue(repository.TreeModels.ContainsKey("Birch"));
         }

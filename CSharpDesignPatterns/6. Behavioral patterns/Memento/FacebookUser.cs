@@ -2,9 +2,6 @@ namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.Collections.ObjectModel;
-    using System.Linq;
 
     public class FacebookUser
     {

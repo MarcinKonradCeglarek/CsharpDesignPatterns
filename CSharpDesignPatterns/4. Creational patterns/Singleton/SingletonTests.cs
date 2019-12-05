@@ -8,7 +8,6 @@
     [TestFixture]
     public class SingletonTests
     {
-
         [Test]
         [Repeat(2500)]
         public void GetInstanceTwiceSameId()
@@ -29,6 +28,5 @@
             var firstId = singletons[0].Id;
             Assert.IsTrue(singletons.All(s => s.Id == firstId));
         }
-
     }
 }

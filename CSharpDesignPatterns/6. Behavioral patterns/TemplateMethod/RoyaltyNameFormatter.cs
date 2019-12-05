@@ -5,8 +5,12 @@
 
     public class RoyaltyNameFormatter : NameFormatterTemplateMethod
     {
-
-        public RoyaltyNameFormatter(string prefix, string firstName, string secondName, string thirdName, string lastName)
+        public RoyaltyNameFormatter(
+            string prefix,
+            string firstName,
+            string secondName,
+            string thirdName,
+            string lastName)
         {
             throw new NotImplementedException();
         }
@@ -16,6 +20,5 @@
         protected override string GetLastName() => throw new NotImplementedException();
 
         protected override string GetPrefix() => throw new NotImplementedException();
-
     }
 }

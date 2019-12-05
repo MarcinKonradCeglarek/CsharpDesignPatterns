@@ -24,7 +24,6 @@
      * PassengersCapacityVisitor: sums available passengers for all vehicles
      *
      */
-
     public class PassengersCapacityVisitor : IVehicleVisitor
     {
         public int PassengersCapacity => throw new NotImplementedException();

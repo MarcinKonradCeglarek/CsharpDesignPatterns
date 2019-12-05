@@ -6,7 +6,7 @@
 
     public interface IDrawBridge
     {
-        string DrawCircle(Point center, double radius);
+        string DrawCircle(Point    center,    double radius);
         string DrawRectangle(Point upperLeft, double width, double height);
     }
 

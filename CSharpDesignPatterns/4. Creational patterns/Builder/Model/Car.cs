@@ -2,7 +2,10 @@
 {
     public class Car
     {
-        public Car(EngineType engineType = EngineType.Gasoline, TransmissionType transmissionType = TransmissionType.Manual, int wheels = 4)
+        public Car(
+            EngineType       engineType       = EngineType.Gasoline,
+            TransmissionType transmissionType = TransmissionType.Manual,
+            int              wheels           = 4)
         {
             this.EngineType       = engineType;
             this.TransmissionType = transmissionType;

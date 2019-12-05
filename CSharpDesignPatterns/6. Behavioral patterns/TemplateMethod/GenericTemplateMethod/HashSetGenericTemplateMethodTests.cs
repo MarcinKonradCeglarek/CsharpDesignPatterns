@@ -15,9 +15,9 @@
         [Test]
         public void AddsNumberToEmptyHashSet()
         {
-            var value = Fixture.Create<int>();
+            var value   = Fixture.Create<int>();
             var hashSet = new HashSet<int>();
-            var sut = new HashSetGenericTemplateMethod();
+            var sut     = new HashSetGenericTemplateMethod();
 
             sut.AddToParent(hashSet, value);
 
@@ -62,10 +62,10 @@
         [Test]
         public void MovingIntFromHashSetToHashSetWhereItAlreadyExistsThrows()
         {
-            var value   = Fixture.Create<int>();
+            var value    = Fixture.Create<int>();
             var hashSet1 = new HashSet<int>();
             var hashSet2 = new HashSet<int>();
-            var sut     = new HashSetGenericTemplateMethod();
+            var sut      = new HashSetGenericTemplateMethod();
 
             sut.AddToParent(hashSet1, value);
             sut.AddToParent(hashSet2, value);
@@ -76,10 +76,10 @@
         [Test]
         public void AddingMovingAndRemovingIntFromOneHashSetToAnother()
         {
-            var value = 16;
+            var value    = 16;
             var hashSet1 = new HashSet<int>();
             var hashSet2 = new HashSet<int>();
-            var sut     = new HashSetGenericTemplateMethod();
+            var sut      = new HashSetGenericTemplateMethod();
 
             sut.AddToParent(hashSet1, 2);
             sut.AddToParent(hashSet1, 4);

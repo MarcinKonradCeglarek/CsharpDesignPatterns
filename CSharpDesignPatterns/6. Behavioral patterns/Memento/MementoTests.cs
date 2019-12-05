@@ -1,4 +1,4 @@
-﻿namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
+namespace CSharpDesignPatterns._6._Behavioral_patterns.Memento
 {
     using System;
 
